@@ -1,0 +1,38 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ExplosiveBall : PowerUps {
+	[SerializeField] private GameObject explosiveBallInstancePrefab;
+	private AudioSource audioSource;
+
+	void Awake(){
+		audioSource = GetComponent<AudioSource> ();
+	}
+
+	void Start (){
+	}
+
+	void OnDisable(){ Unsubscribe (); }
+
+	public override void PickUp (){
+		PlayerBuffs.isExplosive = true;
+		Ball[] balls = FindObjectsOfType<Ball> ();
+		for (int i = 0; i < balls.Length; i++) {
+			ExplosiveBallInstance instance = balls [i].GetComponentInChildren<ExplosiveBallInstance> ();
+			if (instance == null) {
+				Instantiate (explosiveBallInstancePrefab, balls [i].transform.position, Quaternion.identity, balls [i].transform);
+			} else {
+				instance.IncrementExplosion ();
+			}
+
+		}
+	}
+	protected override void ActiveEffect (Collider2D col, GameObject ball) {}
+	protected override void EndOfEffect(){}
+
+
+	protected override void Subscribe (){}
+	protected override void Unsubscribe(){ Ball.BallCollidedEvent -= ActiveEffect; }
+
+}

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 003a2a86b081c6c4aa23d5d9b45d00d2
+timeCreated: 1479586255
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - hoverSound: {fileID: 8300000, guid: 31f0cf0569ce84b4abb9db4a10a132b1, type: 3}
+  - clickSound: {fileID: 8300000, guid: 2c69fd6dd91c214449416f5de7180399, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

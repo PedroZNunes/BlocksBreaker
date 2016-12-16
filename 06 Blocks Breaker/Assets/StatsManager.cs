@@ -21,7 +21,6 @@ public class StatsManager : MonoBehaviour {
 
 	void Start () {
 		StartCoroutine (GetData ());
-
 	}
 
 

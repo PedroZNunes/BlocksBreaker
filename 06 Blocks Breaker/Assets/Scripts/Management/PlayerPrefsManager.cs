@@ -60,6 +60,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 		int lastLevel = PlayerPrefs.GetInt (LAST_LEVEL_PLAYED);
 		return lastLevel;
 	}
+
 		
 	public static bool IsLevelUnlocked (int level){
 		int levelValue = PlayerPrefs.GetInt(LEVEL_KEY+level.ToString());

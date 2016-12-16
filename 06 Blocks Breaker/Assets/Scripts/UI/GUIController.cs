@@ -99,12 +99,11 @@ public class GUIController : MonoBehaviour {
 
 	void ShowLoseScreen(){
 		Instantiate (loseScreen, mainCanvas.transform.position, Quaternion.identity, mainCanvas.transform);
-		ActionMaster.GUILoseEvent -= ShowLoseScreen;
-	} 
+	}
 
 	void ShowWinScreen(){
 		Instantiate (winScreen, mainCanvas.transform.position, Quaternion.identity, mainCanvas.transform);
-		ActionMaster.GUIWinEvent -= ShowWinScreen;
+
 	}
 
 	void OnDisable(){
@@ -113,16 +112,12 @@ public class GUIController : MonoBehaviour {
 
 	void Subscribe(){
 		ActionMaster.GUIPauseMenuEvent += ShowHidePauseMenu;
-		ActionMaster.GUILoseEvent += ShowLoseScreen;
-		ActionMaster.GUIWinEvent += ShowWinScreen;
 		ActionMaster.GUIStateChangedEvent += GameStateSwitched;
 		ScoreManager.GUIUpdateScoreEvent += UpdateScore;
 	}
 
 	void Unsubscribe(){
 		ActionMaster.GUIPauseMenuEvent -= ShowHidePauseMenu;
-		ActionMaster.GUILoseEvent -= ShowLoseScreen;
-		ActionMaster.GUIWinEvent -= ShowWinScreen;
 		ActionMaster.GUIStateChangedEvent -= GameStateSwitched;
 		ScoreManager.GUIUpdateScoreEvent -= UpdateScore;
 	}

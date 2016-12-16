@@ -3,7 +3,7 @@ using System.Collections;
 [RequireComponent (typeof(Collider2D), typeof(SpriteRenderer))]
 public class PickUpItem : MonoBehaviour {
 
-
+	static public event System.Action PowerUpPickedUpEvent;
 	private enum PowerUpList {MultiBall, ElectricBall, GainHP, ExplosiveBall}
 
 	[SerializeField] PowerUpList powerUpType;
@@ -37,6 +37,8 @@ public class PickUpItem : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D col){
 		if (col.CompareTag (MyTags.Player.ToString ())) {
+			if (PowerUpPickedUpEvent != null)
+				PowerUpPickedUpEvent ();
 			audioSource.clip = soundEffect;
 			audioSource.Play ();
 			powerUp.PickUp ();

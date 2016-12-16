@@ -35,7 +35,6 @@ public class MenuButton : MonoBehaviour {
 
 	IEnumerator TryAgain(){
 		Time.timeScale = 1f;
-		levelManager.ResetProgress ();
 		yield return (!audioSource.isPlaying);
 		levelManager.LoadLevel("02 Level_01");
 	}

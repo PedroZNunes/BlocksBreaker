@@ -5,9 +5,10 @@ public class ActionMaster : MonoBehaviour {
 
 	public delegate void LaunchHandler (Vector2 direction);
 	public static event LaunchHandler LaunchEvent;
-	public static event System.Action GUILoseEvent;
-	public static event System.Action GUIWinEvent;
+	public static event System.Action LoseEvent;
+	public static event System.Action WinEvent;
 	public static event System.Action GUIFirstLaunchEvent;
+	static public event System.Action UpdateAllStatsEvent;
 
 	public delegate void StateChangedHandler (States newState);
 	public static event StateChangedHandler GUIStateChangedEvent;
@@ -28,32 +29,34 @@ public class ActionMaster : MonoBehaviour {
 				GUIStateChangedEvent (currentGameState);
 		}
 	}
-
+	[SerializeField] private GameObject ballPrefab;
+	private GameObject ballParent;
 	private PowerUpManager powerUpManager;
 	private Player player;
-	private GameManager gameManager;
 	private AudioSource audioSource;
+
 
 	private bool isOpening = false;
 	private bool isWinning = false;
+	private bool isLosing = false;
 
 
 	void Awake (){
+		ballParent = GameObject.FindGameObjectWithTag (MyTags.BallSpawn.ToString());
+		Debug.Assert (ballParent != null, "Ball Spawn not found by tag. Should be on player.");
 
-	}
-
-	void Start (){
 		player = FindObjectOfType<Player>();
 		Debug.Assert (player != null, "Player not found in the scene");
-
-		gameManager = FindObjectOfType<GameManager>();
-		Debug.Assert (gameManager != null, "Game Manager not found in the scene");
 
 		audioSource = GetComponent<AudioSource> ();
 		Debug.Assert (audioSource != null, "Audio Source not found in the scene");
 
 		powerUpManager = FindObjectOfType <PowerUpManager> ();
 		Debug.Assert (powerUpManager != null, "Power Up Manager not found in the scene");
+	}
+
+	void Start (){
+
 
 		CurrentGameState = States.Inactive;
 		Subscribe ();
@@ -92,7 +95,8 @@ public class ActionMaster : MonoBehaviour {
 				StartCoroutine (HandleWin ());
 			break;
 		case States.Lose:
-			HandleLose ();
+			if (isLosing == false)
+				HandleLose ();
 			break;
 		case States.Pause:
 			HandlePause ();
@@ -127,7 +131,7 @@ public class ActionMaster : MonoBehaviour {
 		audioSource.Play ();
 		//player animation is automatic.
 		yield return new WaitForSeconds (2.5f);
-		gameManager.RespawnBall ();
+		RespawnBall ();
 		player.canMove = true;
 		TriggerFirstLaunch ();
 	}
@@ -172,9 +176,9 @@ public class ActionMaster : MonoBehaviour {
 	void HandleNoBallsLeft (){
 		Debug.Log ("Handling No Balls Left");
 		player.TakeHit ();
-		if (gameManager.DeathCheck () == false) {
+		if (DeathCheck () == false) {
 			Debug.Log (CurrentGameState);
-			gameManager.RespawnBall ();
+			RespawnBall ();
 			player.canMove = true;
 			TriggerLaunch ();
 		} else {
@@ -199,6 +203,7 @@ public class ActionMaster : MonoBehaviour {
 
 
 	void HandleLose(){
+		isLosing = true;
 		int score = ScoreManager.GetScore ();
 		if (score > PlayerPrefsManager.GetHighScore ()) {
 			PlayerPrefsManager.SetHighScore (score);
@@ -215,7 +220,19 @@ public class ActionMaster : MonoBehaviour {
 		}
 	}
 
+	public void RespawnBall(){
+		GameObject ball = Instantiate (ballPrefab, ballParent.transform.position, ballParent.transform.rotation, ballParent.transform) as GameObject;
+		ball.GetComponent<Rigidbody2D> ().isKinematic = true;
+	}
 
+	public bool DeathCheck(){
+		if (player.hp <= 0) {
+			TriggerLose ();
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	void CountBalls(){
 		if (Ball.Count <= 0 && CurrentGameState == States.PlayMode) {
@@ -259,6 +276,8 @@ public class ActionMaster : MonoBehaviour {
 		
 
 
+
+
 	public void TriggerOpeningAnimations (){
 		CurrentGameState = States.OpeningAnimations;
 		Debug.Log ("Handling Opening Animations");
@@ -287,11 +306,17 @@ public class ActionMaster : MonoBehaviour {
 
 	public void TriggerWin(){
 		CurrentGameState = States.Win;
+		if (UpdateAllStatsEvent != null)
+			UpdateAllStatsEvent ();
 		Debug.Log ("Handling Win");
 	}
 
 	public void TriggerLose(){
 		CurrentGameState = States.Lose;
+		if (LoseEvent != null)
+			LoseEvent ();
+		if (UpdateAllStatsEvent != null)
+			UpdateAllStatsEvent ();
 		Debug.Log ("Handling Lose");
 	}
 

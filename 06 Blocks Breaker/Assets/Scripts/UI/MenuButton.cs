@@ -30,6 +30,7 @@ public class MenuButton : MonoBehaviour {
 	public void MainMenuWrapper(){	StartCoroutine (MainMenu ());	}
 	public void PlayWrapper(){		StartCoroutine (Play ());		}
 	public void OptionsWrapper(){	StartCoroutine (Options ());	}
+	public void StatsWrapper(){	StartCoroutine (Stats ());	}
 
 
 	IEnumerator TryAgain(){
@@ -54,6 +55,11 @@ public class MenuButton : MonoBehaviour {
 	IEnumerator Options(){
 		yield return (!audioSource.isPlaying);
 		levelManager.LoadLevel ("01b Options");
+	}
+
+	IEnumerator Stats (){
+		yield return (!audioSource.isPlaying);
+		levelManager.LoadLevel ("01c Stats");
 	}
 
 	public void Quit(){

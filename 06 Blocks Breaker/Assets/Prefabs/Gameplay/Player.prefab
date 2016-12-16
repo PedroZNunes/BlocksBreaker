@@ -262,7 +262,7 @@ MonoBehaviour:
   - {fileID: 21300004, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
   - {fileID: 21300002, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
   - {fileID: 21300000, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
-  speed: 7
+  speed: 7.5
   spriteRenderer: {fileID: 212000010912321240}
 --- !u!212 &212000010912321240
 SpriteRenderer:

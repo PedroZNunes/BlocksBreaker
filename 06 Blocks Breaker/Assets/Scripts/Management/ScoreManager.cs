@@ -2,10 +2,9 @@
 using System.Collections;
 
 public class ScoreManager : MonoBehaviour {
+	
 	public delegate void UIHandler (int score);
 	static public event UIHandler GUIUpdateScoreEvent;
-
-
 	static private int score;
 
 

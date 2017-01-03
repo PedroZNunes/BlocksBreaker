@@ -6,7 +6,6 @@ public class PowerUpManager : MonoBehaviour {
 
 	[SerializeField] private PowerUps[] powerUps;
 	[Tooltip("Use the same order as the power ups array")]
-	[SerializeField] private GameObject[] PickUpPrefabs;
 
 	private ActionMaster actionMaster;
 	private float lastProcTime = 0f;
@@ -14,13 +13,14 @@ public class PowerUpManager : MonoBehaviour {
 	private float currentDropChance = 0f;
 	private float bonusPercentPerSecond = 2f;
 
+	public enum PowerUpsEnum {MultiBall, ElectricBall, GainHP, ExplosiveBall};
+	private PowerUpsEnum currentPowerUp;
 
 	void OnEnable(){Block.PowerUpDropEvent += DropPowerUp;}
 	void OnDisable(){Block.PowerUpDropEvent -= DropPowerUp;}
 
 	void Start(){
-		if (powerUps.Length == 0)
-			Debug.LogError ("No power ups assigned in the inspector.");
+		
 	}
 
 	public void IncrementTimer (){
@@ -38,7 +38,7 @@ public class PowerUpManager : MonoBehaviour {
 			int i = Random.Range (0, powerUps.Length);
 			Transform parent = GameObject.FindGameObjectWithTag (MyTags.Dynamic.ToString ()).transform;
 			Debug.Assert (parent != null, "Dynamic not found.");
-			Instantiate (PickUpPrefabs [i], blockPosition, Quaternion.identity, parent);
+			powerUps [i].Drop (blockPosition);
 			currentProcTime = 0f;
 			currentDropChance = 0f;
 		}

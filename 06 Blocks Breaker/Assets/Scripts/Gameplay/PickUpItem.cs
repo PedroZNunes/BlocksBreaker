@@ -4,26 +4,16 @@ using System.Collections;
 public class PickUpItem : MonoBehaviour {
 
 	static public event System.Action PowerUpPickedUpEvent;
-	private enum PowerUpList {MultiBall, ElectricBall, GainHP, ExplosiveBall}
-
-	[SerializeField] PowerUpList powerUpType;
 	private float speed = 4f;
 	[SerializeField] private AudioClip soundEffect;
 	private AudioSource audioSource;
-	private PowerUps powerUp;
+	[SerializeField] private PowerUps powerUp;
 	private float defaultPitch;
 	private float pitchVariance;
 
 	void Start(){
-		if (powerUpType == PowerUpList.MultiBall)
-			powerUp = FindObjectOfType<MultiBall> ();
-		else if (powerUpType == PowerUpList.ElectricBall)
-			powerUp = FindObjectOfType<ElectricBall> ();
-		else if (powerUpType == PowerUpList.GainHP)
-			powerUp = FindObjectOfType<GainHP> ();
-		else if (powerUpType == PowerUpList.ExplosiveBall)
-			powerUp = FindObjectOfType<ExplosiveBall> ();
-		Debug.Assert (powerUpType != null, "Power Up not found");
+
+		Debug.Assert (powerUp != null, "PowerUp not set");
 		Debug.Assert (soundEffect != null, "soundEffect not found");
 
 		audioSource = GetComponentInChildren<AudioSource> ();

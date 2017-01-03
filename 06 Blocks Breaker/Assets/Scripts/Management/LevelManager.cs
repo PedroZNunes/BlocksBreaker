@@ -52,8 +52,6 @@ public class LevelManager : MonoBehaviour {
 
 	void Load(string sceneName){
 		//TODO load high score
-
-
 		float musicvolume = PlayerPrefsManager.GetMusicVolume ();
 		float effectsVolume = PlayerPrefsManager.GetEffectsVolume ();
 		audioMixer.SetFloat ("musicVolume", musicvolume);

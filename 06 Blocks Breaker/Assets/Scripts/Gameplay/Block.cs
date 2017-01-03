@@ -14,7 +14,7 @@ public class Block : MonoBehaviour {
 
 	[SerializeField] private int scorePerHit;
 
-	private float powerUpDropChancePercent = 0.5f;
+	static private float powerUpDropChancePercent = 0.3f;
 	private SpriteRenderer spriteRenderer;
 	private Vector3 desiredPosition;
 	private Vector3 blockDisplacement = new Vector3 (0f, 10f, 0f);
@@ -30,7 +30,6 @@ public class Block : MonoBehaviour {
 		desiredPosition = transform.position;
 		transform.position += blockDisplacement;
 		Count = 0;
-
 	}
 
 	void Start () {
@@ -65,7 +64,7 @@ public class Block : MonoBehaviour {
 		if (PowerUpDropEvent != null)
 			PowerUpDropEvent (transform.position, powerUpDropChancePercent);
 		hp--;
-		ScoreManager.AddPoints (scorePerHit);
+//		ScoreManager.AddPoints (scorePerHit);
 		if (hp <= 0) {
 			DestroyBlock ();
 		} else {

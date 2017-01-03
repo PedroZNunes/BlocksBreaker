@@ -32,52 +32,22 @@ public class StatsTracker : MonoBehaviour {
 
 	IEnumerator UpdateAllStats(){
 		CountRemainingBalls ();
-		if (GameSparksManager.isAuthenticated) {
-			GetData ();
-		}
-		yield return (dataLoaded);
+		GetData ();
+		AssignVariables ();
 		Debug.Log ("Starting to Save...");
-
+		SaveAllData ();
+		yield return null;
 	}
 
 	void GetData(){
-		new GameSparks.Api.Requests.LogEventRequest ().SetEventKey ("Get_Stats")
-			.Send ((response) => {
-				if (!response.HasErrors) {
-					Debug.Log ("Player' stats loaded...");
-					GameSparks.Core.GSData stats = response.ScriptData.GetGSData ("playerStats");
-					oldBallsUsed = stats.GetInt ("playerBalls").GetValueOrDefault();
-					oldDeaths = stats.GetInt ("playerDeaths").GetValueOrDefault();
-					oldPowerUps = stats.GetInt ("playerPowerUps").GetValueOrDefault();
-					oldBlocksDestroyed = stats.GetInt ("playerBlocksDestroyed").GetValueOrDefault();
-					print ("Old data: " + oldBallsUsed + " " + oldDeaths + " " + oldPowerUps + " " + oldBlocksDestroyed);
-					dataLoaded = true;
-					AssignVariables ();
-					SaveAllData ();
-				} else {
-					Debug.LogError ("Error Loading Player's stats...");
-				}
-			});
+		oldBallsUsed = PlayerPrefsManager.Get_BallsUsed ();
+		oldDeaths = PlayerPrefsManager.Get_Deaths ();
+		oldBlocksDestroyed = PlayerPrefsManager.Get_BlocksDestroyed ();
+		oldPowerUps = PlayerPrefsManager.Get_PowerUps ();
 	}
 
 	void SaveAllData(){
-		if (GameSparksManager.isAuthenticated) {
-			Debug.Log ("Saving player's data...");
-			new GameSparks.Api.Requests.LogEventRequest ().SetEventKey ("Set_Stats")
-				.SetEventAttribute ("BallsUsed", ballsUsed)
-				.SetEventAttribute ("Deaths", deaths)
-				.SetEventAttribute ("PowerUps", powerUps)
-				.SetEventAttribute ("BlocksDestroyed", blocksDestroyed)
-				.Send ((response) => {
-				if (!response.HasErrors) {
-					Debug.Log ("Player's data saved...");
-					string stats = string.Format("Balls Used: {0} // Deaths: {1} // PowerUps: {2} // BlocksDestroyed: {3}", ballsUsed, deaths, powerUps, blocksDestroyed);
-					print (stats);
-				} else {
-					Debug.LogError ("Error Saving player's data...");
-				}
-			});
-		}
+		PlayerPrefsManager.Set_Stats (ballsUsed, deaths, blocksDestroyed, powerUps);
 	}
 
 	void AssignVariables(){

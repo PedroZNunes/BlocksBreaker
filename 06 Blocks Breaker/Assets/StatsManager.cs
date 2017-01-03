@@ -20,27 +20,15 @@ public class StatsManager : MonoBehaviour {
 
 
 	void Start () {
-		StartCoroutine (GetData ());
+		GetData ();
+		FillTextFields ();
 	}
 
-
-	IEnumerator GetData(){
-		yield return (GameSparksManager.isAuthenticated);
-		new GameSparks.Api.Requests.LogEventRequest ().SetEventKey ("Get_Stats")
-			.Send ((response) => {
-			if (!response.HasErrors) {
-				Debug.Log ("Player' stats loaded...");
-				GameSparks.Core.GSData stats = response.ScriptData.GetGSData ("playerStats");
-				ballsUsed = stats.GetInt ("playerBalls").GetValueOrDefault ();
-				deaths = stats.GetInt ("playerDeaths").GetValueOrDefault ();
-				powerUps = stats.GetInt ("playerPowerUps").GetValueOrDefault ();
-				blocksDestroyed = stats.GetInt ("playerBlocksDestroyed").GetValueOrDefault ();
-				dataLoaded = true;
-				FillTextFields ();
-			} else {
-				Debug.LogError ("Error Loading Player's stats...");
-			}
-		});
+	void GetData(){
+		ballsUsed = PlayerPrefsManager.Get_BallsUsed ();
+		deaths = PlayerPrefsManager.Get_Deaths ();
+		powerUps = PlayerPrefsManager.Get_PowerUps ();
+		blocksDestroyed = PlayerPrefsManager.Get_BlocksDestroyed ();
 	}
 
 	void FillTextFields(){

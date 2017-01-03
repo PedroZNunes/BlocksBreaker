@@ -6,8 +6,8 @@ public class GainHP : PowerUps {
 	private Player player;
 	// Use this for initialization
 	void Start () {
-		player = FindObjectOfType<Player> ();
-		Debug.Assert (player != null, "player not found");
+		
+
 	}
 	
 	// Update is called once per frame
@@ -16,6 +16,8 @@ public class GainHP : PowerUps {
 	}
 
 	public override void PickUp(){
+		player = FindObjectOfType<Player> ();
+		Debug.Assert (player != null, "player not found");
 		player.GainHP ();
 	}
 
@@ -23,7 +25,4 @@ public class GainHP : PowerUps {
 
 	protected override void Unsubscribe(){}
 
-	protected override void EndOfEffect(){}
-
-	protected override void ActiveEffect (Collider2D col, GameObject ball) {}
 }

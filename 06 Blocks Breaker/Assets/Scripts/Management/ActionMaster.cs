@@ -177,7 +177,6 @@ public class ActionMaster : MonoBehaviour {
 		Debug.Log ("Handling No Balls Left");
 		player.TakeHit ();
 		if (DeathCheck () == false) {
-			Debug.Log (CurrentGameState);
 			RespawnBall ();
 			player.canMove = true;
 			TriggerLaunch ();
@@ -193,10 +192,10 @@ public class ActionMaster : MonoBehaviour {
 		PlayerPrefsManager.SetLastLevelPlayed (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().buildIndex);
 		MusicPlayer musicPlayer = FindObjectOfType<MusicPlayer> ();
 		yield return new WaitForSeconds (4f);
-		int score = ScoreManager.GetScore ();
-		if (score > PlayerPrefsManager.GetHighScore ()) {
-			PlayerPrefsManager.SetHighScore (score);
-		}
+//		int score = ScoreManager.GetScore ();
+//		if (score > PlayerPrefsManager.GetHighScore ()) {
+//			PlayerPrefsManager.SetHighScore (score);
+//		}
 		LevelManager levelManager = FindObjectOfType<LevelManager> ();
 		levelManager.LoadNextLevel ();
 	}
@@ -204,10 +203,10 @@ public class ActionMaster : MonoBehaviour {
 
 	void HandleLose(){
 		isLosing = true;
-		int score = ScoreManager.GetScore ();
-		if (score > PlayerPrefsManager.GetHighScore ()) {
-			PlayerPrefsManager.SetHighScore (score);
-		}
+//		int score = ScoreManager.GetScore ();
+//		if (score > PlayerPrefsManager.GetHighScore ()) {
+//			PlayerPrefsManager.SetHighScore (score);
+//		}
 		player.canMove = false;
 	}
 
@@ -242,11 +241,11 @@ public class ActionMaster : MonoBehaviour {
 
 	void CountBlocks(){
 		Debug.Log ("Number of Blocks by Block.Count: " + Block.Count);
-		if (Block.Count == 5) {
-			int realNumberOfBlocks = FindObjectsOfType<Block> ().Length;
-			Debug.Log ("Number of Blocks by counting objects: " + realNumberOfBlocks);
-		}
-		if (Block.Count <= 0f && CurrentGameState == States.PlayMode) {
+//		if (Block.Count == 5) {
+//			int realNumberOfBlocks = FindObjectsOfType<Block> ().Length;
+//			Debug.Log ("Number of Blocks by counting objects: " + realNumberOfBlocks);
+//		}
+		if (Block.Count <= 0f && (CurrentGameState == States.PlayMode || CurrentGameState == States.Relaunch)) {
 			Debug.Log ("Triggered Win by lack of blocks");
 			TriggerWin ();
 		}

@@ -9,6 +9,11 @@ public class PlayerPrefsManager : MonoBehaviour {
 	const string LEVEL_KEY = "levelunlocked_";
 	const string LAST_LEVEL_PLAYED = "last_level";
 	const string HIGH_SCORE = "high_score";
+	const string BALLS_USED = "balls_used";
+	const string DEATHS = "deaths";
+	const string POWER_UPS = "power_ups";
+	const string BLOCKS_DESTROYED = "blocks_destroyed";
+
 
 	public static void SetMusicVolume (float volume){
 		float minVolume = -20f;
@@ -81,5 +86,35 @@ public class PlayerPrefsManager : MonoBehaviour {
 		int score = PlayerPrefs.GetInt (HIGH_SCORE, 0);
 		return score;
 	}
+
+	public static void Set_Stats(int ballsUsed, int deaths, int blocksDestroyed, int powerUps){
+		PlayerPrefs.SetInt (BALLS_USED, ballsUsed);
+		PlayerPrefs.SetInt (DEATHS, deaths);
+		PlayerPrefs.SetInt (BLOCKS_DESTROYED, blocksDestroyed);
+		PlayerPrefs.SetInt (POWER_UPS, powerUps);
+	}
+
+	public static int Get_BallsUsed (){
+		int ballsUsed = PlayerPrefs.GetInt (BALLS_USED, 0);
+		return ballsUsed;
+	}
+
+	public static int Get_Deaths (){
+		int deaths = PlayerPrefs.GetInt (DEATHS, 0);
+		return deaths;
+	}
+
+	public static int Get_PowerUps (){
+		int powerUps = PlayerPrefs.GetInt (POWER_UPS, 0);
+		return powerUps;
+	}
+
+	public static int Get_BlocksDestroyed (){
+		int blocksDestroyed = PlayerPrefs.GetInt (BLOCKS_DESTROYED, 0);
+		return blocksDestroyed;
+	}
+
+
+
 		
 }

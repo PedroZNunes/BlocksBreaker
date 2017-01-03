@@ -22,9 +22,8 @@ public class MultiballEffect : MonoBehaviour {
 		if (timer >= trailInterval) {
 			
 			timer = 0f;
-			GameObject[] balls = GameObject.FindGameObjectsWithTag (MyTags.Ball.ToString ());
-			for (int i = 0; i < balls.Length; i++) {
-				SpriteRenderer[] sprites = balls [i].GetComponentsInChildren<SpriteRenderer> ();
+			GameObject ball = transform.parent.parent.gameObject;
+			SpriteRenderer[] sprites = ball.GetComponentsInChildren<SpriteRenderer> ();
 				if (sprites.Length == 1) {
 					ballSprite = defaultSprite;
 				} else {
@@ -35,11 +34,11 @@ public class MultiballEffect : MonoBehaviour {
 					}
 				}
 				
-				Vector3 newTransform = new Vector3 (balls [i].transform.position.x, balls [i].transform.position.y, balls [i].transform.position.z + 1);
+				Vector3 newTransform = new Vector3 (ball.transform.position.x, ball.transform.position.y, ball.transform.position.z + 1);
 				GameObject trail = Instantiate (trailBall, newTransform, Quaternion.identity, trailParent.transform) as GameObject;
-				trail.transform.localScale = balls [i].transform.localScale;
+				trail.transform.localScale = ball.transform.localScale;
 				trail.GetComponent<SpriteRenderer> ().sprite = ballSprite;
-			}
+
 		} 
 	}
 

@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544b02fd1a9e1a349bffaad5bab9cdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: 3
   soundEffect: {fileID: 8300000, guid: 6a34bc1d65503a349a4bc30dbb02cd9c, type: 3}
+  powerUp: {fileID: 114251489315765770, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
 --- !u!212 &212400123110773858
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -23,16 +23,12 @@ public class ExplosiveBall : PowerUps {
 			if (instance == null) {
 				Instantiate (explosiveBallInstancePrefab, balls [i].transform.position, Quaternion.identity, balls [i].transform);
 			} else {
-				instance.IncrementExplosion ();
+				instance.IncrementEffect ();
 			}
-
 		}
 	}
-	protected override void ActiveEffect (Collider2D col, GameObject ball) {}
-	protected override void EndOfEffect(){}
-
 
 	protected override void Subscribe (){}
-	protected override void Unsubscribe(){ Ball.BallCollidedEvent -= ActiveEffect; }
+	protected override void Unsubscribe(){}
 
 }

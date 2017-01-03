@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1000276519808258}
+  m_IsPrefabParent: 1
+--- !u!1 &1000276519808258
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4884814204026622}
+  - component: {fileID: 114020690528169782}
+  m_Layer: 0
+  m_Name: PowerUp Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4884814204026622
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000276519808258}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114020690528169782
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000276519808258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce834c7f0a784c4a8b66ef596381a70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerUps:
+  - {fileID: 114200895670658764, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114200895670658764, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114200895670658764, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114031991338862278, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114031991338862278, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114031991338862278, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114251489315765770, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114251489315765770, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114251489315765770, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
+  - {fileID: 114513264229865584, guid: 0376faa614a16064691296347d9fa8e7, type: 2}

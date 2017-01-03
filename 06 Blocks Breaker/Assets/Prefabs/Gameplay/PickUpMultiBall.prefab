@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 544b02fd1a9e1a349bffaad5bab9cdc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerUpType: 0
   soundEffect: {fileID: 8300000, guid: a921f9a75b1d4224dafd00167e4b2cf0, type: 3}
+  powerUp: {fileID: 114031991338862278, guid: 0376faa614a16064691296347d9fa8e7, type: 2}
 --- !u!212 &212000012127037890
 SpriteRenderer:
   m_ObjectHideFlags: 1

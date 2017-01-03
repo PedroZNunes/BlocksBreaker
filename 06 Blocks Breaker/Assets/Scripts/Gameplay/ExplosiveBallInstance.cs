@@ -8,8 +8,7 @@ public class ExplosiveBallInstance : MonoBehaviour {
 	[SerializeField] private GameObject explosiveEffect;
 	static private Transform effectParent;
 	static private int Count;
-	private ExplosiveBall explosiveBallClass;
-	private float[] radiusMultipliers = new float[4]{1f, 1.5f, 2f, 3f};
+	private float[] radiusMultipliers = new float[3]{1f, 1.5f, 2f};
 	private float effectiveRadiusMultiplier;
 	private SpriteRenderer spriteRenderer;
 	private int stacks = 1;
@@ -19,7 +18,6 @@ public class ExplosiveBallInstance : MonoBehaviour {
 	void Awake(){
 		Debug.Assert (explosiveEffect != null, "Explosive Effect not set in the inspector");
 		spriteRenderer = GetComponent<SpriteRenderer> ();
-		explosiveBallClass = FindObjectOfType<ExplosiveBall> ();
 		effectParent = GameObject.FindWithTag (MyTags.Dynamic.ToString ()).transform;
 		Subscribe ();
 	}
@@ -49,7 +47,7 @@ public class ExplosiveBallInstance : MonoBehaviour {
 		}
 	}
 
-	public void IncrementExplosion(){
+	public void IncrementEffect(){
 		stacks = Mathf.Clamp(stacks+1, 1, 3);
 		effectiveRadiusMultiplier = radiusMultipliers[stacks-1];
 		spriteRenderer.sprite = sprites [stacks-1];

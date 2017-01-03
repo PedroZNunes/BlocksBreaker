@@ -13,8 +13,8 @@ public class GUIController : MonoBehaviour {
 	[SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject loseScreen;
 	[SerializeField] private GameObject mainCanvas;
-	[SerializeField] private Text scoreText;
-	[SerializeField] private Text highScoreText;
+//	[SerializeField] private Text scoreText;
+//	[SerializeField] private Text highScoreText;
 	[SerializeField] private GameObject slideInterface;
 	[SerializeField] private Text levelNameText;
 
@@ -29,8 +29,8 @@ public class GUIController : MonoBehaviour {
 	}
 
 	void Start(){
-		int highScore = PlayerPrefsManager.GetHighScore ();
-		highScoreText.text = string.Format ("{0:00000}", highScore);
+//		int highScore = PlayerPrefsManager.GetHighScore ();
+//		highScoreText.text = string.Format ("{0:00000}", highScore);
 		string sceneName = SceneManager.GetActiveScene ().name;
 		char[] charactersToTrim = { '0', '2', ' '};
 		string levelText = sceneName.TrimStart(charactersToTrim);
@@ -99,12 +99,11 @@ public class GUIController : MonoBehaviour {
 
 	void ShowLoseScreen(){
 		Instantiate (loseScreen, mainCanvas.transform.position, Quaternion.identity, mainCanvas.transform);
-		ActionMaster.GUILoseEvent -= ShowLoseScreen;
-	} 
+	}
 
 	void ShowWinScreen(){
 		Instantiate (winScreen, mainCanvas.transform.position, Quaternion.identity, mainCanvas.transform);
-		ActionMaster.GUIWinEvent -= ShowWinScreen;
+
 	}
 
 	void OnDisable(){
@@ -113,22 +112,18 @@ public class GUIController : MonoBehaviour {
 
 	void Subscribe(){
 		ActionMaster.GUIPauseMenuEvent += ShowHidePauseMenu;
-		ActionMaster.GUILoseEvent += ShowLoseScreen;
-		ActionMaster.GUIWinEvent += ShowWinScreen;
 		ActionMaster.GUIStateChangedEvent += GameStateSwitched;
-		ScoreManager.GUIUpdateScoreEvent += UpdateScore;
+//		ScoreManager.GUIUpdateScoreEvent += UpdateScore;
 	}
 
 	void Unsubscribe(){
 		ActionMaster.GUIPauseMenuEvent -= ShowHidePauseMenu;
-		ActionMaster.GUILoseEvent -= ShowLoseScreen;
-		ActionMaster.GUIWinEvent -= ShowWinScreen;
 		ActionMaster.GUIStateChangedEvent -= GameStateSwitched;
-		ScoreManager.GUIUpdateScoreEvent -= UpdateScore;
+//		ScoreManager.GUIUpdateScoreEvent -= UpdateScore;
 	}
 
-	void UpdateScore(int score){
-		scoreText.text = string.Format("{0:00000}", score);
-	}
+//	void UpdateScore(int score){
+//		scoreText.text = string.Format("{0:00000}", score);
+//	}
 
 }

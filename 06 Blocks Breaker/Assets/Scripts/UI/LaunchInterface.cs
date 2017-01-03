@@ -30,7 +30,6 @@ public class LaunchInterface : MonoBehaviour {
 	public void OnTapCircle(){
 		player.canMove = false;
 		startPos = arrow.transform.position;
-		print (startPos);
 		GetComponent<Animator> ().SetBool ("isClicked", true);
 	}
 
@@ -41,10 +40,8 @@ public class LaunchInterface : MonoBehaviour {
 		else
 			currentPos = Input.mousePosition;
 		Vector2 offset = (currentPos - startPos);
-		print (Mathf.Atan2 (offset.y, offset.x));
 		float angle = Mathf.Atan2 (offset.y, offset.x) * Mathf.Rad2Deg;
 		arrow.transform.rotation = Quaternion.LookRotation (Vector3.forward, offset);
-		print (angle);
 	}
 
 	public void OnReleaseCircle(){

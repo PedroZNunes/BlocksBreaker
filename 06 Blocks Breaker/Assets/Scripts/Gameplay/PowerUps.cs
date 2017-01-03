@@ -3,33 +3,26 @@ using System.Collections;
 
 abstract public class PowerUps : MonoBehaviour {
 
-	[SerializeField] protected float duration = 15f;
-	protected bool refresh;
-	protected float baseProcChance;
-	[SerializeField] protected float procChance = 5f;
 
 	public abstract void PickUp ();
 	protected abstract void Subscribe();
 	protected abstract void Unsubscribe ();
-	protected abstract void EndOfEffect ();
-	protected abstract void ActiveEffect (Collider2D col, GameObject ball);
 
-	protected virtual IEnumerator ControlEffectDuration(float duration){
-		float startTime = Time.timeSinceLevelLoad;
-		float currentTime = startTime;
-		while (currentTime - startTime < duration) {
-			currentTime = Time.timeSinceLevelLoad;
-			yield return new WaitForSeconds(0.25f);
-		}
-		Unsubscribe ();
-		EndOfEffect ();
+	public GameObject pickUpPrefab;
+	private Transform itemParent;
+
+	void Awake(){
+		itemParent = GameObject.FindWithTag (MyTags.Dynamic.ToString ()).transform;
 	}
-
 
 	void OnTriggerEnter2D(Collider2D col){
 		if (col.CompareTag (MyTags.Player.ToString ())) {
 			PickUp ();
 		}
+	}
+
+	public void Drop(Vector3 blockPosition){
+		Instantiate (pickUpPrefab, blockPosition, Quaternion.identity, itemParent);
 	}
 
 }

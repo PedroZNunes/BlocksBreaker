@@ -4,7 +4,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSparksManager : MonoBehaviour {
+	
 	private static GameSparksManager instance = null;
+
+	static public bool isAuthenticated = false;
 
 	void Awake ()
 	{
@@ -16,14 +19,19 @@ public class GameSparksManager : MonoBehaviour {
 		}
 	}
 
-	void SceneChanged (Scene scene, LoadSceneMode mode){
-		string sceneName = scene.name;
-		if (sceneName.StartsWith ("02")) {
-			
-		}
+	void Start(){
+		StartCoroutine (AuthenticateDevice ());
 	}
 
-	void OnEnable(){ SceneManager.sceneLoaded += SceneChanged; }
+	IEnumerator AuthenticateDevice(){
+		yield return (GameSparks.Core.GS.Available);
+		Debug.Log ("Authenticating Device...");
+		new GameSparks.Api.Requests.DeviceAuthenticationRequest ()
+			.SetDisplayName ("Randy")
+			.Send ((response) => {
+				if (!response.HasErrors) {Debug.Log ("Device Authenticated..."); isAuthenticated = true;}
+				else {Debug.LogError ("Error Authenticating Device..."); isAuthenticated = false;}
+			});
+	}
 
-	void OnDisable(){ SceneManager.sceneLoaded -= SceneChanged; }
 }

@@ -9,7 +9,6 @@ public class MultiBallInstance : MonoBehaviour {
 	[SerializeField] private GameObject multiBallEffect;
 	[SerializeField] private GameObject ballPrefab;
 	private GameObject activeEffect;
-	private SpriteRenderer spriteRenderer;
 	private Transform dynamic;
 	static private int Count;
 
@@ -17,7 +16,6 @@ public class MultiBallInstance : MonoBehaviour {
 	void Awake(){
 		Debug.Assert (multiBallEffect != null, "Explosive Effect not set in the inspector");
 		Debug.Assert (ballPrefab != null, "Ball Prefab not set in inspector.");
-		spriteRenderer = GetComponent<SpriteRenderer> ();
 		dynamic = GameObject.FindWithTag (MyTags.Dynamic.ToString ()).transform;
 		Subscribe ();
 		Count++;

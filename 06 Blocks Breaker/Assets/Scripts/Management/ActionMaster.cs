@@ -6,8 +6,6 @@ public class ActionMaster : MonoBehaviour {
 	public delegate void LaunchHandler (Vector2 direction);
 	public static event LaunchHandler LaunchEvent;
 	public static event System.Action LoseEvent;
-	public static event System.Action WinEvent;
-	public static event System.Action GUIFirstLaunchEvent;
 	static public event System.Action UpdateAllStatsEvent;
 
 	public delegate void StateChangedHandler (States newState);
@@ -56,7 +54,7 @@ public class ActionMaster : MonoBehaviour {
 	}
 
 	void Start (){
-
+		
 
 		CurrentGameState = States.Inactive;
 		Subscribe ();
@@ -168,9 +166,9 @@ public class ActionMaster : MonoBehaviour {
 
 		powerUpManager.IncrementTimer ();
 
-//		if (Input.GetKeyDown (KeyCode.W)) { //HACK
-//			TriggerWin ();
-//		}
+		if (Input.GetKeyDown (KeyCode.W)) { //HACK
+			TriggerWin ();
+		}
 	}
 
 	void HandleNoBallsLeft (){
@@ -189,8 +187,6 @@ public class ActionMaster : MonoBehaviour {
 	IEnumerator HandleWin(){
 		isWinning = true;
 		player.canMove = false;
-		PlayerPrefsManager.SetLastLevelPlayed (UnityEngine.SceneManagement.SceneManager.GetActiveScene ().buildIndex);
-		MusicPlayer musicPlayer = FindObjectOfType<MusicPlayer> ();
 		yield return new WaitForSeconds (4f);
 //		int score = ScoreManager.GetScore ();
 //		if (score > PlayerPrefsManager.GetHighScore ()) {

@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4000011184328066}
   - component: {fileID: 114000011844810406}
-  - component: {fileID: 114000013586784232}
   - component: {fileID: 114182371051159460}
   - component: {fileID: 82000011583205498}
   m_Layer: 0
@@ -137,17 +136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousGameState: 0
   ballPrefab: {fileID: 1000010794234974, guid: f3925628107cf624fbc739811a586a90, type: 2}
---- !u!114 &114000013586784232
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011463653886}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74fb8336f504aaf4686c01bde8375a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114182371051159460
 MonoBehaviour:
   m_ObjectHideFlags: 1

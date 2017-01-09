@@ -8,7 +8,7 @@ public class ExplosiveBallInstance : MonoBehaviour {
 	[SerializeField] private GameObject explosiveEffect;
 	static private Transform effectParent;
 	static private int Count;
-	private float[] radiusMultipliers = new float[3]{1f, 1.5f, 2f};
+	private float[] radiusMultipliers = new float[3]{1.5f, 2f, 2.5f};
 	private float effectiveRadiusMultiplier;
 	private SpriteRenderer spriteRenderer;
 	private int stacks = 1;

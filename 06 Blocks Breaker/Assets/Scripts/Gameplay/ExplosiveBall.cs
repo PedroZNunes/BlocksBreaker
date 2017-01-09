@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class ExplosiveBall : PowerUps {
 	[SerializeField] private GameObject explosiveBallInstancePrefab;
-	private AudioSource audioSource;
-
-	void Awake(){
-		audioSource = GetComponent<AudioSource> ();
-	}
-
-	void Start (){
-	}
 
 	void OnDisable(){ Unsubscribe (); }
 

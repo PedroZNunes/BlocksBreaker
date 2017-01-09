@@ -40,7 +40,6 @@ public class LaunchInterface : MonoBehaviour {
 		else
 			currentPos = Input.mousePosition;
 		Vector2 offset = (currentPos - startPos);
-		float angle = Mathf.Atan2 (offset.y, offset.x) * Mathf.Rad2Deg;
 		arrow.transform.rotation = Quaternion.LookRotation (Vector3.forward, offset);
 	}
 

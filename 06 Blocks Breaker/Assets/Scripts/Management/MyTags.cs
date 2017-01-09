@@ -21,4 +21,5 @@ public static class MyTags {
 	public static string PickUpItem = "PickUpItem";
 	public static string Background = "Background";
 	public static string Explosive = "Explosive";
+	public static string WorldsGrid = "WorldsGrid";
 }

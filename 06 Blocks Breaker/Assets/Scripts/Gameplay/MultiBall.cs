@@ -6,21 +6,8 @@ public class MultiBall : PowerUps {
 	[SerializeField] private GameObject ballPrefab;
 	[SerializeField] private GameObject multiBallInstancePrefab;
 
-
 	private GameObject multiballEffect;
-	private Transform ballParent;
-	private AudioSource audioSource;
-	private float baseProcChance;
-
-
-	void Awake(){
-		audioSource = GetComponent<AudioSource> ();
-	}
-
-	void Start (){
-		ballParent = GameObject.FindGameObjectWithTag (MyTags.Dynamic.ToString ()).transform;
-	}
-
+		
 	void OnDisable(){ Unsubscribe (); }
 
 	public override void PickUp (){

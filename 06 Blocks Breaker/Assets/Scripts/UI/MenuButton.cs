@@ -5,9 +5,10 @@ using System.Collections;
 [RequireComponent(typeof (AudioSource))]
 public class MenuButton : MonoBehaviour {
 
+	[SerializeField] private AudioClip clickSound;
+
 	private LevelManager levelManager;
 	private AudioSource audioSource;
-	[SerializeField] private AudioClip clickSound;
 
 	void Awake (){
 		audioSource = GetComponent<AudioSource> ();
@@ -36,7 +37,7 @@ public class MenuButton : MonoBehaviour {
 	IEnumerator TryAgain(){
 		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel("02 Level_01");
+		levelManager.LoadLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 		
 	IEnumerator MainMenu(){
@@ -48,7 +49,7 @@ public class MenuButton : MonoBehaviour {
 	IEnumerator Play(){
 		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel ("02 Level_01");
+		levelManager.LoadLevel ("01d Level Select");
 	}
 
 	IEnumerator Options(){

@@ -42,6 +42,9 @@ public class OptionsController : MonoBehaviour {
 	void Update () {
 		EffectsVolume = effectsSlider.value;
 		MusicVolume = musicSlider.value;
+		if (Input.GetButtonDown ("Cancel")) {
+			FindObjectOfType<LevelManager> ().LoadLevel ("01a Start");
+		}
 	}
 
 	public void SaveAll(){

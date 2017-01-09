@@ -5,7 +5,6 @@ public class SlideMovementInterface : MonoBehaviour {
 
 
 	private Player player;
-	private bool isMoving = false;
 
 	void OnEnable (){
 		player = FindObjectOfType<Player> ();
@@ -30,10 +29,6 @@ public class SlideMovementInterface : MonoBehaviour {
 		} else if (Input.GetMouseButtonUp (0)) {
 			player.AssignDirection (0f);
 		}
-	}
-
-	public void Move (bool move){
-		isMoving = move;
 	}
 
 }

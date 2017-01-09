@@ -13,8 +13,6 @@ public class GUIController : MonoBehaviour {
 	[SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject loseScreen;
 	[SerializeField] private GameObject mainCanvas;
-//	[SerializeField] private Text scoreText;
-//	[SerializeField] private Text highScoreText;
 	[SerializeField] private GameObject slideInterface;
 	[SerializeField] private Text levelNameText;
 
@@ -32,10 +30,8 @@ public class GUIController : MonoBehaviour {
 //		int highScore = PlayerPrefsManager.GetHighScore ();
 //		highScoreText.text = string.Format ("{0:00000}", highScore);
 		string sceneName = SceneManager.GetActiveScene ().name;
-		char[] charactersToTrim = { '0', '2', ' '};
-		string levelText = sceneName.TrimStart(charactersToTrim);
-		levelText = levelText.Replace('_', ' ');
-		levelNameText.text = levelText;
+		string levelText = sceneName.Substring(sceneName.LastIndexOf('_')+2);
+		levelNameText.text = "Level " + levelText;
 	}
 
 

@@ -5,14 +5,17 @@ using UnityEngine.Audio;
 
 public class LevelManager : MonoBehaviour {
 
-
-
 	[SerializeField] private AudioMixer audioMixer;
 
+	private AsyncOperation loadAsync;
 	private int currentScore;
+	private bool isLoading;
 
+	/// <summary>
+	/// singleton Process
+	/// </summary>
 	static private LevelManager instance;
-	//singleton Process
+
 	void Awake () {
 		if (instance != null) {	
 			Destroy (gameObject);
@@ -22,12 +25,19 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
+	void Start(){
+		PlayerPrefsManager.UnlockStartLevel();
+	}
 
+	void Update(){
+		
+	}
 
 	void SceneChanged (Scene scene, LoadSceneMode mode){
-		string sceneName = scene.name;
-		Load (sceneName);
+		UnlockCurrentLevel ();
+		LoadVolumes ();
 	}
+
 
 	public void LoadLevel (string levelName){
 		SceneManager.LoadScene (levelName, LoadSceneMode.Single);
@@ -38,20 +48,21 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void LoadNextLevel (){
-		Save ();
+		UnlockCurrentLevel ();
 		int nextLevel = SceneManager.GetActiveScene ().buildIndex + 1;
 		LoadLevel (nextLevel);
 	}
 
-	void Save(){
-		//TODO save high score from previous level
-
+	void UnlockCurrentLevel(){
 		//unlock next level for playing
-		PlayerPrefsManager.Unlocklevel(SceneManager.GetActiveScene().buildIndex+1);
+		if (SceneManager.GetActiveScene().name.StartsWith ("02")){
+			string levelID = SceneManager.GetActiveScene ().name.Substring (9);
+			print ("Unlocking levelID " + levelID);
+			PlayerPrefsManager.UnlockLevel(levelID);
+		}
 	}
 
-	void Load(string sceneName){
-		//TODO load high score
+	void LoadVolumes(){
 		float musicvolume = PlayerPrefsManager.GetMusicVolume ();
 		float effectsVolume = PlayerPrefsManager.GetEffectsVolume ();
 		audioMixer.SetFloat ("musicVolume", musicvolume);

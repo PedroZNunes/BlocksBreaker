@@ -138,7 +138,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  effectArea: 1.8
+  effectArea: 1.5
   chainHits: 3
   procChance: 5
   duration: 8

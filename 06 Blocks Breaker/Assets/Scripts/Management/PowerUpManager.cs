@@ -4,16 +4,15 @@ using System.Collections.Generic;
 
 public class PowerUpManager : MonoBehaviour {
 
+	public enum PowerUpsEnum {MultiBall, ElectricBall, GainHP, ExplosiveBall};
+
 	[SerializeField] private PowerUps[] powerUps;
-	[Tooltip("Use the same order as the power ups array")]
 
 	private ActionMaster actionMaster;
-	private float lastProcTime = 0f;
 	private float currentProcTime = 0f;
 	private float currentDropChance = 0f;
 	private float bonusPercentPerSecond = 2f;
 
-	public enum PowerUpsEnum {MultiBall, ElectricBall, GainHP, ExplosiveBall};
 	private PowerUpsEnum currentPowerUp;
 
 	void OnEnable(){Block.PowerUpDropEvent += DropPowerUp;}

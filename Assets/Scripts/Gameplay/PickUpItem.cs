@@ -4,7 +4,7 @@ using System.Collections;
 public class PickUpItem : MonoBehaviour {
 
 	static public event System.Action PowerUpPickedUpEvent;
-	private float speed = 3f;
+	private float speed = 2.5f;
 	[SerializeField] private AudioClip soundEffect;
 	private AudioSource audioSource;
 	[SerializeField] private PowerUps powerUp;

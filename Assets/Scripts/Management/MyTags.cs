@@ -11,7 +11,7 @@ public static class MyTags {
 	public static string GameController	= "GameController";
 	public static string Shredder		= "BallShredder";
 	public static string Ball			= "Ball";
-	public static string PlayerSpwan	= "PlayerSpawn";
+	public static string PlayerSpawn	= "PlayerSpawn";
 	public static string BallSpawn		= "BallSpawn";
 	public static string BallShredder	= "BallShredder";
 	public static string Block			= "Block";

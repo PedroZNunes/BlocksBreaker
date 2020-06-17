@@ -29,8 +29,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010794234974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.2425333, y: -1.34, z: -0.08203125}
-  m_LocalScale: {x: 0.275, y: 0.275, z: 0.275}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,9 +52,6 @@ MonoBehaviour:
   hitUnbreakableClip: {fileID: 8300000, guid: 76ff06275f6fbc946b67b780d7088f4b, type: 3}
   hitOtherClip: {fileID: 8300000, guid: 6fbc56db34843e04e9f529472cda6aeb, type: 3}
   firstLaunchClip: {fileID: 8300000, guid: 67674c19ebfc1c04ab8bd7df7f02c1e7, type: 3}
-  maxSpeed: 7
-  minAngles: {x: 0.1, y: 0.1}
-  maxAngles: {x: 0.9, y: 0.9}
 --- !u!50 &50000013404263304
 Rigidbody2D:
   serializedVersion: 4
@@ -91,7 +88,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.25
 --- !u!212 &212000012712983182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -131,7 +128,8 @@ SpriteRenderer:
   m_SortingLayerID: -965314483
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9fa1a9922444e894cba33396314c66b7, type: 3}
+  m_Sprite: {fileID: -8299087723631062824, guid: 9fa1a9922444e894cba33396314c66b7,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -12,7 +12,7 @@ public class Ball : MonoBehaviour {
 
 	public static int Count = 0;
 	[SerializeField] private AudioClip hitBlockClip, hitPlayerClip, hitUnbreakableClip, hitOtherClip, firstLaunchClip;
-	private float maxSpeed = 8f;
+	private float maxSpeed = 10f;
 	private Vector2 minAngles = new Vector2 (0.1f, 0.1f);
 	private Vector2 maxAngles = new Vector2 (0.9f, 0.9f);
 

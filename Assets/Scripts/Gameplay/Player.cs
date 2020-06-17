@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] private AudioClip takeHitClip;
 	[Tooltip("Set elements according to HP")]
 	[SerializeField] private Sprite[] hpSprites = new Sprite[HPARRAYSIZE];
-	[SerializeField] private float speed = 9f;
+	[SerializeField] private float speed = 12f;
 	[SerializeField] private SpriteRenderer spriteRenderer;
 	private const int HPARRAYSIZE = 4;
 	private AudioSource audioSource;

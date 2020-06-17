@@ -32,6 +32,10 @@ public class ActionMaster : MonoBehaviour {
 	}
 	[SerializeField] private GameObject ballPrefab;
 	private GameObject ballParent;
+
+	[SerializeField] private GameObject playerPrefab;
+	private GameObject playerRespawn;
+
 	private PowerUpManager powerUpManager;
 	private Player player;
 	private AudioSource audioSource;
@@ -44,11 +48,12 @@ public class ActionMaster : MonoBehaviour {
     #region Initialization
 
     void Awake (){
+
+		SpawnPlayer();
+		Debug.Assert( player != null, "Player not found in the scene" );
+
 		ballParent = GameObject.FindGameObjectWithTag (MyTags.BallSpawn.ToString());
 		Debug.Assert (ballParent != null, "Ball Spawn not found by tag. Should be on player.");
-
-		player = FindObjectOfType<Player>();
-		Debug.Assert (player != null, "Player not found in the scene");
 
 		audioSource = GetComponent<AudioSource> ();
 		Debug.Assert (audioSource != null, "Audio Source not found in the scene");
@@ -75,6 +80,18 @@ public class ActionMaster : MonoBehaviour {
 		Ball.NoBallsLeftEvent -= HandleNoBallsLeft;
 	}
 
+	void SpawnPlayer() {
+		player = FindObjectOfType<Player>();
+
+		if (player != null) {
+			Destroy( player.gameObject );
+		}
+		else {
+			playerRespawn = GameObject.FindGameObjectWithTag( MyTags.PlayerSpawn );
+			GameObject playerGO = Instantiate( playerPrefab, playerRespawn.transform );
+			player = playerGO.GetComponent<Player>();
+		}
+	}
 	#endregion
 
 

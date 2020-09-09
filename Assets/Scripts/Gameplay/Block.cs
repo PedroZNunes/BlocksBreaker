@@ -87,11 +87,11 @@ public class Block : MonoBehaviour {
 	}
 
 	public void TakeHit(){
-		if (PowerUpDropEvent != null)
-			PowerUpDropEvent (transform.position, powerUpDropChancePercent);
 		hp--;
 //		ScoreManager.AddPoints (scorePerHit);
 		if (hp <= 0) {
+			if (PowerUpDropEvent != null)
+				PowerUpDropEvent( transform.position, powerUpDropChancePercent );
 			DestroyBlock ();
 		} else {
 			spriteRenderer.sprite = sprites [hp-1];

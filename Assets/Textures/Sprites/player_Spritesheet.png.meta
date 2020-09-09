@@ -135,10 +135,10 @@ TextureImporter:
       name: player_3
       rect:
         serializedVersion: 2
-        x: 1
-        y: 151
-        width: 98
-        height: 23
+        x: 20
+        y: 156
+        width: 60
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,10 +156,10 @@ TextureImporter:
       name: player_2
       rect:
         serializedVersion: 2
-        x: 1
-        y: 126
-        width: 98
-        height: 23
+        x: 20
+        y: 131
+        width: 60
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -177,10 +177,10 @@ TextureImporter:
       name: player_1
       rect:
         serializedVersion: 2
-        x: 1
-        y: 101
-        width: 98
-        height: 23
+        x: 20
+        y: 106
+        width: 60
+        height: 13
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -281,7 +281,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 2bf3d5f7bc34d8d4dad791541281ec7b
     internalID: 0
     vertices: []
     indices: 

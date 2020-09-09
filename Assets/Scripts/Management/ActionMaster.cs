@@ -52,9 +52,6 @@ public class ActionMaster : MonoBehaviour {
 		SpawnPlayer();
 		Debug.Assert( player != null, "Player not found in the scene" );
 
-		ballParent = GameObject.FindGameObjectWithTag (MyTags.BallSpawn.ToString());
-		Debug.Assert (ballParent != null, "Ball Spawn not found by tag. Should be on player.");
-
 		audioSource = GetComponent<AudioSource> ();
 		Debug.Assert (audioSource != null, "Audio Source not found in the scene");
 
@@ -64,6 +61,8 @@ public class ActionMaster : MonoBehaviour {
 
 	void Start (){
 		CurrentGameState = States.Start;
+
+
 	}
 
     void OnEnable() { Subscribe (); }
@@ -86,11 +85,10 @@ public class ActionMaster : MonoBehaviour {
 		if (player != null) {
 			Destroy( player.gameObject );
 		}
-		else {
-			playerRespawn = GameObject.FindGameObjectWithTag( MyTags.PlayerSpawn );
-			GameObject playerGO = Instantiate( playerPrefab, playerRespawn.transform );
-			player = playerGO.GetComponent<Player>();
-		}
+
+		playerRespawn = GameObject.FindGameObjectWithTag( MyTags.PlayerSpawn );
+		GameObject playerGO = Instantiate( playerPrefab, playerRespawn.transform );
+		player = playerGO.GetComponent<Player>();
 	}
 	#endregion
 
@@ -271,7 +269,7 @@ public class ActionMaster : MonoBehaviour {
 	}
 
 	private void RespawnBall(){
-		GameObject ball = Instantiate (ballPrefab, ballParent.transform.position, ballParent.transform.rotation, ballParent.transform) as GameObject;
+		GameObject ball = Instantiate (ballPrefab, player.ballRespawn.position, player.ballRespawn.rotation, player.ballRespawn) as GameObject;
 		ball.GetComponent<Rigidbody2D> ().isKinematic = true;
 	}
 

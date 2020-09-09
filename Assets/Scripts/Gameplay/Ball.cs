@@ -41,6 +41,7 @@ public class Ball : MonoBehaviour {
 	}
 
 	void Update(){
+		CheckBorders();
 		Debug.DrawRay (transform.position, rigidBody.velocity.normalized);
 	}
 	
@@ -50,7 +51,7 @@ public class Ball : MonoBehaviour {
 		}
 	}
 
-	private void DestroyBall() {
+	public void DestroyBall() {
 		balls.Remove( this );
 		if (BallDestroyedEvent != null)
 			BallDestroyedEvent();
@@ -70,6 +71,24 @@ public class Ball : MonoBehaviour {
 		actionMaster.TriggerPlay ();
 		rigidBody.velocity = direction * maxSpeed;
 		audioSource.PlayOneShot (firstLaunchClip, 0.5f);
+	}
+
+	void CheckBorders() {
+		Vector2 screenExtents = new Vector2 (Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+		Bounds ballBounds = GetComponent<CircleCollider2D>().bounds;
+		Debug.Assert( ballBounds != null, "Collider bounds not found in the ball" );
+
+		Vector2 movementAreaExtents = new Vector2();
+
+		movementAreaExtents.x = (screenExtents.x - (ballBounds.extents.x * transform.localScale.x));
+		movementAreaExtents.y = (screenExtents.y - (ballBounds.extents.y * transform.localScale.y));
+
+		if (Mathf.Abs(transform.position.x) > movementAreaExtents.x) {
+			rigidBody.velocity = new Vector2( -Mathf.Sign( transform.position.x ) * Mathf.Abs(rigidBody.velocity.x), rigidBody.velocity.y);
+		}
+		if (Mathf.Abs( transform.position.y ) > movementAreaExtents.y) {
+			rigidBody.velocity = new Vector2( rigidBody.velocity.x, -Mathf.Sign( transform.position.y ) * Mathf.Abs( rigidBody.velocity.y ) );
+		}
 	}
 
 

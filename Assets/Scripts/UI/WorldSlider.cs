@@ -27,7 +27,8 @@ public class WorldSlider : MonoBehaviour {
 
 	void Start(){
 		
-		moveAmount = (rectTransform.rect.width + layoutGroup.spacing) * canvas.scaleFactor;
+		//moveAmount = (rectTransform.rect.width + layoutGroup.spacing) * canvas.scaleFactor;
+		moveAmount = (worldsGridLayout.GetComponent<RectTransform>().rect.width + layoutGroup.spacing) * canvas.scaleFactor;
 		Debug.Log ("Move Amount:" + moveAmount);
 		previousPosition = worldsGridLayout.transform.position;
 		Debug.Log (string.Format ("Starting Position set to ({0}, {1})", previousPosition.x, previousPosition.y));
@@ -93,7 +94,7 @@ public class WorldSlider : MonoBehaviour {
 
 	public void NextWorldGrid ()
 	{
-		bool isValid = false;
+		bool isValid;
 		Vector2 desiredPosition = new Vector2 (previousPosition.x - moveAmount, previousPosition.y);
 		if (!isLerping) {
 			isValid = worldManager.NextWorld ();

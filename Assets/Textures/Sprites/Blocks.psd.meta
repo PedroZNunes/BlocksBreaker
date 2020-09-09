@@ -29,6 +29,9 @@ TextureImporter:
   - first:
       213: -2445883823613288998
     second: Blocks_8
+  - first:
+      213: 6373870660395215810
+    second: Blocks_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:

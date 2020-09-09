@@ -11,7 +11,7 @@ public class PowerUpManager : MonoBehaviour {
 	private ActionMaster actionMaster;
 	private float currentProcTime = 0f;
 	private float currentDropChance = 0f;
-	private float bonusPercentPerSecond = 2f;
+	private float bonusPercentPerSecond = 1.5f;
 
 	private PowerUpsEnum currentPowerUp;
 

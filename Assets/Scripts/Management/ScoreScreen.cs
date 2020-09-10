@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
-public class StatsManager : MonoBehaviour {
+public class ScoreScreen : MonoBehaviour {
 
-	[SerializeField] private Text BallsUsedText;
-	[SerializeField] private Text DeathsText;
-	[SerializeField] private Text PowerUpsText;
-	[SerializeField] private Text BlocksDestroyedText;
+	//[SerializeField] private Text BallsUsedText;
+	[SerializeField] private TextMeshProUGUI BallsUsedText;
+	[SerializeField] private TextMeshProUGUI DeathsText;
+	[SerializeField] private TextMeshProUGUI PowerUpsText;
+	[SerializeField] private TextMeshProUGUI BlocksDestroyedText;
 
 	private int ballsUsed;
 	private int deaths;
@@ -37,10 +39,10 @@ public class StatsManager : MonoBehaviour {
 
 	void FillTextFields(){
 		if (SceneManager.GetActiveScene().name.StartsWith ("01c")){
-			BallsUsedText.text = ballsUsed.ToString ();
-			DeathsText.text = deaths.ToString ();
-			PowerUpsText.text = powerUps.ToString ();
-			BlocksDestroyedText.text = blocksDestroyed.ToString ();
+			BallsUsedText.text = ballsUsed.ToString( "d3" );
+			DeathsText.text = deaths.ToString( "d3" );
+			PowerUpsText.text = powerUps.ToString( "d3" );
+			BlocksDestroyedText.text = blocksDestroyed.ToString( "d3" );
 		}
 	}
 

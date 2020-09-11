@@ -16,13 +16,11 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 
 	public static void SetMusicVolume (float volume){
-		float minVolume = -20f;
-		float maxVolume = 20f;
 
-		if (volume > maxVolume || volume < minVolume)
+		if (volume > 1f || volume < 0f)
 			Debug.LogWarning ("Trying to set music volume out of bounds");
 
-		PlayerPrefs.SetFloat (MUSIC_VOLUME_KEY, Mathf.Clamp(volume, minVolume, maxVolume));
+		PlayerPrefs.SetFloat (MUSIC_VOLUME_KEY, Mathf.Clamp01(volume));
 	}
 
 	public static float GetMusicVolume (){
@@ -32,13 +30,10 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 
 	public static void SetEffectsVolume (float volume){
-		float minVolume = -20f;
-		float maxVolume = 20f;
-
-		if (volume > maxVolume || volume < minVolume)
+		if (volume > 1f || volume < 0f)
 			Debug.LogWarning ("Trying to set effects volume out of bounds");
 
-		PlayerPrefs.SetFloat (EFFECTS_VOLUME_KEY, Mathf.Clamp(volume, minVolume, maxVolume));
+		PlayerPrefs.SetFloat (EFFECTS_VOLUME_KEY, Mathf.Clamp01(volume));
 	}
 
 	public static float GetEffectsVolume (){

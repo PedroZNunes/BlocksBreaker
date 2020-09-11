@@ -3,13 +3,10 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
+[RequireComponent (typeof(AudioController))]
 public class LevelManager : MonoBehaviour {
 
-	[SerializeField] private AudioMixer audioMixer;
-
-	private AsyncOperation loadAsync;
-	private int currentScore;
-	private bool isLoading;
+	private AudioController audioController;
 
 	/// <summary>
 	/// singleton Process
@@ -23,6 +20,8 @@ public class LevelManager : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 		}
+
+		audioController = GetComponent<AudioController>();
 	}
 
 	void Start(){
@@ -35,7 +34,7 @@ public class LevelManager : MonoBehaviour {
 
 	void SceneChanged (Scene scene, LoadSceneMode mode){
 		UnlockCurrentLevel ();
-		LoadVolumes ();
+		audioController.LoadVolumes ();
 	}
 
 
@@ -62,12 +61,7 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	void LoadVolumes(){
-		float musicvolume = PlayerPrefsManager.GetMusicVolume ();
-		float effectsVolume = PlayerPrefsManager.GetEffectsVolume ();
-		audioMixer.SetFloat ("musicVolume", musicvolume);
-		audioMixer.SetFloat ("effectsVolume", effectsVolume);
-	}
+
 
 
 	void OnEnable(){ SceneManager.sceneLoaded += SceneChanged; }

@@ -14,10 +14,14 @@ public class Level{
 
 public class LevelSelectManager : MonoBehaviour {
 
-	public Sprite buttonSpriteOn;
-	public Sprite buttonSpriteOff;
+	[HideInInspector] public Sprite buttonSpriteOn;
+	[HideInInspector] public Sprite buttonSpriteOff;
+	private Color colorOn;
+	private Color colorOff;
+
 	public int worldNumber = 1;
 
+	[SerializeField] private Sprite buttonSprite;
 	[SerializeField] private GameObject levelButtonPrefab;
 	[SerializeField] private List<Level> LevelList;
 
@@ -47,6 +51,11 @@ public class LevelSelectManager : MonoBehaviour {
 		}
 	}
 
+	public void AssignColors(Color colorOn, Color colorOff) {
+		this.colorOn = colorOn;
+		this.colorOff = colorOff;
+    }
+
 	public void CreateButtons(){
 		if (!isLoaded) {
 			for (int i = 0; i < LevelList.Count; i++) {
@@ -54,16 +63,28 @@ public class LevelSelectManager : MonoBehaviour {
 				GameObject newButton = Instantiate (levelButtonPrefab, parent) as GameObject;
 				newButton.transform.localScale = Vector3.one;
 
+				Button button = newButton.GetComponent<Button>();
+				button.image.color = colorOn;
 
-				newButton.GetComponent<Button> ().image.sprite = buttonSpriteOn;
-				SpriteState spriteState = newButton.GetComponent<Button> ().spriteState;
-				spriteState.disabledSprite = buttonSpriteOff;
-				newButton.GetComponent<Button> ().spriteState = spriteState;
 
-				LevelButtonTemplate button = newButton.GetComponent<LevelButtonTemplate> ();
-				button.LevelText.text = level.levelText;
-				button.isUnlocked = level.isUnlocked;
-				button.worldNumber = worldNumber;
+				//TROCA O METODO DE ANIMAÇÃO DE SPRITE PRA COLOR
+				//TROCA O SPRITE POR COLOR
+				button.transition = Selectable.Transition.ColorTint;
+				ColorBlock colors = button.colors;
+				colors.disabledColor = colorOff;
+				button.colors = colors;
+
+
+				
+				//newButton.GetComponent<Button> ().image.sprite = buttonSpriteOn;
+				//SpriteState spriteState = newButton.GetComponent<Button> ().spriteState;
+				//spriteState.disabledSprite = buttonSpriteOff;
+				//newButton.GetComponent<Button> ().spriteState = spriteState;
+
+				LevelButtonTemplate buttonTemplate = newButton.GetComponent<LevelButtonTemplate> ();
+				buttonTemplate.LevelText.text = level.levelText;
+				buttonTemplate.isUnlocked = level.isUnlocked;
+				buttonTemplate.worldNumber = worldNumber;
 			}
 			isLoaded = true;
 		}

@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 [RequireComponent(typeof(Image))]
 public class LevelButtonTemplate : MonoBehaviour{
 
-	public Text LevelText;
+	//public Text LevelText;
+	public TextMeshProUGUI LevelText;
 	public bool isUnlocked;
 	public int worldNumber;
 

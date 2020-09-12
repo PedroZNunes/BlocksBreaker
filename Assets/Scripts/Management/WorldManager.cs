@@ -2,20 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [System.Serializable]
 public class World {
 	public int worldNumber;
-	public Sprite titleSprite;
+	public string title;
 	public Sprite buttonSpriteOn;
 	public Sprite buttonSpriteOff;
-	public Color arrowColor;
+	public Color colorOn;
+	public Color colorOff;
 }
 
 public class WorldManager : MonoBehaviour {
 
 	[SerializeField] private List<World> worldList = new List<World>();
-	[SerializeField] private Image titleSprite;
+	[SerializeField] private TextMeshProUGUI title;
 	[SerializeField] private Image nextArrowImage, previousArrowImage;
 	[SerializeField] private GameObject worldsGrid;
 
@@ -79,7 +81,7 @@ public class WorldManager : MonoBehaviour {
 			return false;
 		
 		currentWorldNumber = Mathf.Clamp(currentWorldNumber+1, 1, worldList.Count);
-		ColorArrows ();
+		Color ();
 		LoadMainGrid ();
 		LoadNextGrid ();
 		return true;
@@ -89,7 +91,7 @@ public class WorldManager : MonoBehaviour {
 		if (currentWorldNumber-1 < 1)
 			return false;
 		currentWorldNumber = Mathf.Clamp(currentWorldNumber-1, 1, worldList.Count);
-		ColorArrows ();
+		Color ();
 		LoadMainGrid ();
 		return true;
 	}
@@ -100,8 +102,9 @@ public class WorldManager : MonoBehaviour {
 	{
 		for (int i = 0; i < gridList.Count; i++) {
 			if (gridList [i].worldNumber == worldNumber) {
-				gridList [i].buttonSpriteOn = worldList [i].buttonSpriteOn;
-				gridList [i].buttonSpriteOff = worldList [i].buttonSpriteOff;
+				gridList[i].AssignColors( worldList[i].colorOn, worldList[i].colorOff );
+				//gridList [i].buttonSpriteOn = worldList [i].buttonSpriteOn;
+				//gridList [i].buttonSpriteOff = worldList [i].buttonSpriteOff;
 				gridList [i].CreateButtons ();
 			}
 		}
@@ -109,7 +112,7 @@ public class WorldManager : MonoBehaviour {
 
 	void LoadMainGrid(){
 		LoadGrid (currentWorldNumber);
-		titleSprite.sprite = worldList [currentWorldNumber - 1].titleSprite;
+		title.text = worldList[currentWorldNumber - 1].title;
 	}
 
 	void LoadNextGrid(){
@@ -118,11 +121,11 @@ public class WorldManager : MonoBehaviour {
 	}
 
 
-	void ColorArrows (){
-		previousArrowImage.color = worldList [currentWorldNumber - 1].arrowColor;
-		nextArrowImage.color = previousArrowImage.color;
+	void Color (){
+		Color color = worldList[currentWorldNumber - 1].colorOn;
+		previousArrowImage.color = color;
+		nextArrowImage.color = color;
+		title.color = color;
 	}
-
-
 
 }

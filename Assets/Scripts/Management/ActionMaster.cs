@@ -61,8 +61,6 @@ public class ActionMaster : MonoBehaviour {
 
 	void Start (){
 		CurrentGameState = States.Start;
-
-
 	}
 
     void OnEnable() { Subscribe (); }
@@ -72,11 +70,14 @@ public class ActionMaster : MonoBehaviour {
 	void Subscribe() {
 		Block.NoBlocksLeftEvent += HandleNoBlocksLeft;
 		Ball.NoBallsLeftEvent += HandleNoBallsLeft;
+		OptionsController.UnpauseEvent += HandleUnpause;
 	}
 
 	void Unsubscribe() {
 		Block.NoBlocksLeftEvent -= HandleNoBlocksLeft;
 		Ball.NoBallsLeftEvent -= HandleNoBallsLeft;
+		OptionsController.UnpauseEvent -= HandleUnpause;
+
 	}
 
 	void SpawnPlayer() {
@@ -249,6 +250,7 @@ public class ActionMaster : MonoBehaviour {
 			TriggerVictory();
 		}
 	}
+
     #endregion
 
 

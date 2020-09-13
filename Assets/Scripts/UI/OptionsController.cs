@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.Audio;
+using System;
 
 public class OptionsController : MonoBehaviour {
 
@@ -10,27 +9,26 @@ public class OptionsController : MonoBehaviour {
 	private LevelManager levelManager;
 	private AudioController audioController;
 
-	/// <summary>
-	/// Effects and Music Volume should make the bridge between slider.value and PlayerPrefsManager.get...()
-	/// </summary>
+	public static event Action UnpauseEvent;
 
 
 
-    void Start () {
+	void Start () {
 
 		levelManager = FindObjectOfType<LevelManager> ();
 		Debug.Assert (levelManager != null, "Level Manager not Found");
 
 		audioController = levelManager.GetComponent<AudioController>();
 
-
 		musicSlider.value	= audioController.GetMusicVolume();
 		effectsSlider.value = audioController.GetEffectsVolume();
 	}
 
 	void Update () {
+		//handle ESC input. if ingame, resume. if in options scene, load the main menu.
 		if (Input.GetButtonDown ("Cancel")) {
-			FindObjectOfType<LevelManager> ().LoadLevel ("01a Start");
+            if (levelManager.currentSceneName.StartsWith( "01" )) 
+				FindObjectOfType<LevelManager> ().LoadLevel ("01a Start");
 		}
 	}
 
@@ -48,6 +46,13 @@ public class OptionsController : MonoBehaviour {
         audioController.SetMusicVolume( musicSlider.value );
     }
 
+	public void Resume() {
+		SaveAll();
+		if(UnpauseEvent!= null) {
+			UnpauseEvent();
+        }
+    }
+
 
     public void SaveAndExit (){
 		SaveAll ();
@@ -56,8 +61,8 @@ public class OptionsController : MonoBehaviour {
 
 
 	public void SetDefaults (){
-		musicSlider.value = 1f;
-		effectsSlider.value = 1f;
+		musicSlider.value = 0.8f;
+		effectsSlider.value = 0.8f;
 	}
 
 	void OnDisable(){ SaveAll (); }

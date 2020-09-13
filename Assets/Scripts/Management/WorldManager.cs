@@ -8,8 +8,6 @@ using TMPro;
 public class World {
 	public int worldNumber;
 	public string title;
-	public Sprite buttonSpriteOn;
-	public Sprite buttonSpriteOff;
 	public Color colorOn;
 	public Color colorOff;
 }
@@ -103,8 +101,6 @@ public class WorldManager : MonoBehaviour {
 		for (int i = 0; i < gridList.Count; i++) {
 			if (gridList [i].worldNumber == worldNumber) {
 				gridList[i].AssignColors( worldList[i].colorOn, worldList[i].colorOff );
-				//gridList [i].buttonSpriteOn = worldList [i].buttonSpriteOn;
-				//gridList [i].buttonSpriteOff = worldList [i].buttonSpriteOff;
 				gridList [i].CreateButtons ();
 			}
 		}

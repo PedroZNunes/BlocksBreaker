@@ -7,7 +7,10 @@ using UnityEngine.Audio;
 public class LevelManager : MonoBehaviour {
 
 	private AudioController audioController;
-
+	public string currentSceneName {
+		get;
+		private set;
+    }
 	/// <summary>
 	/// singleton Process
 	/// </summary>
@@ -33,6 +36,7 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	void SceneChanged (Scene scene, LoadSceneMode mode){
+		currentSceneName = SceneManager.GetActiveScene().name;
 		UnlockCurrentLevel ();
 		audioController.LoadVolumes ();
 	}
@@ -54,7 +58,7 @@ public class LevelManager : MonoBehaviour {
 
 	void UnlockCurrentLevel(){
 		//unlock next level for playing
-		if (SceneManager.GetActiveScene().name.StartsWith ("02")){
+		if (currentSceneName.StartsWith ("02")){
 			string levelID = SceneManager.GetActiveScene ().name.Substring (9);
 			print ("Unlocking levelID " + levelID);
 			PlayerPrefsManager.UnlockLevel(levelID);

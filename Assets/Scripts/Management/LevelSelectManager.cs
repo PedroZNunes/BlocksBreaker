@@ -14,8 +14,6 @@ public class Level{
 
 public class LevelSelectManager : MonoBehaviour {
 
-	[HideInInspector] public Sprite buttonSpriteOn;
-	[HideInInspector] public Sprite buttonSpriteOff;
 	private Color colorOn;
 	private Color colorOff;
 
@@ -74,12 +72,6 @@ public class LevelSelectManager : MonoBehaviour {
 				colors.disabledColor = colorOff;
 				button.colors = colors;
 
-
-				
-				//newButton.GetComponent<Button> ().image.sprite = buttonSpriteOn;
-				//SpriteState spriteState = newButton.GetComponent<Button> ().spriteState;
-				//spriteState.disabledSprite = buttonSpriteOff;
-				//newButton.GetComponent<Button> ().spriteState = spriteState;
 
 				LevelButtonTemplate buttonTemplate = newButton.GetComponent<LevelButtonTemplate> ();
 				buttonTemplate.LevelText.text = level.levelText;

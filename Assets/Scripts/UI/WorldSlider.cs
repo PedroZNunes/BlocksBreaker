@@ -27,7 +27,6 @@ public class WorldSlider : MonoBehaviour {
 
 	void Start(){
 		
-		//moveAmount = (rectTransform.rect.width + layoutGroup.spacing) * canvas.scaleFactor;
 		moveAmount = (worldsGridLayout.GetComponent<RectTransform>().rect.width + layoutGroup.spacing) * canvas.scaleFactor;
 		Debug.Log ("Move Amount:" + moveAmount);
 		previousPosition = worldsGridLayout.transform.position;

@@ -1962,6 +1962,7 @@ GameObject:
   - component: {fileID: 1764716421}
   - component: {fileID: 1764716422}
   - component: {fileID: 1764716424}
+  - component: {fileID: 1764716420}
   m_Layer: 0
   m_Name: Worlds
   m_TagString: Untagged
@@ -1989,6 +1990,36 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1764716420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764716418}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &1764716421
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2194,20 +2225,14 @@ MonoBehaviour:
   worldList:
   - worldNumber: 1
     title: Basic
-    buttonSpriteOn: {fileID: 21300006, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
-    buttonSpriteOff: {fileID: 21300000, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
     colorOn: {r: 1, g: 0.8433224, b: 0, a: 1}
     colorOff: {r: 0.5, g: 0.446371, b: 0.15, a: 1}
   - worldNumber: 2
     title: Fire
-    buttonSpriteOn: {fileID: 21300002, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
-    buttonSpriteOff: {fileID: 21300004, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
     colorOn: {r: 1, g: 0.24368146, b: 0, a: 1}
     colorOff: {r: 0.5, g: 0.23595506, b: 0.15168539, a: 1}
   - worldNumber: 3
     title: Ice
-    buttonSpriteOn: {fileID: 21300008, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
-    buttonSpriteOff: {fileID: 21300010, guid: ec478d2ce100e43478e4c5b5e4e0a56d, type: 3}
     colorOn: {r: 0, g: 0.6927371, b: 1, a: 1}
     colorOff: {r: 0.1488764, g: 0.39325845, b: 0.5, a: 1}
   title: {fileID: 769738543}

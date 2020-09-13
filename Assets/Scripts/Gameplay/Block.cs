@@ -14,6 +14,7 @@ public class Block : MonoBehaviour {
 
 	public int hp;
 	[SerializeField] private Sprite[] sprites;
+	[SerializeField] private Color[] colors;
 
 	[SerializeField] private int scorePerHit;
 
@@ -31,6 +32,10 @@ public class Block : MonoBehaviour {
 		if (sprites.Length != hp) {
 			sprites = new Sprite[hp];
 		}
+
+		if (colors.Length != hp) {
+			colors = new Color[hp];
+        }
 	}
 
     private void OnEnable() {

@@ -93,6 +93,7 @@ public class GUIController : MonoBehaviour {
 		}
 	}
 
+
 	void ShowLoseScreen(){
 		Instantiate (loseScreen, mainCanvas.transform.position, Quaternion.identity, mainCanvas.transform);
 	}

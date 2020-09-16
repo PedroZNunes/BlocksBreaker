@@ -490,8 +490,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278206207
-  m_fontColor: {r: 1, g: 0.24368146, b: 0, a: 1}
+    rgba: 4286120191
+  m_fontColor: {r: 1, g: 0, b: 0.47450984, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1abb9de23d7d67240906cdb88854fd1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ca7533f9b895c042991d6dfae6af447, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2497,6 +2497,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 95000010081870512, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenuWrapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4291829190904106450}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 4291829190904106449}
     - target: {fileID: 224000012053498312, guid: e91b2364b457d854389309168b97868d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2604,3 +2679,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e91b2364b457d854389309168b97868d, type: 3}
+--- !u!114 &4291829190904106449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1931533197, guid: e91b2364b457d854389309168b97868d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4291829190904106448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4291829190904106450 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000013873605208, guid: e91b2364b457d854389309168b97868d,
+    type: 3}
+  m_PrefabInstance: {fileID: 4291829190904106448}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003a2a86b081c6c4aa23d5d9b45d00d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

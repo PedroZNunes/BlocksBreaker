@@ -23,7 +23,6 @@ public class OptionsController : MonoBehaviour {
 		else
 		{
 			instance = this;
-			DontDestroyOnLoad(gameObject);
 		}
 	}
 	void Start () {

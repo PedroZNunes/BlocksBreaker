@@ -195,16 +195,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0.47450984, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -221,12 +221,12 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 14746467}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1764716421}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: WorldSlider, Assembly-CSharp
         m_MethodName: NextWorldGrid
         m_Mode: 1
         m_Arguments:
@@ -234,7 +234,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 01c LevelSelect
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &14746467
@@ -290,6 +290,18 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
+--- !u!114 &234953479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1931533197, guid: e91b2364b457d854389309168b97868d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1259025203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &279712008
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +359,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1abb9de23d7d67240906cdb88854fd1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5419a6ea920146e479ca612de03d0a92, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -365,6 +377,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279712008}
   m_CullTransparentMesh: 0
+--- !u!114 &504409521 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114000013873605208, guid: e91b2364b457d854389309168b97868d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1259025203}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003a2a86b081c6c4aa23d5d9b45d00d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &550525147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -685,16 +709,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 3
+  m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_NormalColor: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 1}
+    m_HighlightedColor: {r: 1, g: 0, b: 0.47450984, a: 1}
+    m_PressedColor: {r: 0.6, g: 0.6, b: 0.6, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -711,12 +735,12 @@ MonoBehaviour:
     m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 559886928}
+  m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1764716421}
-        m_TargetAssemblyTypeName: 
+        m_TargetAssemblyTypeName: WorldSlider, Assembly-CSharp
         m_MethodName: PreviousWorldGrid
         m_Mode: 1
         m_Arguments:
@@ -724,7 +748,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: 01c LevelSelect
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &559886928
@@ -1312,6 +1336,81 @@ PrefabInstance:
       propertyPath: m_Name
       value: Quit Button
       objectReference: {fileID: 0}
+    - target: {fileID: 95000010081870512, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_TargetGraphic
+      value: 
+      objectReference: {fileID: 234953479}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MenuButton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenuWrapper
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000013005186874, guid: e91b2364b457d854389309168b97868d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 504409521}
     - target: {fileID: 224000012053498312, guid: e91b2364b457d854389309168b97868d,
         type: 3}
       propertyPath: m_LocalPosition.x

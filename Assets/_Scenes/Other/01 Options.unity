@@ -731,7 +731,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1abb9de23d7d67240906cdb88854fd1c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ca7533f9b895c042991d6dfae6af447, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -974,6 +974,21 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 130
       objectReference: {fileID: 0}
+    - target: {fileID: 1507200066438591691, guid: 1314734a407233544b57488e6c0e4ee0,
+        type: 3}
+      propertyPath: m_fontColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507200066438591691, guid: 1314734a407233544b57488e6c0e4ee0,
+        type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.47450984
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507200066438591691, guid: 1314734a407233544b57488e6c0e4ee0,
+        type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4286120191
+      objectReference: {fileID: 0}
     - target: {fileID: 1507200066533456391, guid: 1314734a407233544b57488e6c0e4ee0,
         type: 3}
       propertyPath: m_Name
@@ -1098,11 +1113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1507200067002985423}
     - target: {fileID: 1507200066750689009, guid: 1314734a407233544b57488e6c0e4ee0,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitWrapper
+      value: MainMenuWrapper
       objectReference: {fileID: 0}
     - target: {fileID: 1507200066750689009, guid: 1314734a407233544b57488e6c0e4ee0,
         type: 3}
@@ -1229,5 +1244,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1507200066750688910, guid: 1314734a407233544b57488e6c0e4ee0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1314734a407233544b57488e6c0e4ee0, type: 3}
+--- !u!114 &1507200067002985423 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1507200066750688911, guid: 1314734a407233544b57488e6c0e4ee0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1507200067002985422}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003a2a86b081c6c4aa23d5d9b45d00d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

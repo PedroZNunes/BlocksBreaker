@@ -1,71 +1,121 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+using Random = UnityEngine.Random;
 
-[RequireComponent(typeof (AudioSource))]
+[RequireComponent(typeof (AudioSource), typeof (Animator))]
 public class MenuButton : MonoBehaviour {
 
 	[SerializeField] private AudioClip clickSound;
 
-	private LevelManager levelManager;
 	private AudioSource audioSource;
+	private Animator animator;
+
+	public static event Action ResumeEvent;
 
 	void Awake (){
 		audioSource = GetComponent<AudioSource> ();
+		animator = GetComponent<Animator>();
+
 		Debug.Assert (clickSound != null, "No click sound");
-		FindObjectOfType<Animator> ().speed = Random.Range (0.75f, 1.25f);
+		animator.speed = Random.Range (0.75f, 1.25f);
 	}
 
 	void Start(){
-		levelManager = FindObjectOfType<LevelManager> ();
-		Debug.Assert (levelManager != null, "Level Manager not found");
 	}
 
 
-	public void PlayClickSound(){
+
+    public void PlayClickSound(){
 		audioSource.PlayOneShot (clickSound, 0.3f);
 	}
 
 
-	public void TryAgainWrapper(){	StartCoroutine (TryAgain ());	}
-	public void MainMenuWrapper(){	StartCoroutine (MainMenu ());	}
-	public void PlayWrapper(){		StartCoroutine (Play ());		}
-	public void OptionsWrapper(){	StartCoroutine (Options ());	}
-	public void StatsWrapper(){	StartCoroutine (Stats ());	}
+	public void TryAgainWrapper(){		StartCoroutine (TryAgain ());	}
+	public void MainMenuWrapper(){		StartCoroutine (MainMenu ());	}
+	public void PlayWrapper(){			StartCoroutine (Play ());		}
+	public void OptionsWrapper(){		StartCoroutine (Options ());	}
+	public void ResumeOptionsWrapper(){
+		StartCoroutine(Resume());
+		
+    }
+	public void StatsWrapper(){			StartCoroutine (Stats ());	}
+	public void QuitWrapper(){			StartCoroutine (Quit ()); }
 
 
 	IEnumerator TryAgain(){
+		PlayClickSound();
 		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+		LevelManager.ReloadCurrentLevel();
+		
 	}
 		
 	IEnumerator MainMenu(){
+		PlayClickSound();
 		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel ("01a Start");
+		LevelManager.LoadMenu(MenuScenes.Start);
 	}
 
 	IEnumerator Play(){
+		PlayClickSound();
 		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel ("01d Level Select");
+		LevelManager.LoadMenu(MenuScenes.LevelSelect);
 	}
 
 	IEnumerator Options(){
+		PlayClickSound();
+		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel ("01b Options");
+		LevelManager.LoadMenu(MenuScenes.Options);
 	}
 
 	IEnumerator Stats (){
+		PlayClickSound();
+		Time.timeScale = 1f;
 		yield return (!audioSource.isPlaying);
-		levelManager.LoadLevel ("01c Stats");
+		LevelManager.LoadMenu(MenuScenes.Stats);
 	}
 
-	public void Quit(){
-		Application.Quit ();
-	}
+	IEnumerator Quit()
+    {
+		PlayClickSound();
+		yield return (!audioSource.isPlaying);
 
+        if (LevelManager.isSceneALevel)
+        {
+			OptionsController optController = FindObjectOfType<OptionsController>();
+			optController.SaveAndExit();
+        }
+        else
+        {
+			Application.Quit ();
+        }
+
+    }
+
+	IEnumerator Resume()
+    {
+		PlayClickSound();
+		yield return (!audioSource.isPlaying);
+		//call options controller resume
+		OptionsController optController = FindObjectOfType<OptionsController>();
+		if (optController!= null)
+        {
+			if (LevelManager.isSceneALevel)
+            {
+				optController.Resume();
+            }
+            else
+            {
+				Debug.LogError("using resume in a non-level scene");
+				optController.SaveAndExit();
+            }
+        }
+    }
 
 
 }

@@ -22,7 +22,6 @@ public class LevelButtonTemplate : MonoBehaviour{
 		}
 
 	void ButtonClicked(){
-		levelManager = FindObjectOfType<LevelManager> ();
-		levelManager.LoadLevel ("02 Level_" + worldNumber + LevelText.text);
+		LevelManager.LoadLevel ("02 Level_" + worldNumber + LevelText.text);
 	}
 }

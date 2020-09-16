@@ -193,8 +193,7 @@ public class ActionMaster : MonoBehaviour {
 //		}
 		if (EndGameEvent != null) { EndGameEvent(); }
 
-		LevelManager levelManager = FindObjectOfType<LevelManager> ();
-		levelManager.LoadNextLevel ();
+		LevelManager.LoadNextLevel ();
 	}
 
 	void HandleLose(){

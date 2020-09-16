@@ -18,8 +18,6 @@ public class SceneSkipper : MonoBehaviour {
 	public void SkipScene(){
 		PlayerPrefsManager.ResetProgress ();
 
-		LevelManager levelManager = FindObjectOfType<LevelManager> ();
-		levelManager.LoadLevel ("01a Start");
-
+		LevelManager.LoadMenu(MenuScenes.Start);
 	}
 }

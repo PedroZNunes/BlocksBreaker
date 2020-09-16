@@ -24,9 +24,10 @@ public class ScoreScreen : MonoBehaviour {
 		FillTextFields ();
 	}
 
+	//TODO: fix
 	void Update(){
 		if (Input.GetButtonDown ("Cancel")) {
-			FindObjectOfType<LevelManager> ().LoadLevel ("01a Start");
+			LevelManager.LoadMenu(MenuScenes.Start);
 		}
 	}
 

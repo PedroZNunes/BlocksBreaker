@@ -5,16 +5,16 @@ using UnityEngine.Audio;
 
 [RequireComponent (typeof(AudioController))]
 public class LevelManager : MonoBehaviour {
+    
+	
+	private string currentSceneName;
 
-	private AudioController audioController;
-	public string currentSceneName {
-		get;
-		private set;
-    }
-	/// <summary>
-	/// singleton Process
-	/// </summary>
-	static private LevelManager instance;
+	static public bool isSceneALevel { get { return (GetCurrentSceneByName().StartsWith("02")); } }
+    
+    /// <summary>
+    /// singleton Process
+    /// </summary>
+    static private LevelManager instance;
 
 	void Awake () {
 		if (instance != null) {	
@@ -23,8 +23,6 @@ public class LevelManager : MonoBehaviour {
 			instance = this;
 			DontDestroyOnLoad (gameObject);
 		}
-
-		audioController = GetComponent<AudioController>();
 	}
 
 	void Start(){
@@ -35,30 +33,78 @@ public class LevelManager : MonoBehaviour {
 		
 	}
 
+	static public string GetCurrentSceneByName()
+	{
+		return instance.currentSceneName;
+	}
+
+	private void SerCurrentSceneName(string value)
+	{
+		currentSceneName = value;
+	}
+
 	void SceneChanged (Scene scene, LoadSceneMode mode){
-		currentSceneName = SceneManager.GetActiveScene().name;
+        SerCurrentSceneName(SceneManager.GetActiveScene().name);
 		UnlockCurrentLevel ();
-		audioController.LoadVolumes ();
+		AudioController.LoadVolumes ();
+	}
+
+	/// <summary>
+	/// Load menu screens
+	/// </summary>
+	/// <param name="scene">use menuscene enum to tell which scene you wish to load</param>
+	static public void LoadMenu(MenuScenes scene)
+    {
+		string sceneName;
+        switch (scene)
+        {
+            case MenuScenes.Start:
+				sceneName = "01 Start";
+                break;
+			case MenuScenes.LevelSelect:
+				sceneName = "01 LevelSelect";
+				break;
+            case MenuScenes.Options:
+				sceneName = "01 Options";
+                break;
+            case MenuScenes.Stats:
+				sceneName = "01 Stats";
+                break;
+            default:
+				sceneName = "";
+                break;
+        }
+
+		if (sceneName != "")
+        {
+			SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
+		}
 	}
 
 
-	public void LoadLevel (string levelName){
+	static public void ReloadCurrentLevel()
+    {
+		LoadLevel(GetCurrentSceneByName());
+    }
+
+	static public void LoadLevel (string levelName){
 		SceneManager.LoadScene (levelName, LoadSceneMode.Single);
 	}
 
-	public void LoadLevel (int levelIndex){
+	static public void LoadLevel (int levelIndex){
 		SceneManager.LoadScene (levelIndex, LoadSceneMode.Single);
 	}
 
-	public void LoadNextLevel (){
-		UnlockCurrentLevel ();
+	static public void LoadNextLevel (){
+		instance.UnlockCurrentLevel ();
 		int nextLevel = SceneManager.GetActiveScene ().buildIndex + 1;
 		LoadLevel (nextLevel);
 	}
 
 	void UnlockCurrentLevel(){
 		//unlock next level for playing
-		if (currentSceneName.StartsWith ("02")){
+		if (isSceneALevel)
+		{
 			string levelID = SceneManager.GetActiveScene ().name.Substring (9);
 			print ("Unlocking levelID " + levelID);
 			PlayerPrefsManager.UnlockLevel(levelID);
@@ -77,3 +123,5 @@ public class LevelManager : MonoBehaviour {
 
 
 }
+
+public enum MenuScenes { Start, LevelSelect, Options, Stats }

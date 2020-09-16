@@ -6,48 +6,47 @@ public class OptionsController : MonoBehaviour {
 
 	[SerializeField] private Slider musicSlider, effectsSlider;
 
-	private LevelManager levelManager;
-	private AudioController audioController;
 
 	public static event Action UnpauseEvent;
 
+	/// <summary>
+	/// singleton Process
+	/// </summary>
+	static private OptionsController instance;
 
-
+	void Awake()
+	{
+		if (instance != null)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+	}
 	void Start () {
-
-		levelManager = FindObjectOfType<LevelManager> ();
-		Debug.Assert (levelManager != null, "Level Manager not Found");
-
-		audioController = levelManager.GetComponent<AudioController>();
-
-		musicSlider.value	= audioController.GetMusicVolume();
-		effectsSlider.value = audioController.GetEffectsVolume();
+		musicSlider.value	= AudioController.GetMusicVolume();
+		effectsSlider.value = AudioController.GetEffectsVolume();
 	}
 
 	void Update () {
 		//handle ESC input. if ingame, resume. if in options scene, load the main menu.
 		if (Input.GetButtonDown ("Cancel")) {
-            if (levelManager.currentSceneName.StartsWith( "01" )) 
-				FindObjectOfType<LevelManager> ().LoadLevel ("01a Start");
+			if (!LevelManager.isSceneALevel)
+				LevelManager.LoadMenu(MenuScenes.Start);
 		}
 	}
 
 	public void SaveAll() {
-        //o slider vai de 0 a 1. reduzir pra -1 a 0 e multiplicar por alguma constante pra dar o valor em db final.
-        SaveMusic();
-        SaveEffects();
-    }
-
-    public void SaveEffects() {
-        audioController.SetEffectsVolume( effectsSlider.value );
-    }
-
-    public void SaveMusic() {
-        audioController.SetMusicVolume( musicSlider.value );
+		//o slider vai de 0 a 1. reduzir pra -1 a 0 e multiplicar por alguma constante pra dar o valor em db final.
+		AudioController.SaveVolumes(musicSlider.value, effectsSlider.value);
     }
 
 	public void Resume() {
 		SaveAll();
+
 		if(UnpauseEvent!= null) {
 			UnpauseEvent();
         }
@@ -56,7 +55,8 @@ public class OptionsController : MonoBehaviour {
 
     public void SaveAndExit (){
 		SaveAll ();
-		levelManager.LoadLevel ("01a Start");
+
+		LevelManager.LoadMenu(MenuScenes.Start);
 	}
 
 

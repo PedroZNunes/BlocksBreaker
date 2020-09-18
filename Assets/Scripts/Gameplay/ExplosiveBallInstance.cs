@@ -31,12 +31,10 @@ public class ExplosiveBallInstance : MonoBehaviour {
 
 	void ActiveEffect (Collider2D col, GameObject ball) {
 		if (transform.parent == ball.transform) {
-			if (col.GetComponent<Block> ().hp >= 1) {
 				AttachToBlock (col.gameObject, explosiveEffect);
 				Count--;	
 				TestEndOfEffect ();
 				Destroy (gameObject);
-			}
 		}
 	}
 

@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public bool DeathCheck(){
-		if (player.hp <= 0) {
+		if (player.isDead) {
 			actionMaster.TriggerDefeat ();
 			return true;
 		} else {

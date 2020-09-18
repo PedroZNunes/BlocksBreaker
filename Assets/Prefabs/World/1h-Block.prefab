@@ -49,6 +49,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 1515622694917723629, guid: 46d563b9c60fdb5408b3327dffb0a5b3,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.93945074, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -123,10 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eb1eb27dadb98f4da15a27c62912ca4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health:
+    maxValue: 1
   hp: 1
   sprites:
   - {fileID: 1515622694917723629, guid: 46d563b9c60fdb5408b3327dffb0a5b3, type: 3}
-  scorePerHit: 45
+  color: {r: 0.12904951, g: 0.71266466, b: 0.9433962, a: 1}
 --- !u!82 &82000011407967958
 AudioSource:
   m_ObjectHideFlags: 0

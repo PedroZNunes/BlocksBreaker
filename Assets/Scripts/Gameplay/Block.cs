@@ -3,20 +3,23 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof (SpriteRenderer))]
 public class Block : MonoBehaviour {
 
-	public delegate void PowerUpsDropHandler (Vector3 blockPosition, float dropChancePercent);
-	public static event PowerUpsDropHandler PowerUpDropEvent;
+	public delegate void PowerUpDropHandler (Vector3 blockPosition, float dropChancePercent);
+	public static event PowerUpDropHandler PowerUpDropEvent;
 	public static event Action BlockDestroyedEvent;
 	public static event Action NoBlocksLeftEvent;
 
 	public static int Count;
 
-	public int hp;
-	[SerializeField] private Sprite[] sprites;
-	[SerializeField] private Color[] colors;
+	[SerializeField] private Health health;
 
-	[SerializeField] private int scorePerHit;
+	//public int hp;
+	[SerializeField] private Sprite[] sprites;
+	private Color color;
+
+	//[SerializeField] private int scorePerHit;
 
 	static private float powerUpDropChancePercent = 0.3f;
 	private SpriteRenderer spriteRenderer;
@@ -29,17 +32,16 @@ public class Block : MonoBehaviour {
 	static private List<Block> blocks;
 
 	void OnValidate(){
-		if (sprites.Length != hp) {
-			sprites = new Sprite[hp];
+		if (sprites.Length != health.GetMax()) {
+			sprites = new Sprite[health.GetMax()];
 		}
 
-		if (colors.Length != hp) {
-			colors = new Color[hp];
-        }
+		
 	}
 
     private void OnEnable() {
 		ActionMaster.EndGameEvent += ResetBlocks;
+		health.Initialize();
     }
 
     private void OnDisable() {
@@ -47,21 +49,24 @@ public class Block : MonoBehaviour {
 	}
 
     void Awake(){
+		//initialize blocks list
 		if (blocks == null) {
 			blocks = new List<Block>();
         }
-
-		desiredPosition = transform.position;
-		transform.position += blockDisplacement;
-
+		//test if blocks are stacking and if not, aff them to the blocks list
         foreach (Block anotherBlock in blocks) {
 			if ( this.transform.position == anotherBlock.transform.position) {
-				Debug.LogWarning( "Stacking blocks detected at position: " + this.transform.position.ToString() );
+				Debug.LogError( "Stacking blocks detected at position: " + this.transform.position.ToString() );
 				Destroy( gameObject );
 				return;
             }
         }
 		blocks.Add( this );
+		
+		//send the block out of the screen for animation purposes
+		desiredPosition = transform.position;
+		transform.position += blockDisplacement;
+
 	}
 
 	void Start () {
@@ -86,20 +91,22 @@ public class Block : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
+		//TODO fix this. change to compare layers
 		if (col.gameObject.CompareTag(MyTags.Ball.ToString())) {
 			TakeHit ();
 		}
 	}
 
 	public void TakeHit(){
-		hp--;
+		bool isDead = false;
+		health.TakeHit( out isDead );
 //		ScoreManager.AddPoints (scorePerHit);
-		if (hp <= 0) {
+		if (isDead) {
 			if (PowerUpDropEvent != null)
 				PowerUpDropEvent( transform.position, powerUpDropChancePercent );
 			DestroyBlock ();
 		} else {
-			spriteRenderer.sprite = sprites [hp-1];
+			spriteRenderer.sprite = sprites[health.current - 1];
 		}
 	}
 

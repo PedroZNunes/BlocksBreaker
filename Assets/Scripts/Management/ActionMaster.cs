@@ -136,12 +136,12 @@ public class ActionMaster : MonoBehaviour {
 
 	void HandleOpeningAnimations(){
 		if (isOpening == false) {
-			Block[] blocks = FindObjectsOfType<Block> ();
-			int totalHits = 0;
-			for (int i = 0; i<blocks.Length ; i++){
-				totalHits += blocks[i].hp;	
-			}
-			print ("Total Hits needed: " + totalHits);
+			//Block[] blocks = FindObjectsOfType<Block> ();
+			//int totalHits = 0;
+			//for (int i = 0; i<blocks.Length ; i++){
+			//	totalHits += blocks[i].hp;	
+			//}
+			//print ("Total Hits needed: " + totalHits);
 			StartCoroutine (OpeningAnimations ());
 		}
 	}
@@ -275,7 +275,7 @@ public class ActionMaster : MonoBehaviour {
 	}
 
 	private bool CheckForDefeat(){
-		return (player.hp <= 0);
+		return (player.isDead);
 	}
 
 	#endregion

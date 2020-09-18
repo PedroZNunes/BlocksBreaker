@@ -5,32 +5,36 @@ using System.Collections;
 [RequireComponent( typeof( Animator ), typeof( AudioSource ) )]
 public class Player : MonoBehaviour {
 
-	const int MAXHP = 3;
-
 	public bool canMove;
-	public int hp;
+
+	[SerializeField] private Health health;
 
 	[SerializeField] private AudioClip takeHitClip;
-	[Tooltip( "Set elements according to HP" )]
-	[SerializeField] private Sprite[] hpSprites = new Sprite[HPARRAYSIZE];
+	[Tooltip("Set elements according to HP")]
+	[SerializeField] private Sprite[] hpSprites;
 	[SerializeField] private SpriteRenderer healthSpriteRenderer;
 	[SerializeField] public Transform ballRespawn;
 	private const int HPARRAYSIZE = 3;
 	private AudioSource audioSource;
 	private Animator animator;
 	private Vector2 direction;
+
+	public bool isDead { get { return health.isDead; } }
+
 	[SerializeField] private float speed = 12f;
 
 
 	void OnValidate() {
-		if (hpSprites.Length != HPARRAYSIZE) {
-			Debug.LogWarning( "Don't change the size of the HP array." );
+		if (hpSprites.Length != health.GetMax())
+		{
+			hpSprites = new Sprite[health.GetMax()];
 		}
 	}
 
 	void Awake() {
 		animator = GetComponent<Animator>();
 		audioSource = GetComponent<AudioSource>();
+		health.Initialize();
 	}
 
 	void Start() {
@@ -72,25 +76,27 @@ public class Player : MonoBehaviour {
 	public void TakeHit() {
 		animator.SetTrigger( "TakeHit" );
 		audioSource.PlayOneShot( takeHitClip, 0.3f );
-		hp--;
+		health.TakeHit();
+		//hp--;
 		UpdateSprite();
 	}
 
 	public void GainHP() {
-		if (hp < MAXHP) {
-			hp++;
-			UpdateSprite();
-		}
+		health.HealUp();
+		UpdateSprite();
 	}
 
+	
+
 	private void UpdateSprite() {
-		if (hp == 0) {
+		if (health.isDead) {
 			healthSpriteRenderer.sprite = null;
 			animator.SetTrigger( "Die" );
 			return;
         }
 
-		healthSpriteRenderer.sprite = hpSprites[hp - 1];
+		//healthSpriteRenderer.sprite = hpSprites[hp - 1];
+		healthSpriteRenderer.sprite = hpSprites[health.current - 1];
 	}
 
 }

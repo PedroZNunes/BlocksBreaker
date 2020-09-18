@@ -52,6 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canMove: 0
   hp: 3
+  health:
+    max: 3
   takeHitClip: {fileID: 8300000, guid: 0d9038d0012c07245ad34e4643208514, type: 3}
   hpSprites:
   - {fileID: 21300004, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
@@ -245,6 +247,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -326,6 +329,7 @@ SpriteRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -469,6 +473,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

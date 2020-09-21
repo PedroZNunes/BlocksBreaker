@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 		ball.GetComponent<Rigidbody2D> ().isKinematic = true;
 	}
 
+	//TODO fix. game master should not have a reference to the player.
 	public bool DeathCheck(){
 		if (player.isDead) {
 			actionMaster.TriggerDefeat ();

@@ -40,6 +40,7 @@ public class ActionMaster : MonoBehaviour {
 	private Player player;
 	private AudioSource audioSource;
 
+	[SerializeField] private BooleanVariable isMovementAllowed;
 
 	private bool isOpening = false;
 	private bool isWinning = false;
@@ -79,7 +80,7 @@ public class ActionMaster : MonoBehaviour {
 		OptionsController.UnpauseEvent -= HandleUnpause;
 
 	}
-
+	//todo: get a playermanager to do this. get a ball manager to spawn the ball as well.
 	void SpawnPlayer() {
 		player = FindObjectOfType<Player>();
 
@@ -171,7 +172,7 @@ public class ActionMaster : MonoBehaviour {
 	}
 
 	void HandlePlayMode () {
-		player.canMove = true;
+		isMovementAllowed.value = true;
 		if (Input.GetButtonDown ("Cancel")) {
 			TriggerPause ();
 		}
@@ -185,7 +186,7 @@ public class ActionMaster : MonoBehaviour {
 
 	IEnumerator HandleWin(){
 		isWinning = true;
-		player.canMove = false;
+		isMovementAllowed.value = false;
 		yield return new WaitForSeconds (4f);
 //		int score = ScoreManager.GetScore ();
 //		if (score > PlayerPrefsManager.GetHighScore ()) {
@@ -202,7 +203,7 @@ public class ActionMaster : MonoBehaviour {
 //		if (score > PlayerPrefsManager.GetHighScore ()) {
 //			PlayerPrefsManager.SetHighScore (score);
 //		}
-		player.canMove = false;
+		isMovementAllowed.value = false;
 		if (EndGameEvent != null) { EndGameEvent(); }
 	}
 
@@ -238,7 +239,7 @@ public class ActionMaster : MonoBehaviour {
         }
         else {
 			RespawnBall();
-			player.canMove = true;
+			isMovementAllowed.value = true;
 			TriggerLaunch();
 		}
 	}
@@ -256,7 +257,7 @@ public class ActionMaster : MonoBehaviour {
     #region Auxiliar Functions
     IEnumerator OpeningAnimations() {
 		isOpening = true;
-		player.canMove = false;
+		isMovementAllowed.value = false;
 		Block[] blocks = FindObjectsOfType<Block>();
 		for (int i = 0; i < blocks.Length; i++) {
 			blocks[i].StartAnimation();
@@ -265,7 +266,7 @@ public class ActionMaster : MonoBehaviour {
 		//player animation is automatic.
 		yield return new WaitForSeconds( 2.5f );
 		RespawnBall();
-		player.canMove = true;
+		isMovementAllowed.value = true;
 		TriggerFirstLaunch();
 	}
 

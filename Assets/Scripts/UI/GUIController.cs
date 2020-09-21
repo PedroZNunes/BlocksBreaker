@@ -13,7 +13,6 @@ public class GUIController : MonoBehaviour {
 	[SerializeField] private GameObject winScreen;
 	[SerializeField] private GameObject loseScreen;
 	[SerializeField] private GameObject mainCanvas;
-	[SerializeField] private GameObject slideInterface;
 	[SerializeField] private Text levelNameText;
 
 	private ActionMaster actionMaster;
@@ -46,32 +45,25 @@ public class GUIController : MonoBehaviour {
 		case ActionMaster.States.FirstLaunch:
 			firstLaunch.gameObject.SetActive (true);
 			firstLaunch.ActivateFirstLaunch ();
-			slideInterface.SetActive (true);
 			break;
 		case ActionMaster.States.Play:
 			firstLaunch.gameObject.SetActive (false);
-			slideInterface.SetActive (true);
 			break;
 		case ActionMaster.States.NoBallsLeft:
-			slideInterface.SetActive (true);
 			break;
 		case ActionMaster.States.Relaunch:
 			firstLaunch.gameObject.SetActive (true);
 			firstLaunch.ActivateLaunch ();
-			slideInterface.SetActive (true);
 			break;
 		case ActionMaster.States.Victory:
 			firstLaunch.gameObject.SetActive (false);
-			slideInterface.SetActive (false);
 			ShowWinScreen ();
 			break;
 		case ActionMaster.States.Defeat:
 			firstLaunch.gameObject.SetActive (false);
-			slideInterface.SetActive (false);
 			ShowLoseScreen ();
 			break;
 		case ActionMaster.States.Pause:
-			slideInterface.SetActive (false);
 			firstLaunch.gameObject.SetActive (false);
 			break;
 		}

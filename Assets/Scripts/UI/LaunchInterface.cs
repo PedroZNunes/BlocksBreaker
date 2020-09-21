@@ -9,8 +9,11 @@ public class LaunchInterface : MonoBehaviour {
 	[SerializeField] private GameObject arrow;
 
 	private GUIController guiController;
+	//todo: decouple player from this by creating the tap circle inside the player prefab and activating it according to a S.O. called PlayerLaunching. Should be the same file as other player Data, like player is dead, player can move.
 	private Player player;
 	private Vector2 startPos, endPos, direction;
+
+	[SerializeField] private BooleanVariable isMovementAllowed;
 
 	void Awake () {
 		Debug.Assert (tapCircle != null, "Tap Circle not set in inspector");
@@ -28,7 +31,7 @@ public class LaunchInterface : MonoBehaviour {
 	}
 
 	public void OnTapCircle(){
-		player.canMove = false;
+		isMovementAllowed.value = false;
 		startPos = arrow.transform.position;
 		GetComponent<Animator> ().SetBool ("isClicked", true);
 	}
@@ -44,7 +47,7 @@ public class LaunchInterface : MonoBehaviour {
 	}
 
 	public void OnReleaseCircle(){
-		player.canMove = true;
+		isMovementAllowed.value = true;
 		if (Input.touchCount > 0)
 			endPos = Input.GetTouch (0).position;
 		else

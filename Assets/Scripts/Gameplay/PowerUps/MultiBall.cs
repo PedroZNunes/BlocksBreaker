@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MultiBall : PowerUps {
+
+public class MultiBall : PowerUp {
 
 	[SerializeField] private GameObject ballPrefab;
 	[SerializeField] private GameObject multiBallInstancePrefab;
@@ -10,7 +11,7 @@ public class MultiBall : PowerUps {
 		
 	void OnDisable(){ Unsubscribe (); }
 
-	public override void PickUp (){
+	public override void OnPickUp (){
 		PlayerBuffs.isMulti = true;
 		Ball[] balls = FindObjectsOfType<Ball> ();
 		for (int i = 0; i < balls.Length; i++) {

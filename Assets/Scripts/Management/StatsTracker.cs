@@ -24,7 +24,7 @@ public class StatsTracker : MonoBehaviour {
 
 	void IncrementBallsUsed(){ballsUsed++;}
 	void IncrementDeaths(){deaths++;}
-	void IncrementPowerUps(){powerUps++;}
+	void IncrementPowerUps(PowerUpsEnum name){powerUps++;}
 	void IncrementBlocksDestroyed(){blocksDestroyed++;}
 	void UpdateAllStatsWrapper(){StartCoroutine (UpdateAllStats ());}
 
@@ -60,17 +60,17 @@ public class StatsTracker : MonoBehaviour {
 		Ball.BallDestroyedEvent += IncrementBallsUsed;
 		Block.BlockDestroyedEvent += IncrementBlocksDestroyed;
 		PickUpItem.PowerUpPickedUpEvent += IncrementPowerUps;
-		ActionMaster.DefeatEvent += IncrementDeaths;
-		ActionMaster.DefeatEvent += UpdateAllStatsWrapper;
-		ActionMaster.VictoryEvent += UpdateAllStatsWrapper;
+		GameMaster.DefeatEvent += IncrementDeaths;
+		GameMaster.DefeatEvent += UpdateAllStatsWrapper;
+		GameMaster.VictoryEvent += UpdateAllStatsWrapper;
 	}
 
 	void OnDisable(){
 		Ball.BallDestroyedEvent -= IncrementBallsUsed;
 		Block.BlockDestroyedEvent -= IncrementBlocksDestroyed;
 		PickUpItem.PowerUpPickedUpEvent -= IncrementPowerUps;
-		ActionMaster.DefeatEvent -= IncrementDeaths;
-		ActionMaster.DefeatEvent -= UpdateAllStatsWrapper;
-		ActionMaster.VictoryEvent -= UpdateAllStatsWrapper;
+		GameMaster.DefeatEvent -= IncrementDeaths;
+		GameMaster.DefeatEvent -= UpdateAllStatsWrapper;
+		GameMaster.VictoryEvent -= UpdateAllStatsWrapper;
 	}
 }

@@ -15,11 +15,11 @@ public class GUIController : MonoBehaviour {
 	[SerializeField] private GameObject mainCanvas;
 	[SerializeField] private Text levelNameText;
 
-	private ActionMaster actionMaster;
+	private GameMaster actionMaster;
 
 
 	void OnEnable(){
-		actionMaster = FindObjectOfType<ActionMaster> ();
+		actionMaster = FindObjectOfType<GameMaster> ();
 		Debug.Assert (actionMaster != null, "Action Master not found");
 		pauseMenu.SetActive (false);
 		Subscribe ();
@@ -34,36 +34,36 @@ public class GUIController : MonoBehaviour {
 	}
 
 
-	void GameStateSwitched (ActionMaster.States currentState){
+	void GameStateSwitched (GameMaster.States currentState){
 		switch (currentState){
-		case ActionMaster.States.Start:
+		case GameMaster.States.Start:
 			//do nothing
 			break;
-		case ActionMaster.States.OpeningAnimations:
+		case GameMaster.States.OpeningAnimations:
 			//do nothing
 			break;
-		case ActionMaster.States.FirstLaunch:
+		case GameMaster.States.FirstLaunch:
 			firstLaunch.gameObject.SetActive (true);
 			firstLaunch.ActivateFirstLaunch ();
 			break;
-		case ActionMaster.States.Play:
+		case GameMaster.States.Play:
 			firstLaunch.gameObject.SetActive (false);
 			break;
-		case ActionMaster.States.NoBallsLeft:
+		case GameMaster.States.NoBallsLeft:
 			break;
-		case ActionMaster.States.Relaunch:
+		case GameMaster.States.Relaunch:
 			firstLaunch.gameObject.SetActive (true);
 			firstLaunch.ActivateLaunch ();
 			break;
-		case ActionMaster.States.Victory:
+		case GameMaster.States.Victory:
 			firstLaunch.gameObject.SetActive (false);
 			ShowWinScreen ();
 			break;
-		case ActionMaster.States.Defeat:
+		case GameMaster.States.Defeat:
 			firstLaunch.gameObject.SetActive (false);
 			ShowLoseScreen ();
 			break;
-		case ActionMaster.States.Pause:
+		case GameMaster.States.Pause:
 			firstLaunch.gameObject.SetActive (false);
 			break;
 		}
@@ -100,14 +100,14 @@ public class GUIController : MonoBehaviour {
 	}
 
 	void Subscribe(){
-		ActionMaster.GUIPauseMenuEvent += ShowHidePauseMenu;
-		ActionMaster.GUIStateChangedEvent += GameStateSwitched;
+		GameMaster.GUIPauseMenuEvent += ShowHidePauseMenu;
+		GameMaster.GUIStateChangedEvent += GameStateSwitched;
 //		ScoreManager.GUIUpdateScoreEvent += UpdateScore;
 	}
 
 	void Unsubscribe(){
-		ActionMaster.GUIPauseMenuEvent -= ShowHidePauseMenu;
-		ActionMaster.GUIStateChangedEvent -= GameStateSwitched;
+		GameMaster.GUIPauseMenuEvent -= ShowHidePauseMenu;
+		GameMaster.GUIStateChangedEvent -= GameStateSwitched;
 //		ScoreManager.GUIUpdateScoreEvent -= UpdateScore;
 	}
 

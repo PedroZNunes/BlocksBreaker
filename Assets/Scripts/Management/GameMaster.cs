@@ -2,7 +2,7 @@
 using System;
 using System.Collections;
 
-public class ActionMaster : MonoBehaviour {
+public class GameMaster : MonoBehaviour {
 
 	public delegate void LaunchHandler (Vector2 direction);
 	public static event LaunchHandler LaunchEvent;
@@ -35,12 +35,13 @@ public class ActionMaster : MonoBehaviour {
 
 	[SerializeField] private GameObject playerPrefab;
 	private GameObject playerRespawn;
-
-	private PowerUpManager powerUpManager;
 	private Player player;
-	private AudioSource audioSource;
+
+	[SerializeField] private PowerUpManager powerUpManager;
+	[SerializeField] private AudioSource BackgroundAudioSource;
 
 	[SerializeField] private BooleanVariable isMovementAllowed;
+
 
 	private bool isOpening = false;
 	private bool isWinning = false;
@@ -49,15 +50,8 @@ public class ActionMaster : MonoBehaviour {
     #region Initialization
 
     void Awake (){
-
 		SpawnPlayer();
 		Debug.Assert( player != null, "Player not found in the scene" );
-
-		audioSource = GetComponent<AudioSource> ();
-		Debug.Assert (audioSource != null, "Audio Source not found in the scene");
-
-		powerUpManager = FindObjectOfType <PowerUpManager> ();
-		Debug.Assert (powerUpManager != null, "Power Up Manager not found in the scene");
 	}
 
 	void Start (){
@@ -262,7 +256,7 @@ public class ActionMaster : MonoBehaviour {
 		for (int i = 0; i < blocks.Length; i++) {
 			blocks[i].StartAnimation();
 		}
-		audioSource.Play();
+		BackgroundAudioSource.Play();
 		//player animation is automatic.
 		yield return new WaitForSeconds( 2.5f );
 		RespawnBall();

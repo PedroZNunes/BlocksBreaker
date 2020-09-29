@@ -16,7 +16,7 @@ public class Ball : MonoBehaviour {
 	private Vector2 minAngles = new Vector2 (0.1f, 0.1f);
 	private Vector2 maxAngles = new Vector2 (0.9f, 0.9f);
 
-	private ActionMaster actionMaster;
+	private GameMaster actionMaster;
 	private Transform spawnPoint;
 	private Rigidbody2D rigidBody;
 	private AudioSource audioSource;
@@ -36,7 +36,7 @@ public class Ball : MonoBehaviour {
     void Start () {
 		audioSource = GetComponent<AudioSource> ();
 		rigidBody = GetComponent<Rigidbody2D> ();
-		actionMaster = FindObjectOfType<ActionMaster> ();
+		actionMaster = FindObjectOfType<GameMaster> ();
 		Debug.Assert (actionMaster != null, "Action Master not found by the ball");
 	}
 
@@ -120,14 +120,16 @@ public class Ball : MonoBehaviour {
 	}
 
 	private void Subscribe() {
-		ActionMaster.LaunchEvent += Launch;
-		ActionMaster.EndGameEvent += ResetBalls;
+		GameMaster.LaunchEvent += Launch;
+		GameMaster.EndGameEvent += ResetBalls;
+		LevelManager.LeavingLevelEvent += ResetBalls;
 		GUIController.LaunchEvent += Launch;
 	}
 
 	private void Unsubscribe() {
-		ActionMaster.LaunchEvent -= Launch;
-		ActionMaster.EndGameEvent -= ResetBalls;
+		GameMaster.LaunchEvent -= Launch;
+		GameMaster.EndGameEvent -= ResetBalls;
+		LevelManager.LeavingLevelEvent -= ResetBalls;
 		GUIController.LaunchEvent -= Launch;
 	}
 

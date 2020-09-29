@@ -59,13 +59,13 @@ public class Player : MonoBehaviour {
 
 	
 
-	private void UpdateSprite() {
+	private void UpdateSprite() 
+	{
 		if (health.isDead) {
 			healthSpriteRenderer.sprite = null;
-			animator.SetTrigger( "Die" );
+			animator.SetTrigger("Die");
 			return;
         }
-
 		healthSpriteRenderer.sprite = hpSprites[health.current - 1];
 	}
 

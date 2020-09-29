@@ -1,45 +1,96 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+
+using Random = UnityEngine.Random;
+
 
 public class PowerUpManager : MonoBehaviour {
 
-	public enum PowerUpsEnum {MultiBall, ElectricBall, GainHP, ExplosiveBall};
+	[SerializeField] private PowerUp[] powerUps;
 
-	[SerializeField] private PowerUps[] powerUps;
-
-	private ActionMaster actionMaster;
 	private float currentProcTime = 0f;
-	private float currentDropChance = 0f;
-	private float bonusPercentPerSecond = 1.5f;
+	private float currentProcThreshold = 0f;
+	private float bonusProcPerTime = 1.5f;
 
-	private PowerUpsEnum currentPowerUp;
+	static private Transform dropInstanceParent;
 
-	void OnEnable(){Block.PowerUpDropEvent += DropPowerUp;}
-	void OnDisable(){Block.PowerUpDropEvent -= DropPowerUp;}
 
-	void Start(){
-		
+	void OnEnable(){
+		Block.PowerUpDropEvent += DropPowerUp;
+		PickUpItem.PowerUpPickedUpEvent += OnPowerUpPickedUp;
+	}
+	void OnDisable(){
+		Block.PowerUpDropEvent -= DropPowerUp;
+		PickUpItem.PowerUpPickedUpEvent -= OnPowerUpPickedUp;
 	}
 
-	public void IncrementTimer (){
+	public void OnPowerUpPickedUp(PowerUpsEnum name)
+    {
+        foreach (PowerUp powerUp in powerUps)
+        {
+			if(powerUp.GetName() == name)
+            {
+				powerUp.OnPickUp();
+            }
+        }
+    }
+
+
+    public void IncrementTimer (){
 		currentProcTime += Time.deltaTime;
 	}
 
-	void DropPowerUp (Vector3 blockPosition, float dropChancePercent){
-		float bonusProc = currentProcTime * bonusPercentPerSecond;
-		float j = Random.Range (0f, 100f);
+	/// <summary>
+	/// The proc chance scales with time (currentproctime) and with each block destroyed (blockbonusproc). after you roll a d100 that goes
+	/// below that limit, you roll another dice for deciding which power up actually drops.
+	/// </summary>
+	/// <param name="blockPosition">Block Position. This is where the object is instantiated from.</param>
+	/// <param name="blockBonusProc">This is a bonus percentage to the proc chance. It comes from each block destroyed and vary according to each blocks hp (for now just hp).</param>
+	void DropPowerUp (Vector3 blockPosition, float blockBonusProc){
+		
+
+		float bonusProc = currentProcTime * bonusProcPerTime;
+		currentProcTime = 0f;
+
+		currentProcThreshold += blockBonusProc + bonusProc;
+
+		float dropDice = Random.Range (0f, 100f);
 		if (!PlayerBuffs.isBuffed)
-			j = j / 2f;
-		currentDropChance += dropChancePercent;
-		if (j <= currentDropChance + bonusProc) {
-			print ("PROC - " + (currentDropChance + bonusProc) + "%");
-			int i = Random.Range (0, powerUps.Length);
-			Transform parent = GameObject.FindGameObjectWithTag (MyTags.Dynamic.ToString ()).transform;
-			Debug.Assert (parent != null, "Dynamic not found.");
-			powerUps [i].Drop (blockPosition);
-			currentProcTime = 0f;
-			currentDropChance = 0f;
+			dropDice = dropDice / 2f;
+
+		if (dropDice <= currentProcThreshold) {
+			print ("PROC - " + (currentProcThreshold) + "%");
+			//it is going to drop something. just a matter of sorting what will be droped
+		//total percentage is the sum of all chances in all objects in inspector... may or may not be 100...
+			float totalPercentage = 0;
+			foreach (PowerUp powerup in powerUps)
+			{
+				totalPercentage += powerup.GetDropChance();
+			}
+
+			if (!Mathf.Approximately(totalPercentage, 100f))
+            {
+				Debug.LogWarning("The sum of all power up drop chances does not amount to 100.");
+            }
+
+			float powerUpDice = Random.Range(0f, totalPercentage);
+
+            //for each power up, reduce the drop chance from this until its 0 or lower
+            for (int i = 0; i < powerUps.Length; i++)
+            {
+				powerUpDice -= powerUps[i].GetDropChance();
+				//drop the power up
+				if (powerUpDice <= 0f)
+                {
+					powerUps[i].Drop(blockPosition);
+					break;
+                }
+            }
+
+			currentProcThreshold = 0f;
 		}
 	}
+
 }

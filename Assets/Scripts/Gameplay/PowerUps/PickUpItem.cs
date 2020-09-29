@@ -1,23 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+
 [RequireComponent (typeof(Collider2D), typeof(SpriteRenderer))]
 public class PickUpItem : MonoBehaviour {
+	public delegate void PickedUpHandler (PowerUpsEnum name);
+	static public event PickedUpHandler PowerUpPickedUpEvent;
+	//[SerializeField] private PowerUp powerUp;
+	[SerializeField] private PowerUpsEnum powerUpName;
 
-	static public event System.Action PowerUpPickedUpEvent;
 	private float speed = 2.5f;
 	[SerializeField] private AudioClip soundEffect;
-	private AudioSource audioSource;
-	[SerializeField] private PowerUps powerUp;
-	private float defaultPitch;
-	private float pitchVariance;
+	[SerializeField] private AudioSource audioSource;
+	//private float defaultPitch;
+	//private float pitchVariance;
 
 	void Start(){
-
-		Debug.Assert (powerUp != null, "PowerUp not set");
+		//Debug.Assert (powerUp != null, "PowerUp not set");
 		Debug.Assert (soundEffect != null, "soundEffect not found");
-
-		audioSource = GetComponentInChildren<AudioSource> ();
-
 	}
 
 	void Update(){
@@ -28,10 +28,9 @@ public class PickUpItem : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D col){
 		if (col.CompareTag (MyTags.Player.ToString ())) {
 			if (PowerUpPickedUpEvent != null)
-				PowerUpPickedUpEvent ();
+				PowerUpPickedUpEvent (powerUpName);
 			audioSource.clip = soundEffect;
 			audioSource.Play ();
-			powerUp.PickUp ();
 			audioSource.transform.SetParent (transform.parent);
 			Destroy (audioSource.gameObject, audioSource.clip.length);
 			Destroy (gameObject);

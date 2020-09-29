@@ -1,27 +1,19 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GainHP : PowerUps {
+public class GainHP : PowerUp {
 
 	private Player player;
-	// Use this for initialization
-	void Start () {
-		
+    // Use this for initialization
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public override void OnPickUp()
+    {
+        player = FindObjectOfType<Player>();
+        Debug.Assert(player != null, "player not found");
+        player.GainHP();
+    }
 
-	public override void PickUp(){
-		player = FindObjectOfType<Player> ();
-		Debug.Assert (player != null, "player not found");
-		player.GainHP ();
-	}
-
-	protected override void Subscribe (){}
+    protected override void Subscribe (){}
 
 	protected override void Unsubscribe(){}
 

@@ -21,7 +21,7 @@ public class Block : MonoBehaviour {
 
 	//[SerializeField] private int scorePerHit;
 
-	static private float powerUpDropChancePercent = 0.3f;
+	static private float powerUpDropPerHP = 2f;
 	private SpriteRenderer spriteRenderer;
 	private Vector3 desiredPosition;
 	/// <summary>
@@ -40,15 +40,17 @@ public class Block : MonoBehaviour {
 	}
 
     private void OnEnable() {
-		ActionMaster.EndGameEvent += ResetBlocks;
+		GameMaster.EndGameEvent += ResetBlocks;
+		LevelManager.LeavingLevelEvent += ResetBlocks;
 		health.Initialize();
     }
 
     private void OnDisable() {
-		ActionMaster.EndGameEvent -= ResetBlocks;
+		GameMaster.EndGameEvent -= ResetBlocks;
+		LevelManager.LeavingLevelEvent -= ResetBlocks;
 	}
 
-    void Awake(){
+	void Awake(){
 		//initialize blocks list
 		if (blocks == null) {
 			blocks = new List<Block>();
@@ -102,8 +104,9 @@ public class Block : MonoBehaviour {
 		health.TakeHit( out isDead );
 //		ScoreManager.AddPoints (scorePerHit);
 		if (isDead) {
+			float dropChance = powerUpDropPerHP * health.GetMax();
 			if (PowerUpDropEvent != null)
-				PowerUpDropEvent( transform.position, powerUpDropChancePercent );
+				PowerUpDropEvent( transform.position, dropChance );
 			DestroyBlock ();
 		} else {
 			spriteRenderer.sprite = sprites[health.current - 1];

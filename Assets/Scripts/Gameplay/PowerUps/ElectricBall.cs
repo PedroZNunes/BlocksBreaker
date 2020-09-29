@@ -2,15 +2,11 @@
 using System.Collections;
 
 
-public class ElectricBall : PowerUps {
+public class ElectricBall : PowerUp {
 
 	[SerializeField] private ElectricBallInstance electricBallInstance;
 
-	void Awake(){
-
-	}
-
-	public override void PickUp (){
+	public override void OnPickUp (){
 		Transform parent = FindObjectOfType<PowerUpManager>().transform;
 		Instantiate (electricBallInstance, parent);
 	}

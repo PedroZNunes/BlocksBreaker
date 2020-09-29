@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour {
 	[SerializeField] private GameObject ballPrefab;
 
 	private Player player;
-	private ActionMaster actionMaster;
+	private GameMaster actionMaster;
 	private GameObject ballParent;
 
 
@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
 		ballParent = GameObject.FindGameObjectWithTag (MyTags.BallSpawn.ToString());
 		Debug.Assert (ballParent != null, "Ball Spawn not found by tag. Should be on player.");
 
-		actionMaster = GetComponent<ActionMaster>();
+		actionMaster = GetComponent<GameMaster>();
 		Debug.Assert (actionMaster != null, "ActionMaster not found in the scene");
 	}
 	void Start () {

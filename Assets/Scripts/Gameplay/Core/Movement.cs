@@ -7,9 +7,9 @@ public class Movement
 
     private MovementInput input = new MovementInput();
     //[SerializeField] private Game
-    private float maxSpeed      = 14f;
-    private float acceleration  = 1.4f;
-    private float deceleration  = 0.7f;
+    private float maxSpeed      = 12f;
+    private float acceleration  = 2f;
+    private float deceleration  = 1f;
     private float currentSpeed  = 0f;
 
     [SerializeField] private BooleanVariable isMovementAllowed;
@@ -44,12 +44,13 @@ public class Movement
         }
         else
         {
-            //if it's moving without input, stop slowly
-            if (!Mathf.Approximately(currentSpeed, 0f))
-            {
-                currentSpeed = Mathf.Clamp(currentSpeed - Mathf.Sign(currentSpeed)*deceleration, -maxSpeed, maxSpeed);
+            if (currentSpeed > 0){
+                currentSpeed = Mathf.Clamp(currentSpeed - Mathf.Sign(currentSpeed) * deceleration, 0, maxSpeed);
             }
-            //if tis almost still, stop.
+            else if (currentSpeed < 0)
+            {
+                currentSpeed = Mathf.Clamp(currentSpeed - Mathf.Sign(currentSpeed) * deceleration, -maxSpeed, 0);
+            }
             else
             {
                 currentSpeed = 0;

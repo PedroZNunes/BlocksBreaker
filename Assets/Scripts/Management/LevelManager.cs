@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
 
 [RequireComponent (typeof(AudioController))]
 public class LevelManager : MonoBehaviour {
-    
-	
+
+
+	static public event Action LeavingLevelEvent;
+
 	private string currentSceneName;
 
 	static public bool isSceneALevel { get { return (GetCurrentSceneByName().StartsWith("02")); } }
@@ -77,7 +79,25 @@ public class LevelManager : MonoBehaviour {
 
 		if (sceneName != "")
         {
+			if (isSceneALevel)
+            {
+				if (LeavingLevelEvent != null)
+                {
+					LeavingLevelEvent();
+                }
+            }
 			SceneManager.LoadScene (sceneName, LoadSceneMode.Single);
+		}
+	}
+
+	private void LeftScene(Scene scene)
+    {
+		if (isSceneALevel)
+		{
+			if (LeavingLevelEvent != null)
+			{
+				LeavingLevelEvent();
+			}
 		}
 	}
 
@@ -114,7 +134,9 @@ public class LevelManager : MonoBehaviour {
 
 
 
-	void OnEnable(){ SceneManager.sceneLoaded += SceneChanged; }
+	void OnEnable(){ 
+		SceneManager.sceneLoaded += SceneChanged; 
+		SceneManager.sceneUnloaded += LeftScene; }
 
 	void OnDisable(){ 
 		SceneManager.sceneLoaded -= SceneChanged; 

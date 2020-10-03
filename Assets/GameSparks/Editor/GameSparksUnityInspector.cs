@@ -1,7 +1,6 @@
-using UnityEngine;
-using System.Collections;
-using UnityEditor;
 using GameSparks.Core;
+using UnityEditor;
+using UnityEngine;
 
 namespace GameSparks.Editor
 {

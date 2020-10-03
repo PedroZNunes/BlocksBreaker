@@ -1,13 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ExplosiveBall : PowerUp {
-	[SerializeField] private GameObject explosiveBallInstancePrefab;
+public class ExplosiveBall : PowerUp
+{
+    [SerializeField] private GameObject explosiveBallInstancePrefab;
 
-	void OnDisable(){ Unsubscribe (); }
+    void OnDisable() { Unsubscribe(); }
 
-	public override void OnPickUp (){
+    public override void OnPickUp()
+    {
         PlayerBuffs.isExplosive = true;
         Ball[] balls = FindObjectsOfType<Ball>();
         for (int i = 0; i < balls.Length; i++)
@@ -24,7 +24,7 @@ public class ExplosiveBall : PowerUp {
         }
     }
 
-	protected override void Subscribe (){}
-	protected override void Unsubscribe(){}
+    protected override void Subscribe() { }
+    protected override void Unsubscribe() { }
 
 }

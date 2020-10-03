@@ -53,9 +53,11 @@ MonoBehaviour:
   health:
     max: 3
   movement:
+    maxSpeed: 12
     isMovementAllowed: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628,
       type: 2}
     playerCollider: {fileID: 60000012140109750}
+  playerPos: {fileID: 11400000, guid: 54cfb361321b4374e9810ec7364793f9, type: 2}
   takeHitClip: {fileID: 8300000, guid: 0d9038d0012c07245ad34e4643208514, type: 3}
   hpSprites:
   - {fileID: 21300004, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
@@ -274,7 +276,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.24368146, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -354,9 +356,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -965314483
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300006, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.47450984, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

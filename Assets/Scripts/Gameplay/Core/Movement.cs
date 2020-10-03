@@ -1,30 +1,45 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class Movement
 {
+    public delegate void CheckForDebuffsHandler(ref float speed);
+    public event CheckForDebuffsHandler CheckForDebuffsEvent;
 
-    private MovementInput input = new MovementInput();
+    private readonly MovementInput input = new MovementInput();
     //[SerializeField] private Game
-    private float maxSpeed      = 12f;
-    private float acceleration  = 2f;
-    private float deceleration  = 1f;
-    private float currentSpeed  = 0f;
+    [SerializeField] private float maxSpeed = 12f;
+    private readonly float acceleration = 2f;
+    private readonly float deceleration = 1f;
+    private float currentSpeed = 0f;
 
     [SerializeField] private BooleanVariable isMovementAllowed;
-
     [SerializeField] private PolygonCollider2D playerCollider;
 
 
     //moves object in certain direction (denoted as -1 0 1)
     //called in fixedupdate
-    public void Move(ref Vector3 transformPosition)
+
+    public void Move(Transform transform)
     {
         if (!isMovementAllowed.value)
         {
             return;
         }
+
+        transform.position += transform.rotation * Vector3.up * maxSpeed * Time.deltaTime;
+    }
+
+    public void InputControlledMove(Transform transform)
+    {
+
+        if (!isMovementAllowed.value)
+        {
+            return;
+        }
+
+
         int direction = input.UpdateDirection();
         //direction < 0, move left
         if (direction < 0)
@@ -44,7 +59,8 @@ public class Movement
         }
         else
         {
-            if (currentSpeed > 0){
+            if (currentSpeed > 0)
+            {
                 currentSpeed = Mathf.Clamp(currentSpeed - Mathf.Sign(currentSpeed) * deceleration, 0, maxSpeed);
             }
             else if (currentSpeed < 0)
@@ -57,8 +73,14 @@ public class Movement
             }
         }
 
-        transformPosition += Vector3.right * currentSpeed * Time.deltaTime;
+        if (CheckForDebuffsEvent != null)
+        {
+            CheckForDebuffsEvent(ref currentSpeed);
+        }
+
+        Vector3 transformPosition = transform.position + Vector3.right * currentSpeed * Time.deltaTime;
         CheckBorders(ref transformPosition);
+        transform.position = transformPosition;
     }
 
 

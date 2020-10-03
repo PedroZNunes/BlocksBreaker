@@ -1,19 +1,14 @@
-using UnityEngine;
-using System.Collections;
-using System;
-using GameSparks.Core;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 namespace GameSparks.Platforms
 {
-	/// <summary>
-	/// Timer controller which can hold and update multiple timers. 
-	/// </summary>
+    /// <summary>
+    /// Timer controller which can hold and update multiple timers. 
+    /// </summary>
     public class TimerController
     {
         long timeOfLastUpdate;
-        List<IControlledTimer> timers = new List<IControlledTimer>();
+        readonly List<IControlledTimer> timers = new List<IControlledTimer>();
 
         public void Initialize()
         {

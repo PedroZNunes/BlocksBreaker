@@ -1,28 +1,31 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 
-public class MultiBall : PowerUp {
+public class MultiBall : PowerUp
+{
 
-	[SerializeField] private GameObject ballPrefab;
-	[SerializeField] private GameObject multiBallInstancePrefab;
+    [SerializeField] private GameObject ballPrefab;
+    [SerializeField] private GameObject multiBallInstancePrefab;
 
-	private GameObject multiballEffect;
-		
-	void OnDisable(){ Unsubscribe (); }
+    private readonly GameObject multiballEffect;
 
-	public override void OnPickUp (){
-		PlayerBuffs.isMulti = true;
-		Ball[] balls = FindObjectsOfType<Ball> ();
-		for (int i = 0; i < balls.Length; i++) {
-			MultiBallInstance instance = balls [i].GetComponentInChildren<MultiBallInstance> ();
-			if (instance == null) {
-				Instantiate (multiBallInstancePrefab, balls [i].transform.position, Quaternion.identity, balls [i].transform);
-			}
-		}
-	}
+    void OnDisable() { Unsubscribe(); }
 
-	protected override void Subscribe (){}
-	protected override void Unsubscribe(){}
+    public override void OnPickUp()
+    {
+        PlayerBuffs.isMulti = true;
+        Ball[] balls = FindObjectsOfType<Ball>();
+        for (int i = 0; i < balls.Length; i++)
+        {
+            MultiBallInstance instance = balls[i].GetComponentInChildren<MultiBallInstance>();
+            if (instance == null)
+            {
+                Instantiate(multiBallInstancePrefab, balls[i].transform.position, Quaternion.identity, balls[i].transform);
+            }
+        }
+    }
+
+    protected override void Subscribe() { }
+    protected override void Unsubscribe() { }
 
 }

@@ -1,23 +1,27 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class SceneSkipper : MonoBehaviour {
+public class SceneSkipper : MonoBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-		Invoke ("SkipScene", 60f);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.anyKey) {
-			SkipScene ();
-		}
-	}
+    // Use this for initialization
+    void Start()
+    {
+        Invoke("SkipScene", 60f);
+    }
 
-	public void SkipScene(){
-		PlayerPrefsManager.ResetProgress ();
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.anyKey)
+        {
+            SkipScene();
+        }
+    }
 
-		LevelManager.LoadMenu(MenuScenes.Start);
-	}
+    public void SkipScene()
+    {
+        PlayerPrefsManager.ResetProgress();
+
+        LevelManager.LoadMenu(MenuScenes.Start);
+    }
 }

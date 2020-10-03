@@ -1,6 +1,5 @@
-using UnityEngine;
-using System.IO;
 using System;
+using UnityEngine;
 
 /// <summary>
 /// GameSparks settings which are used with <see cref="GameSparksUnity"/> to 
@@ -53,7 +52,7 @@ public class GameSparksSettings : ScriptableObject
     [SerializeField]
     private bool
         debugBuild = false;
-    
+
     public static bool PreviewBuild
     {
         get { return Instance.previewBuild; }
@@ -68,26 +67,26 @@ public class GameSparksSettings : ScriptableObject
 
     public static string ApiSecret
     {
-        get{ return Instance.apiSecret;}
+        get { return Instance.apiSecret; }
         set { Instance.apiSecret = value; }
     }
-    
+
     public static string ApiKey
     {
-        get{ return Instance.apiKey;}
+        get { return Instance.apiKey; }
         set { Instance.apiKey = value; }
     }
-    
+
     public static bool DebugBuild
     {
         get { return Instance.debugBuild; }
         set { Instance.debugBuild = value; }
     }
-    
+
     public static string ServiceUrl
     {
         get
-        { 
+        {
             String urlAddition = Instance.apiKey;
             if (Instance.apiSecret.Contains(":"))
             {
@@ -95,10 +94,10 @@ public class GameSparksSettings : ScriptableObject
             }
             if (Instance.previewBuild)
             {
-                return String.Format(previewServiceUrlBase, urlAddition);   
+                return String.Format(previewServiceUrlBase, urlAddition);
             }
             return String.Format(liveServiceUrlBase, urlAddition);
         }
     }
- 
+
 }

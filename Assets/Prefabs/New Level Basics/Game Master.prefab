@@ -423,3 +423,5 @@ MonoBehaviour:
   powerUpManager: {fileID: 730404126}
   BackgroundAudioSource: {fileID: 558454863822443085}
   isMovementAllowed: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628, type: 2}
+  isShootingAllowed: {fileID: 11400000, guid: e20020e808044a84ca2aa18dd3565013, type: 2}
+  canPlayerGetHit: {fileID: 11400000, guid: 3e8037ee29618df4fa934a3ae0271ce4, type: 2}

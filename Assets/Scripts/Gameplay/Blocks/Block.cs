@@ -1,134 +1,159 @@
-﻿using UnityEngine;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-[RequireComponent(typeof (SpriteRenderer))]
-public class Block : MonoBehaviour {
+[RequireComponent(typeof(SpriteRenderer))]
+public class Block : MonoBehaviour
+{
 
-	public delegate void PowerUpDropHandler (Vector3 blockPosition, float dropChancePercent);
-	public static event PowerUpDropHandler PowerUpDropEvent;
-	public static event Action BlockDestroyedEvent;
-	public static event Action NoBlocksLeftEvent;
+    public delegate void PowerUpDropHandler(Vector3 blockPosition, float dropChancePercent);
+    public static event PowerUpDropHandler PowerUpDropEvent;
+    public static event Action BlockDestroyedEvent;
+    public static event Action NoBlocksLeftEvent;
 
-	public static int Count;
+    public static int Count;
 
-	[SerializeField] private Health health;
+    [SerializeField] private Health health;
 
-	//public int hp;
-	[SerializeField] private Sprite[] sprites;
-	private Color color;
+    //public int hp;
+    [SerializeField] private Sprite[] sprites;
+    private Color color;
 
-	//[SerializeField] private int scorePerHit;
+    //[SerializeField] private int scorePerHit;
 
-	static private float powerUpDropPerHP = 2f;
-	private SpriteRenderer spriteRenderer;
-	private Vector3 desiredPosition;
-	/// <summary>
-	/// Offset that affects all blocks so that they show above mid-screen
-	/// </summary>
-	private Vector3 blockDisplacement = new Vector3 (0f, 10f, 0f);
+    private static readonly float powerUpDropPerHP = 2f;
+    private SpriteRenderer spriteRenderer;
+    private Vector3 desiredPosition;
+    /// <summary>
+    /// Offset that affects all blocks so that they show above mid-screen
+    /// </summary>
+    private Vector3 blockDisplacement = new Vector3(0f, 10f, 0f);
 
-	static private List<Block> blocks;
+    static private List<Block> blocks;
 
-	void OnValidate(){
-		if (sprites.Length != health.GetMax()) {
-			sprites = new Sprite[health.GetMax()];
-		}
+    void OnValidate()
+    {
+        if (sprites.Length != health.GetMax())
+        {
+            sprites = new Sprite[health.GetMax()];
+        }
 
-		
-	}
 
-    private void OnEnable() {
-		GameMaster.EndGameEvent += ResetBlocks;
-		LevelManager.LeavingLevelEvent += ResetBlocks;
-		health.Initialize();
     }
 
-    private void OnDisable() {
-		GameMaster.EndGameEvent -= ResetBlocks;
-		LevelManager.LeavingLevelEvent -= ResetBlocks;
-	}
+    private void OnEnable()
+    {
+        GameMaster.EndGameEvent += ResetBlocks;
+        LevelManager.LeavingLevelEvent += ResetBlocks;
+        health.Initialize();
+    }
 
-	void Awake(){
-		//initialize blocks list
-		if (blocks == null) {
-			blocks = new List<Block>();
+    private void OnDisable()
+    {
+        GameMaster.EndGameEvent -= ResetBlocks;
+        LevelManager.LeavingLevelEvent -= ResetBlocks;
+    }
+
+    void Awake()
+    {
+        //initialize blocks list
+        if (blocks == null)
+        {
+            blocks = new List<Block>();
         }
-		//test if blocks are stacking and if not, aff them to the blocks list
-        foreach (Block anotherBlock in blocks) {
-			if ( this.transform.position == anotherBlock.transform.position) {
-				Debug.LogError( "Stacking blocks detected at position: " + this.transform.position.ToString() );
-				Destroy( gameObject );
-				return;
+        //test if blocks are stacking and if not, aff them to the blocks list
+        foreach (Block anotherBlock in blocks)
+        {
+            if (this.transform.position == anotherBlock.transform.position)
+            {
+                Debug.LogError("Stacking blocks detected at position: " + this.transform.position.ToString());
+                Destroy(gameObject);
+                return;
             }
         }
-		blocks.Add( this );
-		
-		//send the block out of the screen for animation purposes
-		desiredPosition = transform.position;
-		transform.position += blockDisplacement;
+        blocks.Add(this);
 
-	}
+        //send the block out of the screen for animation purposes
+        desiredPosition = transform.position;
+        transform.position += blockDisplacement;
 
-	void Start () {
-		spriteRenderer = GetComponent<SpriteRenderer> ();
-	}
+    }
 
-	public void StartAnimation(){
-		StartCoroutine (StartAnimationCR ());
-	}
+    void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
-	IEnumerator StartAnimationCR(){
-		float delayInSeconds = (transform.position.y * 15 / 100) + (transform.position.x * 5 / 100);
-		Vector3 startPosition = transform.position;
-		yield return new WaitForSeconds (delayInSeconds);
-		for ( float i = 0f; i<=1f; i+= 0.1f) {
-			if (i > 0.9f)
-				i = 1f;
-			transform.position = Vector3.Lerp (startPosition, desiredPosition, i);
-			yield return null;
-		}
-		GetComponent<AudioSource> ().Play ();
-	}
+    public void StartAnimation()
+    {
+        StartCoroutine(StartAnimationCR());
+    }
 
-	void OnCollisionEnter2D(Collision2D col){
-		//TODO fix this. change to compare layers
-		if (col.gameObject.CompareTag(MyTags.Ball.ToString())) {
-			TakeHit ();
-		}
-	}
-
-	public void TakeHit(){
-		bool isDead = false;
-		health.TakeHit( out isDead );
-//		ScoreManager.AddPoints (scorePerHit);
-		if (isDead) {
-			float dropChance = powerUpDropPerHP * health.GetMax();
-			if (PowerUpDropEvent != null)
-				PowerUpDropEvent( transform.position, dropChance );
-			DestroyBlock ();
-		} else {
-			spriteRenderer.sprite = sprites[health.current - 1];
-		}
-	}
-
-	void DestroyBlock(){
-		blocks.Remove( this );
-		if (BlockDestroyedEvent != null)
-			BlockDestroyedEvent ();
-		if (blocks.Count <= 0) {
-			if (NoBlocksLeftEvent != null) {
-				NoBlocksLeftEvent();
-			}
+    IEnumerator StartAnimationCR()
+    {
+        float delayInSeconds = (transform.position.y * 15 / 100) + (transform.position.x * 5 / 100);
+        Vector3 startPosition = transform.position;
+        yield return new WaitForSeconds(delayInSeconds);
+        for (float i = 0f; i <= 1f; i += 0.1f)
+        {
+            if (i > 0.9f)
+                i = 1f;
+            transform.position = Vector3.Lerp(startPosition, desiredPosition, i);
+            yield return null;
         }
-		Destroy (gameObject);
-	}
+        GetComponent<AudioSource>().Play();
+    }
 
-	private void ResetBlocks() {
-		if (blocks != null) {
-            if (blocks.Count > 0) {
-				blocks.Clear();
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        //TODO fix this. change to compare layers
+        if (col.gameObject.CompareTag(MyTags.Ball.ToString()))
+        {
+            TakeHit();
+        }
+    }
+
+    public void TakeHit()
+    {
+        bool isDead = false;
+        health.TakeHit(out isDead);
+        //		ScoreManager.AddPoints (scorePerHit);
+        if (isDead)
+        {
+            float dropChance = powerUpDropPerHP * health.GetMax();
+            if (PowerUpDropEvent != null)
+                PowerUpDropEvent(transform.position, dropChance);
+            DestroyBlock();
+        }
+        else
+        {
+            spriteRenderer.sprite = sprites[health.current - 1];
+        }
+    }
+
+    void DestroyBlock()
+    {
+        blocks.Remove(this);
+        if (BlockDestroyedEvent != null)
+            BlockDestroyedEvent();
+        if (blocks.Count <= 0)
+        {
+            if (NoBlocksLeftEvent != null)
+            {
+                NoBlocksLeftEvent();
+            }
+        }
+        Destroy(gameObject);
+    }
+
+    private void ResetBlocks()
+    {
+        if (blocks != null)
+        {
+            if (blocks.Count > 0)
+            {
+                blocks.Clear();
             }
         }
     }

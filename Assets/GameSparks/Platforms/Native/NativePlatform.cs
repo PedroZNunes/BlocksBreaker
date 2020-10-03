@@ -1,14 +1,7 @@
-using UnityEngine;
-using System.Collections;
-using System;
-using GameSparks.Core;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-
 namespace GameSparks.Platforms.Native
 {
     //#if ((UNITY_PS4 || UNITY_XBOXONE) && !UNITY_EDITOR) || GS_FORCE_NATIVE_PLATFORM
-	#if (UNITY_XBOXONE && !UNITY_EDITOR) || GS_FORCE_NATIVE_PLATFORM
+#if (UNITY_XBOXONE && !UNITY_EDITOR) || GS_FORCE_NATIVE_PLATFORM
     /// <summary>
     /// Platform specific implementation used for the iOS Platform.
     /// </summary>
@@ -17,7 +10,7 @@ namespace GameSparks.Platforms.Native
         TimerController timerController;
         WebSocketController webSocketController;
 
-        #region implemented abstract members of PlatformBase
+    #region implemented abstract members of PlatformBase
 
         public override IGameSparksTimer GetTimer()
         {
@@ -59,7 +52,7 @@ namespace GameSparks.Platforms.Native
             return socket;
         }
 
-        #endregion
+    #endregion
 
         protected override void Start()
         {
@@ -82,7 +75,7 @@ namespace GameSparks.Platforms.Native
         }
 
 	}
-	#endif
+#endif
 
 
 }

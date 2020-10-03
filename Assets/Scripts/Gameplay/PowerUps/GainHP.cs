@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class GainHP : PowerUp {
+public class GainHP : PowerUp
+{
 
-	private Player player;
+    private Player player;
     // Use this for initialization
 
     public override void OnPickUp()
@@ -13,8 +13,8 @@ public class GainHP : PowerUp {
         player.GainHP();
     }
 
-    protected override void Subscribe (){}
+    protected override void Subscribe() { }
 
-	protected override void Unsubscribe(){}
+    protected override void Unsubscribe() { }
 
 }

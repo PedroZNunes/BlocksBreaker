@@ -11,7 +11,8 @@ public class Health
     public int current { get; private set; }
     public bool isDead { get { return (current <= 0); } }
 
-    public void Initialize(){
+    public void Initialize()
+    {
         current = max;
     }
 
@@ -27,7 +28,7 @@ public class Health
         current--;
     }
 
-    public void TakeHit( out bool isDead )
+    public void TakeHit(out bool isDead)
     {
         TakeHit();
         isDead = this.isDead;
@@ -36,8 +37,8 @@ public class Health
     public void HealUp()
     {
         if (current < max)
-            current++; 
+            current++;
     }
 
-    
+
 }

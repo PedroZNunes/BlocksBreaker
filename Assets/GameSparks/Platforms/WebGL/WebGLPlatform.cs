@@ -1,12 +1,6 @@
-using System;
-using GameSparks.Core;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-
-
 namespace GameSparks.Platforms.WebGL
 {
-	#if UNITY_WEBGL 
+#if UNITY_WEBGL
 	/// <summary>
 	/// WebGL specific implementations. 
 	/// </summary>
@@ -38,7 +32,7 @@ namespace GameSparks.Platforms.WebGL
 			base.Start();
 
 		}
-		#region implemented abstract members of PlatformBase
+    #region implemented abstract members of PlatformBase
 		public override IGameSparksTimer GetTimer ()
 		{
 			var timer = new UnityTimer();
@@ -66,7 +60,7 @@ namespace GameSparks.Platforms.WebGL
 			socket.Open();
 			return socket;
 		}
-		#endregion
+    #endregion
 
 
 

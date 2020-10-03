@@ -1,27 +1,25 @@
-using UnityEngine;
-using System.Collections;
-using System;
 using GameSparks.Core;
+using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace GameSparks.Platforms
 {
-	/// <summary>
-	/// Websocket controller which can hold and update multiple websockets. 
-	/// </summary>
+    /// <summary>
+    /// Websocket controller which can hold and update multiple websockets. 
+    /// </summary>
     public class WebSocketController : MonoBehaviour
     {
-		public string GSName { get; set; }
+        public string GSName { get; set; }
 
-		private void Awake()
+        private void Awake()
         {
-			GSName = name;
-		}
+            GSName = name;
+        }
 
         #region socket collection
 
-        List<IControlledWebSocket> webSockets = new List<IControlledWebSocket>();
+        readonly List<IControlledWebSocket> webSockets = new List<IControlledWebSocket>();
 
         public void AddWebSocket(IControlledWebSocket socket)
         {
@@ -39,12 +37,12 @@ namespace GameSparks.Platforms
         {
             foreach (var socket in webSockets)
             {
-                if(socket.SocketId == socketId)
+                if (socket.SocketId == socketId)
                 {
                     return socket;
                 }
             }
-			return null;
+            return null;
         }
 
         #endregion
@@ -57,18 +55,18 @@ namespace GameSparks.Platforms
         public void GSSocketOnOpen(string data)
         {
             IDictionary<string, object> parsedJSON = (IDictionary<string, object>)GSJson.From(data);
-            if(parsedJSON == null)
+            if (parsedJSON == null)
                 throw new FormatException("parsed json was null. ");
             if (!parsedJSON.ContainsKey("socketId"))
                 throw new FormatException();
 
-            int socketId = System.Convert.ToInt32(parsedJSON ["socketId"]);
-			IControlledWebSocket socket = GetSocket(socketId);
-				
-			if (socket != null)
-			{
-				socket.TriggerOnOpen();
-			}
+            int socketId = System.Convert.ToInt32(parsedJSON["socketId"]);
+            IControlledWebSocket socket = GetSocket(socketId);
+
+            if (socket != null)
+            {
+                socket.TriggerOnOpen();
+            }
         }
 
         /// <summary>
@@ -78,13 +76,13 @@ namespace GameSparks.Platforms
         public void GSSocketOnClose(string data)
         {
             IDictionary<string, object> parsedJSON = (IDictionary<string, object>)GSJson.From(data);
-            int socketId = System.Convert.ToInt32( parsedJSON["socketId"] );
-			IControlledWebSocket socket = GetSocket(socketId);
+            int socketId = System.Convert.ToInt32(parsedJSON["socketId"]);
+            IControlledWebSocket socket = GetSocket(socketId);
 
-			if (socket != null)
-			{
-				socket.TriggerOnClose();
-			}
+            if (socket != null)
+            {
+                socket.TriggerOnClose();
+            }
         }
 
         /// <summary>
@@ -94,13 +92,13 @@ namespace GameSparks.Platforms
         public void GSSocketOnMessage(string data)
         {
             IDictionary<string, object> parsedJSON = (IDictionary<string, object>)GSJson.From(data);
-            int socketId = System.Convert.ToInt32( parsedJSON["socketId"] );
-			IControlledWebSocket socket = GetSocket(socketId);
+            int socketId = System.Convert.ToInt32(parsedJSON["socketId"]);
+            IControlledWebSocket socket = GetSocket(socketId);
 
-			if (socket != null)
-			{
-				socket.TriggerOnMessage((string)parsedJSON["message"]);
-			}
+            if (socket != null)
+            {
+                socket.TriggerOnMessage((string)parsedJSON["message"]);
+            }
         }
 
         /// <summary>
@@ -111,42 +109,42 @@ namespace GameSparks.Platforms
         public void GSSocketOnError(string data)
         {
             IDictionary<string, object> parsedJSON = (IDictionary<string, object>)GSJson.From(data);
-            int socketId = System.Convert.ToInt32( parsedJSON["socketId"] );
+            int socketId = System.Convert.ToInt32(parsedJSON["socketId"]);
             string error = (string)parsedJSON["error"];
-			IControlledWebSocket socket = GetSocket(socketId);
+            IControlledWebSocket socket = GetSocket(socketId);
 
-			if (socket != null)
-			{
-				socket.TriggerOnError(error);
-			}
+            if (socket != null)
+            {
+                socket.TriggerOnError(error);
+            }
         }
         #endregion
 
-		/// <summary>
-		/// Used for WebGL Exports. This is called by Javascript to inject server-to-client communication into Unity. 
-		/// </summary>
-		public void ServerToClient(string jsonData)
-		{
-			var parsedJSON = GSJson.From(jsonData) as IDictionary<string, object>;
-			
-			int socketId = int.Parse(parsedJSON["socketId"].ToString());
-			
-			IControlledWebSocket socket = GetSocket(socketId);
+        /// <summary>
+        /// Used for WebGL Exports. This is called by Javascript to inject server-to-client communication into Unity. 
+        /// </summary>
+        public void ServerToClient(string jsonData)
+        {
+            var parsedJSON = GSJson.From(jsonData) as IDictionary<string, object>;
 
-			if(socket == null)
-				return;
+            int socketId = int.Parse(parsedJSON["socketId"].ToString());
 
-			string functionName = parsedJSON["functionName"].ToString();
+            IControlledWebSocket socket = GetSocket(socketId);
 
-			
-			switch(functionName)
-			{
-			case "onError" : socket.TriggerOnError(parsedJSON["data"].ToString()); break;
-			case "onMessage" : socket.TriggerOnMessage(parsedJSON["data"].ToString()); break;
-			case "onOpen" : socket.TriggerOnOpen(); break;
-			case "onClose" : socket.TriggerOnClose(); break;
-			}
-		}
+            if (socket == null)
+                return;
+
+            string functionName = parsedJSON["functionName"].ToString();
+
+
+            switch (functionName)
+            {
+                case "onError": socket.TriggerOnError(parsedJSON["data"].ToString()); break;
+                case "onMessage": socket.TriggerOnMessage(parsedJSON["data"].ToString()); break;
+                case "onOpen": socket.TriggerOnOpen(); break;
+                case "onClose": socket.TriggerOnClose(); break;
+            }
+        }
 
         bool websocketCollectionModified = false;
         void Update()

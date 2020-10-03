@@ -1,14 +1,7 @@
-using System;
-using System.Runtime.InteropServices;
-using GameSparks.Core;
-using System.Collections.Generic;
-using UnityEngine;
-
-
 namespace GameSparks.Platforms.WebGL
 {
-	
-	#if UNITY_WEBGL
+
+#if UNITY_WEBGL
 	/// <summary>
 	/// WebGL websocket wrapping a javascript Websocket. 
 	/// </summary>
@@ -31,7 +24,7 @@ namespace GameSparks.Platforms.WebGL
 			private set;
 		}
 
-		#region IGameSparksWebSocket implementation
+    #region IGameSparksWebSocket implementation
 
 		public void Initialize (string url, Action<string> onMessage, Action onClose, Action onOpen, Action<string> onError)
 		{
@@ -87,7 +80,7 @@ namespace GameSparks.Platforms.WebGL
 			private set;
 		}
 
-		#endregion
+    #endregion
 
 
 		public void TriggerOnError(string error)
@@ -139,4 +132,4 @@ namespace GameSparks.Platforms.WebGL
 #endif
 
 }
-    
+

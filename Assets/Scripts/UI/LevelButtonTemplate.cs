@@ -1,27 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class LevelButtonTemplate : MonoBehaviour{
+public class LevelButtonTemplate : MonoBehaviour
+{
 
-	//public Text LevelText;
-	public TextMeshProUGUI LevelText;
-	public bool isUnlocked;
-	public int worldNumber;
+    //public Text LevelText;
+    public TextMeshProUGUI LevelText;
+    public bool isUnlocked;
+    public int worldNumber;
 
-	private LevelManager levelManager;
-	private Button button;
-		
-	void Start(){
-		button = GetComponent<Button> ();
-		button.interactable = (isUnlocked);
-		button.onClick.AddListener (()=>ButtonClicked());
-		}
+    private readonly LevelManager levelManager;
+    private Button button;
 
-	void ButtonClicked(){
-		LevelManager.LoadLevel ("02 Level_" + worldNumber + LevelText.text);
-	}
+    void Start()
+    {
+        button = GetComponent<Button>();
+        button.interactable = (isUnlocked);
+        button.onClick.AddListener(() => ButtonClicked());
+    }
+
+    void ButtonClicked()
+    {
+        LevelManager.LoadLevel("02 Level_" + worldNumber + LevelText.text);
+    }
 }

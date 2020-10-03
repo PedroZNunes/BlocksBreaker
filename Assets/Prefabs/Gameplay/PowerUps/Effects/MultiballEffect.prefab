@@ -44,6 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trailBall: {fileID: 1000011498026062, guid: 03eda51c2cc43a14b8c3e7a5b28e9242, type: 3}
-  defaultSprite: {fileID: -8299087723631062824, guid: 9fa1a9922444e894cba33396314c66b7,
-    type: 3}
+  defaultSprite: {fileID: 21300000, guid: 609b8208afa137c4e93a2bbdc7a4c8b7, type: 3}
   trailInterval: 0.04

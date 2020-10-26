@@ -49,9 +49,9 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 512
-  effectArea: 1.5
-  chainHits: 3
-  procChance: 5
+  effectArea: 3
+  chainHits: 4
+  procChancePerHit: 10
   duration: 8
 --- !u!82 &82360600439161170
 AudioSource:

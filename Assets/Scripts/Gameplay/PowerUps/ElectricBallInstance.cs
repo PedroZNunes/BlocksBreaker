@@ -10,7 +10,7 @@ public class ElectricBallInstance : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float effectArea = 1.5f;
     [SerializeField] private int chainHits = 3;
-    [SerializeField] private float procChance = 5f;
+    [SerializeField] private float procChancePerHit = 5f;
     [SerializeField] private float duration = 8f;
 
     private SpriteRenderer background;
@@ -20,7 +20,9 @@ public class ElectricBallInstance : MonoBehaviour
     private float shockAnimationDuration;
     private Color activeColor = new Color(0.24f, 0.43f, 0.53f, 0.67f);
     private Color baseColor;
-    private float baseProcChance;
+    private float baseProcChance = 80f;
+    private float currentProcChance;
+
 
     static private ElectricBallInstance instance;
     //singleton Process
@@ -36,7 +38,7 @@ public class ElectricBallInstance : MonoBehaviour
             instance = this;
         }
 
-        baseProcChance = procChance;
+        currentProcChance = baseProcChance;
         audioSource = GetComponent<AudioSource>();
         background = GameObject.FindGameObjectWithTag(MyTags.Background.ToString()).GetComponent<SpriteRenderer>();
         Debug.Assert(background != null, "Background not found. SpriteRenderer");
@@ -57,6 +59,11 @@ public class ElectricBallInstance : MonoBehaviour
         {
             ResetPowerUp();
         }
+    }
+
+    private void Update()
+    {
+        
     }
 
     IEnumerator ControlEffectDuration(float duration)
@@ -119,15 +126,13 @@ public class ElectricBallInstance : MonoBehaviour
 
     void ActiveEffect(Collider2D col, GameObject ball)
     {
-        if (Random.Range(0f, 100f) <= procChance)
+        currentProcChance += procChancePerHit;
+        Debug.Log(currentProcChance);
+        if (Random.Range(0f, 100f) <= currentProcChance)
         {
             audioSource.Play();
             StartCoroutine(ShockEffect(col));
-            procChance = baseProcChance;
-        }
-        else
-        {
-            procChance += procChance;
+            currentProcChance = procChancePerHit;
         }
     }
 

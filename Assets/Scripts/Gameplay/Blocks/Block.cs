@@ -22,7 +22,7 @@ public class Block : MonoBehaviour
 
     //[SerializeField] private int scorePerHit;
 
-    private static readonly float powerUpDropPerHP = 2f;
+    private static readonly float powerUpDropPerHP = 1f;
     private SpriteRenderer spriteRenderer;
     private Vector3 desiredPosition;
     /// <summary>

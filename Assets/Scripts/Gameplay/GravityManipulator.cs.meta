@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 734df39c94edce248b070704fd03223f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - isPlayerFree: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628, type: 2}
+  - screenMovementLimit_y: {fileID: 11400000, guid: 1915031b176e2af48a9ab962e96141fc,
+      type: 2}
+  - instance: {fileID: 1891450157360208829, guid: be216dabc91fe474c90891087925a9b2,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

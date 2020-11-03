@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4000012413970432}
   - component: {fileID: 114000012065752078}
+  - component: {fileID: 4357394897368233618}
   - component: {fileID: 50000010245179604}
   - component: {fileID: 60000012140109750}
   - component: {fileID: 95000013992877978}
@@ -53,6 +54,9 @@ MonoBehaviour:
   health:
     max: 3
   movement:
+    input:
+      screenMovementLimit_y: {fileID: 11400000, guid: 1915031b176e2af48a9ab962e96141fc,
+        type: 2}
     maxSpeed: 12
     isMovementAllowed: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628,
       type: 2}
@@ -65,6 +69,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
   healthSpriteRenderer: {fileID: 2425125551560057341}
   ballRespawn: {fileID: 4000012512543404}
+--- !u!114 &4357394897368233618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000011726875424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 734df39c94edce248b070704fd03223f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerFree: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628, type: 2}
+  isShootingAllowed: {fileID: 11400000, guid: e20020e808044a84ca2aa18dd3565013, type: 2}
+  screenMovementLimit_y: {fileID: 11400000, guid: 1915031b176e2af48a9ab962e96141fc,
+    type: 2}
+  instance: {fileID: 1891450157360208829, guid: be216dabc91fe474c90891087925a9b2,
+    type: 3}
 --- !u!50 &50000010245179604
 Rigidbody2D:
   serializedVersion: 4

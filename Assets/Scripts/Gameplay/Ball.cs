@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     public static int Count = 0;
     [SerializeField] private AudioClip hitBlockClip, hitPlayerClip, hitUnbreakableClip, hitOtherClip, firstLaunchClip;
-    private readonly float maxSpeed = 10f;
+    [SerializeField] private  IntegerVariable speed;
     private Vector2 minAngles = new Vector2(0.1f, 0.1f);
     private Vector2 maxAngles = new Vector2(0.9f, 0.9f);
 
@@ -79,7 +79,7 @@ public class Ball : MonoBehaviour
         rigidBody.isKinematic = false;
         transform.parent = GameObject.FindGameObjectWithTag(MyTags.Dynamic.ToString()).transform;
         actionMaster.TriggerPlay();
-        rigidBody.velocity = direction * maxSpeed;
+        rigidBody.velocity = direction * speed.value;
         audioSource.PlayOneShot(firstLaunchClip, 0.5f);
     }
 
@@ -111,7 +111,7 @@ public class Ball : MonoBehaviour
         Vector2 normalizedVelocity = new Vector2(
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.x), minAngles.x, maxAngles.x) * Mathf.Sign(rigidBody.velocity.x),
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.y), minAngles.y, maxAngles.y) * Mathf.Sign(rigidBody.velocity.y)).normalized;
-        rigidBody.velocity = normalizedVelocity * maxSpeed;
+        rigidBody.velocity = normalizedVelocity * speed.value;
         if (col.gameObject.CompareTag(MyTags.Block.ToString()))
         {
             audioSource.PlayOneShot(hitBlockClip, 0.3f);

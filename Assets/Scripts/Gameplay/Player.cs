@@ -47,7 +47,6 @@ public class Player : MonoBehaviour
         playerPos.value = transform.position;
     }
 
-
     public void TakeHit()
     {
         animator.SetTrigger("TakeHit");

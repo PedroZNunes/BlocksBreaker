@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e480351ea258b8e43b0106712026becb, type: 3}
-  m_Name: IsMovementAllowed
+  m_Name: isPlayerFree
   m_EditorClassIdentifier: 
   value: 0

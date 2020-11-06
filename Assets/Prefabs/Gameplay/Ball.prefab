@@ -69,9 +69,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -965314483
+  m_SortingLayer: 2
+  m_SortingOrder: -100
   m_Time: 0.4
   m_Parameters:
     serializedVersion: 3
@@ -89,7 +89,7 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.23553719
       - serializedVersion: 3
-        time: 1
+        time: 0.7835083
         value: 0
         inSlope: -0.06361167
         outSlope: -0.06361167
@@ -135,7 +135,7 @@ TrailRenderer:
     textureMode: 0
     shadowBias: 0.5
     generateLightingData: 0
-  m_MinVertexDistance: 0.1
+  m_MinVertexDistance: 0.03
   m_Autodestruct: 0
   m_Emitting: 1
 --- !u!1 &1000010794234974
@@ -269,7 +269,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -965314483
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 8219566699378199167, guid: 45c1b29472f373440b2f22a249757d65,
     type: 3}
   m_Color: {r: 1, g: 0, b: 0.37434292, a: 1}
@@ -405,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 1060653458756537282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.81, z: 1}
   m_Children: []
   m_Father: {fileID: 4000010625046348}
   m_RootOrder: 0
@@ -447,8 +447,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -965314483
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 609b8208afa137c4e93a2bbdc7a4c8b7, type: 3}
   m_Color: {r: 1, g: 0, b: 0.47450984, a: 1}

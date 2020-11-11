@@ -13,7 +13,7 @@ public class Ball : MonoBehaviour
 
     public static int Count = 0;
     [SerializeField] private AudioClip hitBlockClip, hitPlayerClip, hitUnbreakableClip, hitOtherClip, firstLaunchClip;
-    private readonly float maxSpeed = 10f;
+    [SerializeField] private  IntegerVariable speed;
     private Vector2 minAngles = new Vector2(0.1f, 0.1f);
     private Vector2 maxAngles = new Vector2(0.9f, 0.9f);
 
@@ -21,6 +21,8 @@ public class Ball : MonoBehaviour
     private readonly Transform spawnPoint;
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
+
+    [SerializeField] private BoundsVariable gameArea;
 
     private static List<Ball> balls;
 
@@ -79,20 +81,22 @@ public class Ball : MonoBehaviour
         rigidBody.isKinematic = false;
         transform.parent = GameObject.FindGameObjectWithTag(MyTags.Dynamic.ToString()).transform;
         actionMaster.TriggerPlay();
-        rigidBody.velocity = direction * maxSpeed;
+        rigidBody.velocity = direction * speed.value;
         audioSource.PlayOneShot(firstLaunchClip, 0.5f);
     }
 
     void CheckBorders()
     {
-        Vector2 screenExtents = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+        //Vector2 screenExtents = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
         Bounds ballBounds = GetComponent<CircleCollider2D>().bounds;
         Debug.Assert(ballBounds != null, "Collider bounds not found in the ball");
 
         Vector2 movementAreaExtents = new Vector2();
 
-        movementAreaExtents.x = (screenExtents.x - (ballBounds.extents.x * transform.localScale.x));
-        movementAreaExtents.y = (screenExtents.y - (ballBounds.extents.y * transform.localScale.y));
+        //movementAreaExtents.x = (screenExtents.x - (ballBounds.extents.x * transform.localScale.x));
+        movementAreaExtents.x = (gameArea.value.extents.x - (ballBounds.extents.x * transform.localScale.x));
+        //movementAreaExtents.y = (screenExtents.y - (ballBounds.extents.y * transform.localScale.y));
+        movementAreaExtents.y = (gameArea.value.extents.y - (ballBounds.extents.y * transform.localScale.y));
 
         if (Mathf.Abs(transform.position.x) > movementAreaExtents.x)
         {
@@ -111,7 +115,7 @@ public class Ball : MonoBehaviour
         Vector2 normalizedVelocity = new Vector2(
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.x), minAngles.x, maxAngles.x) * Mathf.Sign(rigidBody.velocity.x),
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.y), minAngles.y, maxAngles.y) * Mathf.Sign(rigidBody.velocity.y)).normalized;
-        rigidBody.velocity = normalizedVelocity * maxSpeed;
+        rigidBody.velocity = normalizedVelocity * speed.value;
         if (col.gameObject.CompareTag(MyTags.Block.ToString()))
         {
             audioSource.PlayOneShot(hitBlockClip, 0.3f);

@@ -11,6 +11,7 @@ public class MultiballEffect : MonoBehaviour
     private GameObject trailParent;
     private float timer = 0;
 
+    private int z = -1000;
     void OnEnable()
     {
         ballSprite = defaultSprite;
@@ -42,10 +43,14 @@ public class MultiballEffect : MonoBehaviour
                 }
             }
 
-            Vector3 newTransform = new Vector3(ball.transform.position.x, ball.transform.position.y, ball.transform.position.z + 1);
-            GameObject trail = Instantiate(trailBall, newTransform, Quaternion.identity, trailParent.transform) as GameObject;
+            
+
+            GameObject trail = Instantiate(trailBall, ball.transform.position, Quaternion.identity, trailParent.transform) as GameObject;
             trail.transform.localScale = ball.transform.localScale;
-            trail.GetComponent<SpriteRenderer>().sprite = ballSprite;
+            SpriteRenderer sr = trail.GetComponent<SpriteRenderer>();
+            sr.sprite = ballSprite;
+            sr.sortingOrder = z;
+            z++;
 
         }
     }

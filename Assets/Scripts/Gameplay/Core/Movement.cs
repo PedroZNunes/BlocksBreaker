@@ -7,11 +7,11 @@ public class Movement
     public delegate void CheckForDebuffsHandler(ref float speed);
     public event CheckForDebuffsHandler CheckForDebuffsEvent;
 
-    private readonly MovementInput input = new MovementInput();
+    [SerializeField] private MovementInput input;
     //[SerializeField] private Game
     [SerializeField] private float maxSpeed = 12f;
-    private readonly float acceleration = 2f;
-    private readonly float deceleration = 1f;
+    private readonly float acceleration = 8f;
+    private readonly float deceleration = 4f;
     private float currentSpeed = 0f;
 
     [SerializeField] private BooleanVariable isMovementAllowed;

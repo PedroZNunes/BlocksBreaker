@@ -40,7 +40,7 @@ public class Shooter : MonoBehaviour
         //rotate projectile
         Vector3 aimTowards = playerPos.value - this.transform.position;
         //fire
-        Debug.Log("Instantiating shot prefab");
+        //Debug.Log("Instantiating shot prefab");
         Instantiate(ProjectilePrefab, transform.position, Quaternion.LookRotation(Vector3.forward, aimTowards), dynamicParent);
 
     }

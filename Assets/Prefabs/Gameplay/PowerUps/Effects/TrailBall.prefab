@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa1bb002ea9cd1847a55bb1174f60c9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadePerFrame: 0.06
+  fadeAmount: 3
+  spriteRenderer: {fileID: 212000011509640116}
 --- !u!212 &212000011509640116
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,6 +95,6 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

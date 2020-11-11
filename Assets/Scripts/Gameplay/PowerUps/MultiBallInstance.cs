@@ -14,7 +14,7 @@ public class MultiBallInstance : MonoBehaviour
 
     void Awake()
     {
-        Debug.Assert(multiBallEffect != null, "Explosive Effect not set in the inspector");
+        Debug.Assert(multiBallEffect != null, "Multiball Effect not set in the inspector");
         Debug.Assert(ballPrefab != null, "Ball Prefab not set in inspector.");
         dynamic = GameObject.FindWithTag(MyTags.Dynamic.ToString()).transform;
         Subscribe();
@@ -32,7 +32,7 @@ public class MultiBallInstance : MonoBehaviour
         {
             GameObject newBall = Instantiate(ballPrefab, ball.transform.position, ball.transform.rotation, dynamic) as GameObject;
             Rigidbody2D ballRB = ball.GetComponent<Rigidbody2D>();
-            newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(-ballRB.velocity.x, ballRB.velocity.y);
+            newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(-ballRB.velocity.x, -ballRB.velocity.y);
             Destroy(activeEffect);
             Count--;
             TestEndOfEffect();

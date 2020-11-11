@@ -64,7 +64,7 @@ public class PowerUpManager : MonoBehaviour
 
         if (dropDice <= currentProcThreshold)
         {
-            print("PROC - " + (currentProcThreshold) + "%");
+            print("PowerUp dropped at a " + (currentProcThreshold) + "% chance.");
             //it is going to drop something. just a matter of sorting what will be droped
             //total percentage is the sum of all chances in all objects in inspector... may or may not be 100...
             float totalPercentage = 0;

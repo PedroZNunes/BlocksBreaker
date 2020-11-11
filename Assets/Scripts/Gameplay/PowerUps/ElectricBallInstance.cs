@@ -18,7 +18,7 @@ public class ElectricBallInstance : MonoBehaviour
     private Coroutine effectDuration;
     private bool readyToDestroy = false;
     private float shockAnimationDuration;
-    private Color activeColor = new Color(0.24f, 0.43f, 0.53f, 0.67f);
+    [SerializeField] private Color activeColor = new Color(0.24f, 0.43f, 0.53f, 0.67f);
     private Color baseColor;
     private float baseProcChance = 80f;
     private float currentProcChance;
@@ -50,20 +50,17 @@ public class ElectricBallInstance : MonoBehaviour
     {
         if (PlayerBuffs.isElectric == false)
         {
+            PlayerBuffs.isElectric = true;
+
             Subscribe();
             StartCoroutine(ChangeBackgroundColor(activeColor));
             effectDuration = StartCoroutine(ControlEffectDuration(duration));
-            PlayerBuffs.isElectric = true;
+
         }
         else
         {
             ResetPowerUp();
         }
-    }
-
-    private void Update()
-    {
-        
     }
 
     IEnumerator ControlEffectDuration(float duration)

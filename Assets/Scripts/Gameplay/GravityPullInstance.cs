@@ -22,6 +22,14 @@ public class GravityPullInstance : MonoBehaviour
             Vector2 direction = new Vector2(this.transform.position.x - ball.transform.position.x, this.transform.position.y - ball.transform.position.y).normalized;
             rb.velocity = direction * ballSpeed.value;
         }
+
+        StartCoroutine(DestroySelf());
+    }
+
+    IEnumerator DestroySelf()
+    {
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 
 }

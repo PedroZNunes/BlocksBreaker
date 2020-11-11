@@ -23,6 +23,7 @@ public class PickUpItem : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.down * speed * Time.deltaTime);
+        
     }
 
 
@@ -42,5 +43,10 @@ public class PickUpItem : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(this.gameObject);
     }
 }

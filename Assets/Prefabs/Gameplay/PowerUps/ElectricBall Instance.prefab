@@ -53,6 +53,7 @@ MonoBehaviour:
   chainHits: 4
   procChancePerHit: 10
   duration: 8
+  activeColor: {r: 0.17519578, g: 0.2521457, b: 0.2924528, a: 0.7921569}
 --- !u!82 &82360600439161170
 AudioSource:
   m_ObjectHideFlags: 0

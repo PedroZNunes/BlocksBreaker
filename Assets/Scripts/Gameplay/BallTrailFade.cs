@@ -5,22 +5,17 @@
 public class BallTrailFade : MonoBehaviour
 {
 
-    [SerializeField] readonly float fadePerFrame = 0.02f;
+    [SerializeField] float fadeAmount = 3f;
 
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
-
-    void Awake()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
 
     void Update()
     {
         if (spriteRenderer.color.a > 0f)
         {
             Color newColor = spriteRenderer.color;
-            newColor.a -= fadePerFrame;
+            newColor.a -= fadeAmount * Time.deltaTime;
             spriteRenderer.color = newColor;
         }
         else

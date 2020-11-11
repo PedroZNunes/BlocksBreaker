@@ -77,13 +77,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Levels/02 Level_120.unity
     guid: b17fe77e7eb65a3469d8567360c4a215
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_201.unity
     guid: 452c672af3961d64a87f4a3d9e3cfe6d
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_301.unity
     guid: 22362b022e4c4304099a106cd2caf9e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_302.unity
     guid: 5cb15eac7763d9f4c8fe52334856a7ac
   - enabled: 1

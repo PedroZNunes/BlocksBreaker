@@ -75,8 +75,8 @@ public class Block : MonoBehaviour
         blocks.Add(this);
 
         //send the block out of the screen for animation purposes
-        desiredPosition = transform.position;
-        transform.position += blockDisplacement;
+        //desiredPosition = transform.position;
+        //transform.position += blockDisplacement;
 
     }
 
@@ -85,25 +85,25 @@ public class Block : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void StartAnimation()
-    {
-        StartCoroutine(StartAnimationCR());
-    }
+    //public void StartAnimation()
+    //{
+    //    StartCoroutine(StartAnimationCR());
+    //}
 
-    IEnumerator StartAnimationCR()
-    {
-        float delayInSeconds = (transform.position.y * 15 / 100) + (transform.position.x * 5 / 100);
-        Vector3 startPosition = transform.position;
-        yield return new WaitForSeconds(delayInSeconds);
-        for (float i = 0f; i <= 1f; i += 0.1f)
-        {
-            if (i > 0.9f)
-                i = 1f;
-            transform.position = Vector3.Lerp(startPosition, desiredPosition, i);
-            yield return null;
-        }
-        GetComponent<AudioSource>().Play();
-    }
+    //IEnumerator StartAnimationCR()
+    //{
+    //    float delayInSeconds = (transform.position.y * 15 / 100) + (transform.position.x * 5 / 100);
+    //    Vector3 startPosition = transform.position;
+    //    yield return new WaitForSeconds(delayInSeconds);
+    //    for (float i = 0f; i <= 1f; i += 0.1f)
+    //    {
+    //        if (i > 0.9f)
+    //            i = 1f;
+    //        transform.position = Vector3.Lerp(startPosition, desiredPosition, i);
+    //        yield return null;
+    //    }
+    //    GetComponent<AudioSource>().Play();
+    //}
 
     void OnCollisionEnter2D(Collision2D col)
     {

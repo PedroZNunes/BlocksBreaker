@@ -22,6 +22,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rigidBody;
     private AudioSource audioSource;
 
+    [SerializeField] private BoundsVariable gameArea;
+
     private static List<Ball> balls;
 
     private void OnEnable() { Subscribe(); }
@@ -85,14 +87,16 @@ public class Ball : MonoBehaviour
 
     void CheckBorders()
     {
-        Vector2 screenExtents = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
+        //Vector2 screenExtents = new Vector2(Camera.main.orthographicSize * Camera.main.aspect, Camera.main.orthographicSize);
         Bounds ballBounds = GetComponent<CircleCollider2D>().bounds;
         Debug.Assert(ballBounds != null, "Collider bounds not found in the ball");
 
         Vector2 movementAreaExtents = new Vector2();
 
-        movementAreaExtents.x = (screenExtents.x - (ballBounds.extents.x * transform.localScale.x));
-        movementAreaExtents.y = (screenExtents.y - (ballBounds.extents.y * transform.localScale.y));
+        //movementAreaExtents.x = (screenExtents.x - (ballBounds.extents.x * transform.localScale.x));
+        movementAreaExtents.x = (gameArea.value.extents.x - (ballBounds.extents.x * transform.localScale.x));
+        //movementAreaExtents.y = (screenExtents.y - (ballBounds.extents.y * transform.localScale.y));
+        movementAreaExtents.y = (gameArea.value.extents.y - (ballBounds.extents.y * transform.localScale.y));
 
         if (Mathf.Abs(transform.position.x) > movementAreaExtents.x)
         {

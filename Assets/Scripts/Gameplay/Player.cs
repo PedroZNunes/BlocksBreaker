@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
         UpdateSprite();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         movement.InputControlledMove(transform);
         playerPos.value = transform.position;

@@ -14,6 +14,9 @@ public class GravityManipulator : MonoBehaviour
 
     [SerializeField] float cooldown = 10;
     [SerializeField] int maxCharges = 2;
+
+    [SerializeField] private SpriteRenderer specialLeftSprite;
+    [SerializeField] private SpriteRenderer specialRightSprite;
     private int charges;
 
     private Transform parent;
@@ -40,7 +43,12 @@ public class GravityManipulator : MonoBehaviour
                     if (mousePosition.y > screenMovementLimit_y.value)
                     {
                         Instantiate(instance, new Vector3(mousePosition.x, mousePosition.y, 1), Quaternion.identity, parent);
-                        
+
+                        if (!specialRightSprite.enabled)
+                            specialLeftSprite.enabled = false;
+                        else
+                            specialRightSprite.enabled = false;
+
                         charges--;
                         Debug.Log("spawned gravity well in pos " + mousePosition.x + ", " + mousePosition.y + ". Charges remaining: " + charges);
                         if(Recharging == null)
@@ -58,7 +66,13 @@ public class GravityManipulator : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown);
 
+        if (specialLeftSprite.enabled)
+            specialRightSprite.enabled = true;
+        else
+            specialLeftSprite.enabled = true;
+
         charges++;
+
         Debug.Log("Charge ++. Charges: " + charges);
         if (!fullCharge())
         {

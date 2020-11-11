@@ -131,10 +131,76 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5089898602661402168}
     m_Modifications:
+    - target: {fileID: 1176353507451221512, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176353507451221512, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.09259259
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176353507451221512, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.052083332
+      objectReference: {fileID: 0}
     - target: {fileID: 1189801968653651620, guid: 93eb419957376c942b36300a14c43766,
         type: 3}
       propertyPath: m_Name
       value: Static
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 825bec6c6bca29140befa03228f5dc15,
+        type: 3}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_DrawMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2538137931923921899, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3349680276170322007, guid: 93eb419957376c942b36300a14c43766,
         type: 3}
@@ -220,12 +286,22 @@ PrefabInstance:
     - target: {fileID: 8652195472670386244, guid: 93eb419957376c942b36300a14c43766,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652195472670386244, guid: 93eb419957376c942b36300a14c43766,
         type: 3}
       propertyPath: m_Name
-      value: Foreground Border
+      value: OutOfBoundsBlack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652195472670386244, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652195472670386244, guid: 93eb419957376c942b36300a14c43766,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93eb419957376c942b36300a14c43766, type: 3}

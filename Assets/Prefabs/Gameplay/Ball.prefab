@@ -193,6 +193,7 @@ MonoBehaviour:
   hitOtherClip: {fileID: 8300000, guid: 6fbc56db34843e04e9f529472cda6aeb, type: 3}
   firstLaunchClip: {fileID: 8300000, guid: 67674c19ebfc1c04ab8bd7df7f02c1e7, type: 3}
   speed: {fileID: 11400000, guid: bc488326d07d96747837950790839587, type: 2}
+  gameArea: {fileID: 11400000, guid: d13cf526be0a81b4886185634784fdb9, type: 2}
 --- !u!50 &50000013404263304
 Rigidbody2D:
   serializedVersion: 4

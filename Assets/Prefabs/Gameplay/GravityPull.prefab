@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b3419ad14a75b42b30b195799235f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pullAreaRadius: 10
+  pullAreaRadius: 90
   ballSpeed: {fileID: 11400000, guid: bc488326d07d96747837950790839587, type: 2}
   mask:
     serializedVersion: 2
@@ -764,7 +764,7 @@ ParticleSystem:
     sphericalDirectionAmount: 1
     randomPositionAmount: 0
     radius:
-      value: 8
+      value: 12.49
       mode: 0
       spread: 0
       speed:

@@ -306,11 +306,6 @@ public class GameMaster : MonoBehaviour
     {
         isOpening = true;
         isMovementAllowed.value = false;
-        Block[] blocks = FindObjectsOfType<Block>();
-        for (int i = 0; i < blocks.Length; i++)
-        {
-            blocks[i].StartAnimation();
-        }
         BackgroundAudioSource.Play();
         //player animation is automatic.
         yield return new WaitForSeconds(2.5f);

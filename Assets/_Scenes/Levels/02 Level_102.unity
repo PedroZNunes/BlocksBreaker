@@ -1929,6 +1929,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1000012700886582, guid: 714ef1b4f3a456c4dabcf452a903686e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4000013185949818, guid: 714ef1b4f3a456c4dabcf452a903686e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1972,6 +1976,13 @@ PrefabInstance:
     - target: {fileID: 4000013185949818, guid: 714ef1b4f3a456c4dabcf452a903686e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010539162014, guid: 714ef1b4f3a456c4dabcf452a903686e,
+        type: 3}
+      propertyPath: m_Text
+      value: 'Tap anywhere to use
+
+        your special Gravity Pull'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 714ef1b4f3a456c4dabcf452a903686e, type: 3}

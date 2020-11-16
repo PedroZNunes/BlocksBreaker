@@ -20,6 +20,7 @@ public class GravityManipulator : MonoBehaviour
     private int charges;
 
     private Transform parent;
+    private AudioSource audio;
 
     private Coroutine Recharging;
 
@@ -27,6 +28,7 @@ public class GravityManipulator : MonoBehaviour
     {
         charges = maxCharges;
         parent = GameObject.FindGameObjectWithTag(MyTags.Dynamic).transform;
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class GravityManipulator : MonoBehaviour
                             specialRightSprite.enabled = false;
 
                         charges--;
-                        Debug.Log("spawned gravity well in pos " + mousePosition.x + ", " + mousePosition.y + ". Charges remaining: " + charges);
+
                         if(Recharging == null)
                             Recharging = StartCoroutine(Recharge());
                     }
@@ -71,6 +73,7 @@ public class GravityManipulator : MonoBehaviour
         else
             specialLeftSprite.enabled = true;
 
+        audio.Play();
         charges++;
 
         Debug.Log("Charge ++. Charges: " + charges);

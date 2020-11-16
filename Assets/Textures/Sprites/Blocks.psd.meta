@@ -72,11 +72,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 2
-  spriteExtrude: 1
+  spriteExtrude: 4
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 160, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -146,10 +146,10 @@ TextureImporter:
       name: Blocks_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 162
-        width: 40
-        height: 20
+        x: 5
+        y: 405
+        width: 100
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,10 +167,10 @@ TextureImporter:
       name: Blocks_1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 138
-        width: 40
-        height: 20
+        x: 5
+        y: 345
+        width: 100
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -188,10 +188,10 @@ TextureImporter:
       name: Blocks_2
       rect:
         serializedVersion: 2
-        x: 2
-        y: 114
-        width: 40
-        height: 20
+        x: 5
+        y: 285
+        width: 100
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -209,10 +209,10 @@ TextureImporter:
       name: Blocks_3
       rect:
         serializedVersion: 2
-        x: 2
-        y: 90
-        width: 40
-        height: 20
+        x: 5
+        y: 225
+        width: 100
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -230,12 +230,12 @@ TextureImporter:
       name: Blocks_Square0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 46
-        width: 40
-        height: 40
+        x: 5
+        y: 115
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -251,12 +251,12 @@ TextureImporter:
       name: Blocks_Square1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 40
-        height: 40
+        x: 5
+        y: 5
+        width: 100
+        height: 100
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -47,9 +47,9 @@ MonoBehaviour:
   explosiveEffect: {fileID: 1758044863983126, guid: f40f4a9eab50e5245b98d5267dbe4b4b,
     type: 3}
   sprites:
-  - {fileID: -6601648269171303701, guid: 45c1b29472f373440b2f22a249757d65, type: 3}
-  - {fileID: 5261312769792952452, guid: 45c1b29472f373440b2f22a249757d65, type: 3}
   - {fileID: -8299087723631062824, guid: 45c1b29472f373440b2f22a249757d65, type: 3}
+  - {fileID: 5261312769792952452, guid: 45c1b29472f373440b2f22a249757d65, type: 3}
+  - {fileID: -6601648269171303701, guid: 45c1b29472f373440b2f22a249757d65, type: 3}
 --- !u!212 &212862726097022104
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SortingOrder: 5000
   m_Sprite: {fileID: -6601648269171303701, guid: 45c1b29472f373440b2f22a249757d65,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.19099998, b: 0.57487875, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

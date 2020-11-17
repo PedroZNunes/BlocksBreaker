@@ -25,6 +25,9 @@ public class LevelSelectManager : MonoBehaviour
     private Transform parent;
     private bool isLoaded = false;
 
+    private GridLayoutGroup gridLayout;
+    private float spacingXTallScreen = 10f;
+
 
     void OnValidate()
     {
@@ -39,6 +42,12 @@ public class LevelSelectManager : MonoBehaviour
 
     void Start()
     {
+        gridLayout = GetComponent<GridLayoutGroup>();
+
+        float currentRatio = Screen.height / Screen.width;
+        if (currentRatio > (16 / 9f))
+            gridLayout.spacing = new Vector2(spacingXTallScreen, gridLayout.spacing.y);
+
         parent = transform;
         TestUnlocked();
     }

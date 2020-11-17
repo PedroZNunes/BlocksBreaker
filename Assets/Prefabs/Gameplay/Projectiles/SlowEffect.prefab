@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6cb6d55b66423fc44b9d9a240350b73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slowAmountPercent: 0.2
+  slowAmountPercent: 0.3
   duration: 1.5
   isStackable: 0
 --- !u!198 &7969823759893650038

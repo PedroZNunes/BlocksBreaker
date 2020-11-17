@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -965314483
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 0d539bd8d8c7a254186896b5c3d882ed, type: 3}
   m_Color: {r: 0, g: 1, b: 0.5, a: 1}
   m_FlipX: 0
@@ -4923,7 +4923,7 @@ MonoBehaviour:
   movement:
     input:
       screenMovementLimit_y: {fileID: 0}
-    maxSpeed: 4
+    maxSpeed: 5
     isMovementAllowed: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628,
       type: 2}
     playerCollider: {fileID: 0}

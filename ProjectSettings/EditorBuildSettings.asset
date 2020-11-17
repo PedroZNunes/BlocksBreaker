@@ -47,34 +47,34 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/Levels/02 Level_110.unity
     guid: 03289e954fe18574dac81ee23ba76f99
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_111.unity
     guid: c0a91249087eab94db0a0f1b6d2bdf26
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_112.unity
     guid: ce14a04cdfa63b7418bfeaa95869c2b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_113.unity
     guid: 3595e0a5ef65f3e4ba486bb0485f739b
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_114.unity
     guid: 4eb322cb2bcb93642a17e2d39b6d1a7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_115.unity
     guid: aae679e7f5a462549a74d7d902b7441e
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_116.unity
     guid: b2a27810ddc31124eae3aefafb5610e3
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_117.unity
     guid: ad61dd6230dc48545883d5e6a53130ce
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_118.unity
     guid: 9cf1f8407fb562840b0822c05709b3c3
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_119.unity
     guid: a073431fe83e3234680ee9c0e77f6563
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/Levels/02 Level_120.unity
     guid: b17fe77e7eb65a3469d8567360c4a215
   - enabled: 0

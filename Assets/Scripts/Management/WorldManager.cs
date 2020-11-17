@@ -55,6 +55,7 @@ public class WorldManager : MonoBehaviour
     void Start()
     {
         LoadMainGrid();
+        Color();
         LoadNextGrid();
     }
 

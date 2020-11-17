@@ -67,7 +67,7 @@ public class Block : MonoBehaviour
         {
             if (this.transform.position == anotherBlock.transform.position)
             {
-                Debug.LogError("Stacking blocks detected at position: " + this.transform.position.ToString());
+                Debug.Log("Stacking blocks detected at position: " + this.transform.position.ToString());
                 Destroy(gameObject);
                 return;
             }

@@ -245,6 +245,7 @@ public class GameMaster : MonoBehaviour
 
     void HandlePause()
     {
+        isMovementAllowed.value = false;
         Time.timeScale = 0f;
         if (GUIPauseMenuEvent != null)
             GUIPauseMenuEvent(CurrentGameState.ToString());
@@ -256,6 +257,7 @@ public class GameMaster : MonoBehaviour
 
     void HandleUnpause()
     {
+        isMovementAllowed.value = true;
         if (GUIPauseMenuEvent != null)
             GUIPauseMenuEvent(previousGameState.ToString());
         Time.timeScale = 1f;

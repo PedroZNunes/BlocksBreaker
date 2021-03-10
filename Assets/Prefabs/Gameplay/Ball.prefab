@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d04ba33bb1a1d94fa4f0218d3c23eeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitBlockClip: {fileID: 8300000, guid: 6fbc56db34843e04e9f529472cda6aeb, type: 3}
+  hitBlockClip: {fileID: 8300000, guid: 76ff06275f6fbc946b67b780d7088f4b, type: 3}
   hitPlayerClip: {fileID: 8300000, guid: 86f670b7034d48f49abd25587a8c542f, type: 3}
   hitUnbreakableClip: {fileID: 8300000, guid: 76ff06275f6fbc946b67b780d7088f4b, type: 3}
   hitOtherClip: {fileID: 8300000, guid: 6fbc56db34843e04e9f529472cda6aeb, type: 3}

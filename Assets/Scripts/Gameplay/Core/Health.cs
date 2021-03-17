@@ -23,15 +23,13 @@ public class Health
 
     public void SetMax(int newMaxHP) { max = newMaxHP; }
 
-    public void TakeHit()
-    {
-        current--;
+    public void GetHit(int amount){
+        current-= amount;
     }
 
-    public void TakeHit(out bool isDead)
+    public void GetHit()
     {
-        TakeHit();
-        isDead = this.isDead;
+        GetHit(1);
     }
 
     public void HealUp()

@@ -12,7 +12,7 @@ public class MenuButton : MonoBehaviour
     private AudioSource audioSource;
     private Animator animator;
 
-    public static event Action ResumeEvent;
+    // public static event Action ResumeEvent;
 
     void Awake()
     {
@@ -22,11 +22,6 @@ public class MenuButton : MonoBehaviour
         Debug.Assert(clickSound != null, "No click sound");
         animator.speed = Random.Range(0.75f, 1.25f);
     }
-
-    void Start()
-    {
-    }
-
 
 
     public void PlayClickSound()

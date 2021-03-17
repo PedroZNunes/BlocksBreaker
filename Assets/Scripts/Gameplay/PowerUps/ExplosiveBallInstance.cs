@@ -30,11 +30,11 @@ public class ExplosiveBallInstance : MonoBehaviour
     }
 
 
-    void ActiveEffect(Collider2D col, GameObject ball)
+    void ActiveEffect(Collider2D blockCol, Collider2D ballCol)
     {
-        if (transform.parent == ball.transform)
+        if (transform.parent == ballCol.transform)
         {
-            AttachToBlock(col.gameObject, explosiveEffect);
+            AttachToBlock(blockCol.gameObject, explosiveEffect);
             Count--;
             TestEndOfEffect();
             Destroy(gameObject);
@@ -66,6 +66,6 @@ public class ExplosiveBallInstance : MonoBehaviour
 
     void OnDisable() { Unsubscribe(); }
 
-    private void Subscribe() { Ball.BallCollidedEvent += ActiveEffect; }
-    private void Unsubscribe() { Ball.BallCollidedEvent -= ActiveEffect; }
+    private void Subscribe() { Block.GotHit += ActiveEffect; }
+    private void Unsubscribe() { Block.GotHit -= ActiveEffect; }
 }

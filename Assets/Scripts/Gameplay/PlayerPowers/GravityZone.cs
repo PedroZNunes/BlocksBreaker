@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GravityPullInstance : MonoBehaviour
+public class GravityZone : MonoBehaviour
 {
     public float pullAreaRadius = 3f;
     [SerializeField] IntegerVariable ballSpeed;

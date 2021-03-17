@@ -6,7 +6,6 @@ public class SlowPlayerEffect : MonoBehaviour
     [SerializeField] private float duration = 2f;
     private float currentDuration = 0f;
 
-    [SerializeField] private bool isStackable = true;
     // Start is called before the first frame update
     private void OnEnable()
     {

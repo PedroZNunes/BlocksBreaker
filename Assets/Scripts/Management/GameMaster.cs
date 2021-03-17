@@ -7,7 +7,7 @@ public class GameMaster : MonoBehaviour
 
     public delegate void LaunchHandler(Vector2 direction);
     public static event LaunchHandler LaunchEvent;
-    public static event Action StartingEvent;
+    // public static event Action StartingEvent;
     public static event Action DefeatEvent;
     public static event Action VictoryEvent;
     public static event Action EndGameEvent;
@@ -72,14 +72,14 @@ public class GameMaster : MonoBehaviour
     void Subscribe()
     {
         Block.NoBlocksLeftEvent += HandleNoBlocksLeft;
-        Ball.NoBallsLeftEvent += HandleNoBallsLeft;
+        Ball.NoBallsLeft += HandleNoBallsLeft;
         OptionsController.UnpauseEvent += HandleUnpause;
     }
 
     void Unsubscribe()
     {
         Block.NoBlocksLeftEvent -= HandleNoBlocksLeft;
-        Ball.NoBallsLeftEvent -= HandleNoBallsLeft;
+        Ball.NoBallsLeft -= HandleNoBallsLeft;
         OptionsController.UnpauseEvent -= HandleUnpause;
 
     }
@@ -277,7 +277,7 @@ public class GameMaster : MonoBehaviour
         if (!canPlayerGetHit.value)
             return;
 
-        player.TakeHit();
+        player.GetHit();
 
         if (CheckForDefeat())
         {

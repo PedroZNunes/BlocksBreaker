@@ -10,7 +10,7 @@ public class PowerUpManager : MonoBehaviour
 
     private float currentProcTime = 0f;
     private float currentProcThreshold = 0f;
-    private readonly float bonusProcPerTime = 1.5f;
+    private readonly float bonusProcPerTime = 3f;
 
     private static readonly Transform dropInstanceParent;
 

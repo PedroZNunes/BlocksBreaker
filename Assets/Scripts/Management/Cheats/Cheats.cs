@@ -18,7 +18,7 @@ public class Cheats : MonoBehaviour
     {
         foreach (Block block in GameObject.FindObjectsOfType<Block>())
         {
-            block.TakeHit();
+            block.GetHit();
         }
     }
 

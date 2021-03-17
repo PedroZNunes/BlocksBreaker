@@ -51,7 +51,7 @@ MonoBehaviour:
     m_Bits: 512
   effectArea: 3
   chainHits: 4
-  procChancePerHit: 10
+  procChancePerHit: 4
   duration: 8
   activeColor: {r: 0.17519578, g: 0.2521457, b: 0.2924528, a: 0.7921569}
 --- !u!82 &82360600439161170

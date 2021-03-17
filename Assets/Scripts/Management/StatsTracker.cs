@@ -62,7 +62,7 @@ public class StatsTracker : MonoBehaviour
 
     void OnEnable()
     {
-        Ball.BallDestroyedEvent += IncrementBallsUsed;
+        Ball.BallDestroyed += IncrementBallsUsed;
         Block.BlockDestroyedEvent += IncrementBlocksDestroyed;
         PickUpItem.PowerUpPickedUpEvent += IncrementPowerUps;
         GameMaster.DefeatEvent += IncrementDeaths;
@@ -72,7 +72,7 @@ public class StatsTracker : MonoBehaviour
 
     void OnDisable()
     {
-        Ball.BallDestroyedEvent -= IncrementBallsUsed;
+        Ball.BallDestroyed -= IncrementBallsUsed;
         Block.BlockDestroyedEvent -= IncrementBlocksDestroyed;
         PickUpItem.PowerUpPickedUpEvent -= IncrementPowerUps;
         GameMaster.DefeatEvent -= IncrementDeaths;

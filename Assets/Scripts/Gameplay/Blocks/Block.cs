@@ -12,6 +12,15 @@ public class Block : MonoBehaviour
     public static event Action BlockDestroyedEvent;
     public static event Action NoBlocksLeftEvent;
 
+    public delegate void GotHitEventHandler(Collider2D blockCol, Collider2D ballCol);
+    public static event GotHitEventHandler GotHit;
+    
+
+    public delegate void GettingHitEventHandler(Block block, ref int damageAmount);
+
+    public event GettingHitEventHandler ThisGettingHit;
+
+
     public static int Count;
 
     [SerializeField] private Health health;
@@ -110,14 +119,31 @@ public class Block : MonoBehaviour
         //TODO fix this. change to compare layers
         if (col.gameObject.CompareTag(MyTags.Ball.ToString()))
         {
-            TakeHit();
+            GetHit();
+
+            if (GotHit != null)
+            {
+                GotHit(col.otherCollider, col.collider);
+            }
         }
     }
 
-    public void TakeHit()
+    public void GetHit()
     {
-        bool isDead = false;
-        health.TakeHit(out isDead);
+        int damageAmount = 1;
+
+        if(ThisGettingHit != null)
+        {
+            ThisGettingHit (this, ref damageAmount);
+        }
+        GetHit(damageAmount);
+    }
+
+    public void GetHit(int amount)
+    {
+        health.GetHit(amount);
+        bool isDead = health.isDead;
+
         //		ScoreManager.AddPoints (scorePerHit);
         if (isDead)
         {

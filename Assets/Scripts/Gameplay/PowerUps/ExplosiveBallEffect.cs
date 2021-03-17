@@ -28,7 +28,7 @@ public class ExplosiveBallEffect : MonoBehaviour
                 //				if (blocksHit [i].transform == this.transform.parent)
                 //					continue;
                 Block block = blocksHit[i].GetComponent<Block>();
-                block.TakeHit();
+                block.GetHit();
             }
         }
         Destroy(gameObject, audioSource.clip.length);

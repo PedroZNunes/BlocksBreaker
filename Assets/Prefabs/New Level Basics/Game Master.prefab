@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpName: 2
-  dropChancePercent: 0
+  dropChancePercent: 10
   dropPrefab: {fileID: 1000012873701344, guid: ce1640521f30cb44ab5a1cc5ac0c27fd, type: 3}
 --- !u!1 &730404124
 GameObject:
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpName: 0
-  dropChancePercent: 30
+  dropChancePercent: 40
   dropPrefab: {fileID: 1000010943196068, guid: 4946c7dbabe47064db87f3809c3386ca, type: 3}
   ballPrefab: {fileID: 1000010794234974, guid: f3925628107cf624fbc739811a586a90, type: 3}
   multiBallInstancePrefab: {fileID: 1666466039810504, guid: 618eedcce284f254b8f3593857432857,
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpName: 1
-  dropChancePercent: 30
+  dropChancePercent: 20
   dropPrefab: {fileID: 1000010702340442, guid: 6dbf5ee4ebcc86c4ab509d1ce37748da, type: 3}
   electricBallInstance: {fileID: 114525837413521302, guid: bf83f2ce9b7e5684a95ba1ad1a8139c4,
     type: 3}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpName: 3
-  dropChancePercent: 40
+  dropChancePercent: 30
   dropPrefab: {fileID: 1747496176413354, guid: 704d4685310546047ae338fe2e611ae2, type: 3}
   explosiveBallInstancePrefab: {fileID: 1742448211101378, guid: a8dbc7826dfd35a4585297691cab0266,
     type: 3}
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   previousGameState: 0
   ballPrefab: {fileID: 1000010794234974, guid: f3925628107cf624fbc739811a586a90, type: 3}
-  playerPrefab: {fileID: 1000011726875424, guid: eb3376c7f9ca31745ae678d303c3b34d,
+  playerPrefab: {fileID: 1000011726875424, guid: 17e262b31c02fa34a8fc1dc850de20bb,
     type: 3}
   powerUpManager: {fileID: 730404126}
   BackgroundAudioSource: {fileID: 558454863822443085}

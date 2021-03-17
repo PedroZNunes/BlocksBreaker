@@ -18,7 +18,6 @@ public class LevelSelectManager : MonoBehaviour
 
     public int worldNumber = 1;
 
-    [SerializeField] private Sprite buttonSprite;
     [SerializeField] private GameObject levelButtonPrefab;
     [SerializeField] private List<Level> LevelList;
 
@@ -26,9 +25,7 @@ public class LevelSelectManager : MonoBehaviour
     private bool isLoaded = false;
 
     private GridLayoutGroup gridLayout;
-    private float spacingXTallScreen = 10f;
 
-    private RectTransform gridTransform;
 
 
     void OnValidate()

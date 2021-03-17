@@ -116,19 +116,19 @@ public class ElectricBallInstance : MonoBehaviour
             shock = Instantiate(ShockExplosionPrefab, blockPos, Quaternion.identity, this.transform) as GameObject;
             shockAnimationDuration = shock.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
             Destroy(shock, shockAnimationDuration);
-            targetBlock.TakeHit();
+            targetBlock.GetHit();
             yield return timeBetweenShocks;
         }
     }
 
-    void ActiveEffect(Collider2D col, GameObject ball)
+    void ActiveEffect(Collider2D blockCol, Collider2D ballCol)
     {
         currentProcChance += procChancePerHit;
         Debug.Log(currentProcChance);
         if (Random.Range(0f, 100f) <= currentProcChance)
         {
             audioSource.Play();
-            StartCoroutine(ShockEffect(col));
+            StartCoroutine(ShockEffect(blockCol));
             currentProcChance = procChancePerHit;
         }
     }
@@ -141,11 +141,11 @@ public class ElectricBallInstance : MonoBehaviour
 
     void OnDisable() { Unsubscribe(); }
 
-    void Subscribe() { Ball.BallCollidedEvent += ActiveEffect; }
+    void Subscribe() { Block.GotHit += ActiveEffect; }
 
     void Unsubscribe()
     {
-        Ball.BallCollidedEvent -= ActiveEffect;
+        Block.GotHit -= ActiveEffect;
         PlayerBuffs.isElectric = false;
     }
 }

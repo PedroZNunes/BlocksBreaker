@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 95000013992877978}
   - component: {fileID: 82000011737244666}
   m_Layer: 0
-  m_Name: Player
+  m_Name: FrostPlayer
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,7 +60,7 @@ MonoBehaviour:
       type: 2}
     playerCollider: {fileID: 60000012140109750}
   playerPos: {fileID: 11400000, guid: 54cfb361321b4374e9810ec7364793f9, type: 2}
-  takeHitClip: {fileID: 8300000, guid: 0d9038d0012c07245ad34e4643208514, type: 3}
+  getHitClip: {fileID: 8300000, guid: 0d9038d0012c07245ad34e4643208514, type: 3}
   hpSprites:
   - {fileID: 21300004, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
   - {fileID: 21300002, guid: 7aed3a3879981ee4e8edf5549a2fc181, type: 3}
@@ -421,7 +421,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f13ee3a452b64f34fba45d8d4e193610, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.47450984, a: 1}
+  m_Color: {r: 0, g: 0.8624213, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
@@ -503,7 +503,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f13ee3a452b64f34fba45d8d4e193610, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.47450984, a: 1}
+  m_Color: {r: 0, g: 0.88181186, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -522,10 +522,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4260388237354168553}
-  - component: {fileID: 1979847495529731135}
   - component: {fileID: 93374900}
+  - component: {fileID: 8979778578269517986}
   m_Layer: 0
-  m_Name: Gravity Pull
+  m_Name: Frost Nova
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -547,28 +547,6 @@ Transform:
   m_Father: {fileID: 8247223962518898504}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1979847495529731135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5504047634590446814}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 734df39c94edce248b070704fd03223f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPlayerFree: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628, type: 2}
-  isShootingAllowed: {fileID: 11400000, guid: e20020e808044a84ca2aa18dd3565013, type: 2}
-  screenMovementLimit_y: {fileID: 11400000, guid: 1915031b176e2af48a9ab962e96141fc,
-    type: 2}
-  instance: {fileID: 1891450157360208829, guid: be216dabc91fe474c90891087925a9b2,
-    type: 3}
-  cooldown: 10
-  maxCharges: 2
-  specialLeftSprite: {fileID: 5453221125215505288}
-  specialRightSprite: {fileID: 6526764372298077553}
 --- !u!82 &93374900
 AudioSource:
   m_ObjectHideFlags: 0
@@ -666,6 +644,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8979778578269517986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5504047634590446814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dc783ba0176caa42aa994c3c577b467, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerFree: {fileID: 11400000, guid: 79a28dc5042a30141a0420446c0da628, type: 2}
+  isShootingAllowed: {fileID: 11400000, guid: e20020e808044a84ca2aa18dd3565013, type: 2}
+  screenMovementLimit_y: {fileID: 11400000, guid: 1915031b176e2af48a9ab962e96141fc,
+    type: 2}
+  instance: {fileID: 8170885029138220508, guid: c726b74d007427a45802640d9e8d9e7b,
+    type: 3}
+  cooldown: 12
+  maxCharges: 2
+  specialLeftSprite: {fileID: 5453221125215505288}
+  specialRightSprite: {fileID: 6526764372298077553}
 --- !u!1 &7352707796186681956
 GameObject:
   m_ObjectHideFlags: 0

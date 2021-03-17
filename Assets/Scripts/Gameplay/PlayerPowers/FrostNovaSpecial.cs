@@ -5,24 +5,25 @@ using UnityEditor;
 using UnityEngine;
 
 [Serializable]
-public class GravityManipulator : MonoBehaviour
+public class FrostNovaSpecial : MonoBehaviour
 {
     [SerializeField] BooleanVariable isPlayerFree;
     [SerializeField] BooleanVariable isShootingAllowed;
     [SerializeField] IntegerVariable screenMovementLimit_y;
-    [SerializeField] GravityPullInstance instance;
+    [SerializeField] FrostNovaZone instance;
 
-    [SerializeField] float cooldown = 10;
-    [SerializeField] int maxCharges = 2;
+    [SerializeField] float cooldown = 15;
+    [SerializeField] int maxCharges = 1;
 
     [SerializeField] private SpriteRenderer specialLeftSprite;
     [SerializeField] private SpriteRenderer specialRightSprite;
     private int charges;
 
     private Transform parent;
+
     private AudioSource audioSource;
 
-    private Coroutine Recharging;
+    private Coroutine recharging;
 
     private void Start()
     {
@@ -46,15 +47,14 @@ public class GravityManipulator : MonoBehaviour
                     {
                         Instantiate(instance, new Vector3(mousePosition.x, mousePosition.y, 1), Quaternion.identity, parent);
 
-                        if (!specialRightSprite.enabled)
-                            specialLeftSprite.enabled = false;
-                        else
-                            specialRightSprite.enabled = false;
+                        specialLeftSprite.enabled = false;
+                        specialRightSprite.enabled = false;
 
                         charges--;
+                        charges--;
 
-                        if(Recharging == null)
-                            Recharging = StartCoroutine(Recharge());
+                        if(recharging == null)
+                            recharging = StartCoroutine(Recharge());
                     }
 
                 }
@@ -68,12 +68,12 @@ public class GravityManipulator : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown);
 
-        if (specialLeftSprite.enabled)
-            specialRightSprite.enabled = true;
-        else
-            specialLeftSprite.enabled = true;
+        specialRightSprite.enabled = true;
+        specialLeftSprite.enabled = true;
 
         audioSource.Play();
+        
+        charges++;
         charges++;
 
         Debug.Log("Charge ++. Charges: " + charges);
@@ -83,7 +83,7 @@ public class GravityManipulator : MonoBehaviour
         }
         else
         {
-            Recharging = null;
+            recharging = null;
         }
 
         yield return 0;

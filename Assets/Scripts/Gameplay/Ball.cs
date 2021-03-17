@@ -5,11 +5,10 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
 
-    public static event System.Action BallDestroyedEvent;
-    public static event System.Action NoBallsLeftEvent;
+    public static event System.Action BallDestroyed;
+    public static event System.Action NoBallsLeft;
 
-    public delegate void PowerUpsHandler(Collider2D col, GameObject ball);
-    public static event PowerUpsHandler BallCollidedEvent;
+
 
     public static int Count = 0;
     [SerializeField] private AudioClip hitBlockClip, hitPlayerClip, hitUnbreakableClip, hitOtherClip, firstLaunchClip;
@@ -63,13 +62,13 @@ public class Ball : MonoBehaviour
     public void DestroyBall()
     {
         balls.Remove(this);
-        if (BallDestroyedEvent != null)
-            BallDestroyedEvent();
+        if (BallDestroyed != null)
+            BallDestroyed();
 
         if (balls.Count <= 0)
         {
-            if (NoBallsLeftEvent != null)
-                NoBallsLeftEvent();
+            if (NoBallsLeft != null)
+                NoBallsLeft();
         }
 
         Destroy(this.gameObject);
@@ -116,13 +115,10 @@ public class Ball : MonoBehaviour
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.x), minAngles.x, maxAngles.x) * Mathf.Sign(rigidBody.velocity.x),
             Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.y), minAngles.y, maxAngles.y) * Mathf.Sign(rigidBody.velocity.y)).normalized;
         rigidBody.velocity = normalizedVelocity * speed.value;
+        
         if (col.gameObject.CompareTag(MyTags.Block.ToString()))
         {
             audioSource.PlayOneShot(hitBlockClip, 0.3f);
-            if (BallCollidedEvent != null)
-            {
-                BallCollidedEvent(col.collider, gameObject);
-            }
         }
         else if (col.gameObject.CompareTag(MyTags.Unbreakable.ToString()))
         {

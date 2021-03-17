@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-
+using System;
+using System.Collections;
 
 [RequireComponent(typeof(SpriteRenderer))]
 public class MultiBallInstance : MonoBehaviour
@@ -26,19 +27,27 @@ public class MultiBallInstance : MonoBehaviour
         activeEffect = Instantiate(multiBallEffect, this.transform.position, Quaternion.identity, this.transform) as GameObject;
     }
 
-    void ActiveEffect(Collider2D col, GameObject ball)
+    void ActiveEffect(Collider2D blockCol, Collider2D ballCol)
     {
-        if (transform.parent == ball.transform)
+        if (transform.parent == ballCol.transform)
         {
-            GameObject newBall = Instantiate(ballPrefab, ball.transform.position, ball.transform.rotation, dynamic) as GameObject;
-            Rigidbody2D ballRB = ball.GetComponent<Rigidbody2D>();
-            newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(-ballRB.velocity.x, -ballRB.velocity.y);
-            Destroy(activeEffect);
-            Count--;
-            TestEndOfEffect();
-            Destroy(gameObject);
+            StartCoroutine(Spawn(blockCol, ballCol));
+            
         }
     }
+
+    private IEnumerator Spawn(Collider2D blockCol, Collider2D ballCol){
+        yield return new WaitForSeconds(0.4f);
+        GameObject newBall = Instantiate(ballPrefab, ballCol.bounds.center, Quaternion.identity, dynamic) as GameObject;
+        Rigidbody2D ballRB = ballCol.GetComponent<Rigidbody2D>();
+        newBall.GetComponent<Rigidbody2D>().velocity = new Vector2(-ballRB.velocity.x, -ballRB.velocity.y);
+        Destroy(activeEffect);
+        Count--;
+        TestEndOfEffect();
+        Destroy(gameObject);
+        yield return 0;
+    }
+
 
     private void TestEndOfEffect()
     {
@@ -51,6 +60,6 @@ public class MultiBallInstance : MonoBehaviour
 
     void OnDisable() { Unsubscribe(); }
 
-    private void Subscribe() { Ball.BallCollidedEvent += ActiveEffect; }
-    private void Unsubscribe() { Ball.BallCollidedEvent -= ActiveEffect; }
+    private void Subscribe() { Block.GotHit += ActiveEffect; }
+    private void Unsubscribe() { Block.GotHit -= ActiveEffect; }
 }

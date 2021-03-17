@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private PositionVariable playerPos;
 
-    [SerializeField] private AudioClip takeHitClip;
+    [SerializeField] private AudioClip getHitClip;
     [Tooltip("Set elements according to HP")]
     [SerializeField] private Sprite[] hpSprites;
     [SerializeField] private SpriteRenderer healthSpriteRenderer;
@@ -47,11 +47,11 @@ public class Player : MonoBehaviour
         playerPos.value = transform.position;
     }
 
-    public void TakeHit()
+    public void GetHit()
     {
         animator.SetTrigger("TakeHit");
-        audioSource.PlayOneShot(takeHitClip, 0.3f);
-        health.TakeHit();
+        audioSource.PlayOneShot(getHitClip, 0.3f);
+        health.GetHit();
         UpdateSprite();
     }
 

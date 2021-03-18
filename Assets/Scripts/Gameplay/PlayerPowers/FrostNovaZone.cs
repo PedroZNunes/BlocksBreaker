@@ -27,7 +27,7 @@ public class FrostNovaZone : MonoBehaviour
             Block block = blockCol.GetComponent<Block>();
             if(block != null){ 
                 //instances a frost effect on the block and adds it to the same row as their respective block
-                GameObject frostInstance = Instantiate(frostInstancePrefab, blockCol.bounds.center, Quaternion.identity, transform);
+                GameObject frostInstance = Instantiate(frostInstancePrefab, blockCol.bounds.center, blockCol.transform.rotation, transform);
                 FrostNovaBlock frostBlock = frostInstance.GetComponent<FrostNovaBlock>();
                 if (frostBlock != null){
                     PlatformEffector2D effector = block.gameObject.AddComponent<PlatformEffector2D>();

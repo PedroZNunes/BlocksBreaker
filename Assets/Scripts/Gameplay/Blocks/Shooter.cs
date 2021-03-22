@@ -21,6 +21,20 @@ public class Shooter : MonoBehaviour
         }
     }
 
+    private void OnEnable() {
+        Block block = this.GetComponent<Block>();
+        if (block != null){
+            block.ThisGettingHit += Shoot;
+        }
+    }
+
+        private void OnDisable() {
+        Block block = this.GetComponent<Block>();
+        if (block != null){
+            block.ThisGettingHit -= Shoot;
+        }
+    }
+
     void FixedUpdate()
     {
         if (!isShootingAllowed.value)
@@ -34,6 +48,8 @@ public class Shooter : MonoBehaviour
             currentCooldown = 0f;
         }
     }
+
+    private void Shoot(Block block, ref int damageAmount){ Shoot();}
 
     private void Shoot()
     {

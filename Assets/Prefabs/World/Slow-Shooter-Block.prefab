@@ -49,8 +49,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health:
-    max: 2
+    max: 3
   sprites:
+  - {fileID: 6608634889621467271, guid: aab3307a09130cf488bcdf2aad32b100, type: 3}
   - {fileID: -2230640015494873224, guid: aab3307a09130cf488bcdf2aad32b100, type: 3}
   - {fileID: 5937300090042828850, guid: aab3307a09130cf488bcdf2aad32b100, type: 3}
 --- !u!114 &724357385507339573

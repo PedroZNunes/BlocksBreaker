@@ -8,9 +8,13 @@ public class FrostNovaZone : MonoBehaviour
     [SerializeField] private float duration = 5f;
 
     [SerializeField] private LayerMask layerMask;
-    [SerializeField] private float effectRadius =3f;
+    [SerializeField] private float effectRadius = 3f;
 
     [SerializeField] private GameObject frostInstancePrefab;
+
+    [SerializeField] private Sprite blockEffect;
+    [SerializeField] private Sprite blockSquareEffect;
+
 
     private Dictionary<Block, FrostNovaBlock> instancesList;
 
@@ -20,20 +24,40 @@ public class FrostNovaZone : MonoBehaviour
     {
         instancesList = new Dictionary<Block, FrostNovaBlock>();
         //collider thing, gets all blocks adding each to the dictionary.
-        Collider2D[] affectedBlocks = Physics2D.OverlapCircleAll(transform.position, effectRadius,layerMask);
+        Collider2D[] affectedBlocks = Physics2D.OverlapCircleAll(transform.position, effectRadius, layerMask);
 
         foreach (Collider2D blockCol in affectedBlocks)
         {
             Block block = blockCol.GetComponent<Block>();
-            if(block != null){ 
+            if (block != null)
+            {
                 //instances a frost effect on the block and adds it to the same row as their respective block
                 GameObject frostInstance = Instantiate(frostInstancePrefab, blockCol.bounds.center, blockCol.transform.rotation, transform);
+                SpriteRenderer sr = frostInstance.GetComponent<SpriteRenderer>();
+                if (sr != null)
+                {
+                    if (blockCol.bounds.extents.x == blockCol.bounds.extents.y)
+                    {
+                        frostInstance.GetComponent<SpriteRenderer>().sprite = blockSquareEffect;
+                    }
+                    else
+                    {
+                        frostInstance.GetComponent<SpriteRenderer>().sprite = blockEffect;
+                    }
+                }
+                
+                //make it so the collider works but doesnt bounce the ball back
+                PlatformEffector2D effector = block.gameObject.AddComponent<PlatformEffector2D>();
+                effector.surfaceArc = 0;
+                
                 FrostNovaBlock frostBlock = frostInstance.GetComponent<FrostNovaBlock>();
-                if (frostBlock != null){
-                    PlatformEffector2D effector = block.gameObject.AddComponent<PlatformEffector2D>();
-                    effector.surfaceArc = 0;
+                if (frostBlock != null)
+                {
                     Subscribe(block);
                     instancesList.Add(block, frostBlock);
+                }
+                else{
+                    Debug.LogError("Nova could not find the frost block script");
                 }
             }
         }
@@ -42,8 +66,8 @@ public class FrostNovaZone : MonoBehaviour
 
     private void OnBlockGettingHit(Block block, ref int damageAmount)
     {
-        damageAmount = 10;  
-        
+        damageAmount = 10;
+
         //kill block and tell instance to shatter
         DestroyFrost(instancesList[block]);
         instancesList.Remove(block);
@@ -83,13 +107,13 @@ public class FrostNovaZone : MonoBehaviour
     }
 
 
-    private void Subscribe(Block block) 
+    private void Subscribe(Block block)
     {
         block.ThisGettingHit += OnBlockGettingHit;
-    }   
+    }
 
 
-    private void Unsubscribe(Block block) 
+    private void Unsubscribe(Block block)
     {
         block.ThisGettingHit -= OnBlockGettingHit;
     }

@@ -8,7 +8,7 @@ public class PickUpItem : MonoBehaviour
     //[SerializeField] private PowerUp powerUp;
     [SerializeField] private PowerUpsEnum powerUpName;
 
-    private readonly float speed = 2.5f;
+    private readonly float speed = 4.5f;
     [SerializeField] private AudioClip soundEffect;
     [SerializeField] private AudioSource audioSource;
     //private float defaultPitch;

@@ -50,3 +50,7 @@ MonoBehaviour:
   effectRadius: 1.5
   frostInstancePrefab: {fileID: 7332732175276360807, guid: 2dde6ed722ca1ea4ab262cbc2ea328ca,
     type: 3}
+  blockEffect: {fileID: 38433539612607256, guid: aab3307a09130cf488bcdf2aad32b100,
+    type: 3}
+  blockSquareEffect: {fileID: -8506558392696655332, guid: aab3307a09130cf488bcdf2aad32b100,
+    type: 3}

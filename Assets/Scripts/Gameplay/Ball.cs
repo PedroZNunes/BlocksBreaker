@@ -37,6 +37,7 @@ public class Ball : MonoBehaviour
         balls.Add(this);
     }
 
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -45,11 +46,13 @@ public class Ball : MonoBehaviour
         Debug.Assert(actionMaster != null, "Action Master not found by the ball");
     }
 
+
     void Update()
     {
         CheckBorders();
         Debug.DrawRay(transform.position, rigidBody.velocity.normalized);
     }
+
 
     void OnTriggerEnter2D(Collider2D trigger)
     {
@@ -58,6 +61,7 @@ public class Ball : MonoBehaviour
             DestroyBall();
         }
     }
+
 
     public void DestroyBall()
     {
@@ -83,6 +87,7 @@ public class Ball : MonoBehaviour
         rigidBody.velocity = direction * speed.value;
         audioSource.PlayOneShot(firstLaunchClip, 0.5f);
     }
+
 
     void CheckBorders()
     {
@@ -141,6 +146,7 @@ public class Ball : MonoBehaviour
             //this.rigidBody.velocity = new Vector2 (Mathf.Sign( rigidBody.velocity.x ) * Mathf.Max( this.rigidBody.velocity.x, 1f ), rigidBody.velocity.y);
         }
     }
+
 
     private void Subscribe()
     {

@@ -7,7 +7,10 @@ public class LevelManager : MonoBehaviour
 {
 
 
-    static public event Action LeavingLevelEvent;
+    static public event Action LeavingLevel;
+
+    static public event Action ReloadingLevel;
+
 
     private string currentSceneName;
 
@@ -88,9 +91,9 @@ public class LevelManager : MonoBehaviour
         {
             if (isSceneALevel)
             {
-                if (LeavingLevelEvent != null)
+                if (LeavingLevel != null)
                 {
-                    LeavingLevelEvent();
+                    LeavingLevel();
                 }
             }
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
@@ -101,9 +104,9 @@ public class LevelManager : MonoBehaviour
     {
         if (isSceneALevel)
         {
-            if (LeavingLevelEvent != null)
+            if (LeavingLevel != null)
             {
-                LeavingLevelEvent();
+                LeavingLevel();
             }
         }
     }
@@ -111,6 +114,14 @@ public class LevelManager : MonoBehaviour
 
     static public void ReloadCurrentLevel()
     {
+        if (isSceneALevel)
+        {
+            if (LeavingLevel != null)
+            {
+                LeavingLevel();
+            }
+        }
+
         LoadLevel(GetCurrentSceneByName());
     }
 

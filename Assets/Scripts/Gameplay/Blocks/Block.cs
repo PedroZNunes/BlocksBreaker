@@ -54,14 +54,14 @@ public class Block : MonoBehaviour
     private void OnEnable()
     {
         GameMaster.EndGameEvent += ResetBlocks;
-        LevelManager.LeavingLevelEvent += ResetBlocks;
+        LevelManager.LeavingLevel += ResetBlocks;
         health.Initialize();
     }
 
     private void OnDisable()
     {
         GameMaster.EndGameEvent -= ResetBlocks;
-        LevelManager.LeavingLevelEvent -= ResetBlocks;
+        LevelManager.LeavingLevel -= ResetBlocks;
     }
 
     void Awake()

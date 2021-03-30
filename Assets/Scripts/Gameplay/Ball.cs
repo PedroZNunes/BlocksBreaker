@@ -7,7 +7,10 @@ public class Ball : MonoBehaviour
 
     public static event System.Action BallDestroyed;
     public static event System.Action NoBallsLeft;
+    
+    public delegate void MovingEventHandler (ref float speed);
 
+    public static event MovingEventHandler Moving;
 
 
     public static int Count = 0;
@@ -51,8 +54,24 @@ public class Ball : MonoBehaviour
     {
         CheckBorders();
         Debug.DrawRay(transform.position, rigidBody.velocity.normalized);
+
+        Move();
+
     }
 
+    private void Move()
+    {
+        float moveSpeed = speed.value;
+        if (Moving != null)
+        {
+            Moving(ref moveSpeed);
+        }
+
+        Vector2 normalizedVelocity = new Vector2(
+            Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.x), minAngles.x, maxAngles.x) * Mathf.Sign(rigidBody.velocity.x),
+            Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.y), minAngles.y, maxAngles.y) * Mathf.Sign(rigidBody.velocity.y)).normalized;
+        rigidBody.velocity = normalizedVelocity * moveSpeed;
+    }
 
     void OnTriggerEnter2D(Collider2D trigger)
     {
@@ -116,10 +135,7 @@ public class Ball : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         //Não funciona exatamente como esperado, mas funciona...
-        Vector2 normalizedVelocity = new Vector2(
-            Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.x), minAngles.x, maxAngles.x) * Mathf.Sign(rigidBody.velocity.x),
-            Mathf.Clamp(Mathf.Abs(rigidBody.velocity.normalized.y), minAngles.y, maxAngles.y) * Mathf.Sign(rigidBody.velocity.y)).normalized;
-        rigidBody.velocity = normalizedVelocity * speed.value;
+
         
         if (col.gameObject.CompareTag(MyTags.Block.ToString()))
         {
@@ -152,7 +168,7 @@ public class Ball : MonoBehaviour
     {
         GameMaster.LaunchEvent += Launch;
         GameMaster.EndGameEvent += ResetBalls;
-        LevelManager.LeavingLevelEvent += ResetBalls;
+        LevelManager.LeavingLevel += ResetBalls;
         GUIController.LaunchEvent += Launch;
     }
 
@@ -160,7 +176,7 @@ public class Ball : MonoBehaviour
     {
         GameMaster.LaunchEvent -= Launch;
         GameMaster.EndGameEvent -= ResetBalls;
-        LevelManager.LeavingLevelEvent -= ResetBalls;
+        LevelManager.LeavingLevel -= ResetBalls;
         GUIController.LaunchEvent -= Launch;
     }
 

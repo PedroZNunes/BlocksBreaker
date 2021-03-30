@@ -39,6 +39,7 @@ public class MenuButton : MonoBehaviour
         StartCoroutine(Resume());
 
     }
+    public void RestartWrapper() { StartCoroutine(TryAgain()); }
     public void StatsWrapper() { StartCoroutine(Stats()); }
     public void QuitWrapper() { StartCoroutine(Quit()); }
 
